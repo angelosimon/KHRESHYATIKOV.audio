@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,17 +10,54 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #050505;
-  --card: #0d0d0d;
-  --border: #1a1a1a;
-  --accent: #e8ff00;
-  --text: #ebebeb;
-  --muted: #3a3a3a;
-  --muted2: #666;
+  /* fallback */
+  --bg: #07060b;
+  --card: #0e0b16;
+  --border: #1b1627;
+  --accent: #b68cff;
+  --accent2: #e6dcff;
+  --text: #efeaff;
+  --muted: #4b4460;
+  --muted2: #7d7494;
+  --shadow: rgba(0,0,0,0.35);
+}
+
+/* THEMES */
+html[data-theme="dark"] {
+  --bg: #07060b;
+  --card: #0e0b16;
+  --border: #1b1627;
+  --accent: #b68cff;
+  --accent2: #efe7ff;
+  --text: #f2edff;
+  --muted: #4b4460;
+  --muted2: #7d7494;
+  --shadow: rgba(0,0,0,0.35);
+}
+html[data-theme="midnight"] {
+  --bg: #05060f;
+  --card: #0a0c1a;
+  --border: #1a1f3a;
+  --accent: #9aa6ff;
+  --accent2: #e9edff;
+  --text: #eef1ff;
+  --muted: #454a67;
+  --muted2: #787fa8;
+  --shadow: rgba(0,0,0,0.40);
+}
+html[data-theme="light"] {
+  --bg: #f7f4ff;
+  --card: #ffffff;
+  --border: #e7e0ff;
+  --accent: #6f4dff;
+  --accent2: #2b165e;
+  --text: #1a112f;
+  --muted: #7b6aa8;
+  --muted2: #6a5e8a;
+  --shadow: rgba(20,10,40,0.10);
 }
 
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--bg);
   color: var(--text);
@@ -49,9 +86,6 @@ header {
   justify-content: space-between;
   gap: 20px;
 }
-
-.logo-block {}
-
 .logo-main {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(36px, 6vw, 72px);
@@ -59,9 +93,7 @@ header {
   line-height: 1;
   color: var(--text);
 }
-
 .logo-main span { color: var(--accent); }
-
 .logo-sub {
   font-size: 10px;
   letter-spacing: 0.25em;
@@ -70,25 +102,31 @@ header {
   margin-top: 6px;
 }
 
-/* YOUTUBE BUTTON */
+/* HEADER ACTIONS */
+.header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
 .yt-btn {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 28px;
+  padding: 14px 22px;
   background: var(--accent);
   color: #000;
   text-decoration: none;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 16px;
   letter-spacing: 0.12em;
-  border-radius: 2px;
+  border-radius: 10px;
   transition: all 0.2s;
   white-space: nowrap;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 10px 28px var(--shadow);
 }
-
 .yt-btn::before {
   content: '';
   position: absolute;
@@ -97,21 +135,37 @@ header {
   transform: translateX(-100%);
   transition: transform 0.3s ease;
 }
-
 .yt-btn:hover::before { transform: translateX(0); }
 .yt-btn:hover { color: var(--accent); }
-
 .yt-btn svg, .yt-btn span { position: relative; z-index: 1; }
+.yt-icon { width: 20px; height: 20px; flex-shrink: 0; }
 
-.yt-icon {
-  width: 20px; height: 20px;
-  flex-shrink: 0;
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.theme-btn:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 10px 24px var(--shadow); }
+.theme-dot {
+  width: 10px; height: 10px; border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
 /* MAIN LAYOUT */
 .layout {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 260px 1fr;
   min-height: calc(100vh - 130px);
 }
 
@@ -127,7 +181,6 @@ aside {
   flex-direction: column;
   gap: 8px;
 }
-
 .aside-label {
   font-size: 9px;
   letter-spacing: 0.3em;
@@ -137,7 +190,6 @@ aside {
   margin-bottom: 6px;
   margin-top: 12px;
 }
-
 .nav-item {
   padding: 10px 24px;
   font-size: 12px;
@@ -150,19 +202,17 @@ aside {
   align-items: center;
   justify-content: space-between;
 }
-
-.nav-item:hover { color: var(--text); background: var(--card); }
-.nav-item.active { color: var(--accent); border-left-color: var(--accent); background: var(--card); }
+.nav-item:hover { color: var(--text); background: color-mix(in srgb, var(--card) 92%, transparent); }
+.nav-item.active { color: var(--accent); border-left-color: var(--accent); background: color-mix(in srgb, var(--card) 92%, transparent); }
 
 .nav-item .count {
   font-size: 10px;
   color: var(--muted);
-  background: var(--border);
+  background: color-mix(in srgb, var(--border) 85%, transparent);
   padding: 2px 6px;
-  border-radius: 2px;
+  border-radius: 8px;
 }
-
-.nav-item.active .count { background: rgba(232,255,0,0.1); color: var(--accent); }
+.nav-item.active .count { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
 
 .add-pl-btn {
   margin: 16px 24px 0;
@@ -175,32 +225,23 @@ aside {
   letter-spacing: 0.05em;
   cursor: pointer;
   transition: all 0.2s;
-  border-radius: 2px;
+  border-radius: 10px;
 }
-
 .add-pl-btn:hover { border-color: var(--accent); color: var(--accent); }
 
 /* CONTENT */
-.content {
-  padding: 40px 48px 120px;
-}
-
+.content { padding: 40px 48px 120px; }
 .page { display: none; }
 .page.active { display: block; animation: fadeIn 0.2s ease; }
-
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-.page-head {
-  margin-bottom: 32px;
-}
-
+.page-head { margin-bottom: 26px; }
 .page-head h2 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 40px;
   letter-spacing: 0.06em;
   line-height: 1;
 }
-
 .page-head p {
   font-size: 11px;
   color: var(--muted2);
@@ -208,16 +249,85 @@ aside {
   margin-top: 6px;
 }
 
+/* ARTIST HEADER */
+.artist-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 18px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  border-radius: 14px;
+  box-shadow: 0 12px 30px var(--shadow);
+  margin-bottom: 18px;
+}
+.artist-left { display: flex; align-items: center; gap: 16px; }
+.avatar {
+  width: 62px; height: 62px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 24px var(--shadow);
+}
+.artist-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+.artist-meta {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--muted2);
+  letter-spacing: 0.05em;
+}
+.artist-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.sub-btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.sub-btn:hover { border-color: var(--accent); color: var(--accent); }
+.sub-btn.is-on {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+}
+.pill {
+  font-size: 10px;
+  color: var(--muted2);
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+/* LISTENERS */
+.listeners {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.listener-chip {
+  font-size: 11px;
+  color: var(--text);
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 88%, transparent);
+  padding: 7px 10px;
+  border-radius: 999px;
+}
+.listener-chip b { color: var(--accent); font-weight: 500; }
+
 /* TRACK TABLE */
-.track-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.track-table thead tr {
-  border-bottom: 1px solid var(--border);
-}
-
+.track-table { width: 100%; border-collapse: collapse; }
+.track-table thead tr { border-bottom: 1px solid var(--border); }
 .track-table th {
   font-size: 9px;
   letter-spacing: 0.2em;
@@ -227,27 +337,21 @@ aside {
   text-align: left;
   font-weight: 400;
 }
-
 .track-table th:first-child { padding-left: 0; width: 36px; text-align: center; }
-.track-table th:last-child { width: 60px; text-align: right; }
+.track-table th:last-child { width: 70px; text-align: right; }
 
 .track-row {
   border-bottom: 1px solid var(--border);
   cursor: pointer;
   transition: background 0.12s;
 }
-
-.track-row:hover { background: var(--card); }
+.track-row:hover { background: color-mix(in srgb, var(--card) 92%, transparent); }
 .track-row:hover .tr-num { display: none; }
 .track-row:hover .tr-play { display: flex !important; }
-.track-row.is-playing { background: var(--card); }
+.track-row.is-playing { background: color-mix(in srgb, var(--card) 92%, transparent); }
 .track-row.is-playing .tr-title { color: var(--accent); }
 
-.track-table td {
-  padding: 14px 12px;
-  font-size: 12px;
-}
-
+.track-table td { padding: 14px 12px; font-size: 12px; }
 .track-table td:first-child { padding-left: 0; text-align: center; }
 .track-table td:last-child { text-align: right; color: var(--muted2); font-size: 11px; }
 
@@ -266,7 +370,6 @@ aside {
   justify-content: flex-end;
   gap: 6px;
 }
-
 .track-row:hover .tr-actions { opacity: 1; }
 
 .icon-btn {
@@ -274,27 +377,22 @@ aside {
   border: 1px solid var(--border);
   color: var(--muted2);
   width: 26px; height: 26px;
-  border-radius: 2px;
+  border-radius: 10px;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   font-size: 12px;
   transition: all 0.15s;
 }
-
 .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
 
 /* BARS ANIMATION */
-.playing-bars {
-  display: flex; align-items: flex-end; gap: 2px; height: 14px; justify-content: center;
-}
-
+.playing-bars { display: flex; align-items: flex-end; gap: 2px; height: 14px; justify-content: center; }
 .bar {
-  width: 3px; background: var(--accent); border-radius: 1px;
+  width: 3px; background: var(--accent); border-radius: 2px;
   animation: bar-bounce 0.5s ease-in-out infinite alternate;
 }
 .bar:nth-child(2) { animation-delay: 0.15s; }
 .bar:nth-child(3) { animation-delay: 0.3s; }
-
 @keyframes bar-bounce { from { height: 3px; } to { height: 13px; } }
 
 /* EMPTY */
@@ -305,7 +403,6 @@ aside {
   font-size: 12px;
   letter-spacing: 0.05em;
 }
-
 .empty-state .e-icon {
   font-size: 36px;
   display: block;
@@ -316,31 +413,30 @@ aside {
 /* MODAL */
 .overlay {
   position: fixed; inset: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.65);
   z-index: 400;
   display: none;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
 }
-
+html[data-theme="light"] .overlay { background: rgba(20,10,40,0.35); }
 .overlay.open { display: flex; }
 
 .modal {
   background: var(--card);
   border: 1px solid var(--border);
-  padding: 32px;
-  width: 360px;
-  border-radius: 2px;
+  padding: 28px;
+  width: 380px;
+  border-radius: 14px;
+  box-shadow: 0 16px 46px var(--shadow);
 }
-
 .modal h3 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 24px;
   letter-spacing: 0.08em;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
-
 .modal input, .modal select {
   width: 100%;
   background: var(--bg);
@@ -349,56 +445,54 @@ aside {
   font-family: 'DM Mono', monospace;
   font-size: 12px;
   padding: 10px 14px;
-  border-radius: 2px;
+  border-radius: 12px;
   outline: none;
   margin-bottom: 12px;
   transition: border-color 0.15s;
 }
-
 .modal input:focus, .modal select:focus { border-color: var(--accent); }
 
 .modal-btns { display: flex; gap: 10px; justify-content: flex-end; margin-top: 4px; }
 
 .btn {
-  padding: 10px 20px;
+  padding: 10px 16px;
   font-family: 'DM Mono', monospace;
   font-size: 11px;
   letter-spacing: 0.05em;
   border: none;
-  border-radius: 2px;
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.15s;
 }
-
-.btn-outline { background: none; border: 1px solid var(--border); color: var(--muted2); }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--muted2); }
 .btn-outline:hover { border-color: var(--text); color: var(--text); }
 .btn-accent { background: var(--accent); color: #000; font-weight: 500; }
-.btn-accent:hover { background: #d4eb00; }
+.btn-accent:hover { filter: brightness(0.95); }
 
 /* TOAST */
 .toast {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  padding: 12px 20px;
+  bottom: 26px;
+  right: 26px;
+  padding: 12px 16px;
   background: var(--card);
   border: 1px solid var(--accent);
   color: var(--accent);
   font-size: 11px;
   letter-spacing: 0.05em;
-  border-radius: 2px;
+  border-radius: 12px;
   z-index: 600;
   opacity: 0;
   transform: translateY(8px);
   transition: all 0.25s;
   pointer-events: none;
+  box-shadow: 0 16px 50px var(--shadow);
 }
-
 .toast.show { opacity: 1; transform: translateY(0); }
 
 /* SCROLLBAR */
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-thumb { background: var(--border); }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--border) 85%, transparent); border-radius: 999px; }
 
 /* RESPONSIVE */
 @media (max-width: 720px) {
@@ -406,6 +500,7 @@ aside {
   .layout { grid-template-columns: 1fr; }
   aside { display: none; }
   .content { padding: 24px 20px 100px; }
+  .artist-head { flex-direction: column; align-items: flex-start; }
 }
 </style>
 </head>
@@ -416,12 +511,20 @@ aside {
     <div class="logo-main">KHRESHYATIKOV <span>AUDIO</span></div>
     <div class="logo-sub">Музыка · Плейлисты · Независимый проект</div>
   </div>
-  <a class="yt-btn" href="https://www.youtube.com/@KHRESHYATIKOV" target="_blank" rel="noopener">
-    <svg class="yt-icon" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/>
-    </svg>
-    <span>Смотреть на YouTube</span>
-  </a>
+
+  <div class="header-actions">
+    <button class="theme-btn" onclick="cycleTheme()" title="Сменить тему">
+      <span class="theme-dot"></span>
+      <span id="theme-label">THEME: DARK</span>
+    </button>
+
+    <a class="yt-btn" href="https://www.youtube.com/@KHRESHYATIKOV" target="_blank" rel="noopener">
+      <svg class="yt-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/>
+      </svg>
+      <span>Смотреть на YouTube</span>
+    </a>
+  </div>
 </header>
 
 <div class="layout">
@@ -431,6 +534,9 @@ aside {
       <span>Все треки</span>
       <span class="count" id="all-count">0</span>
     </div>
+
+    <div class="aside-label" style="margin-top:16px;">Артисты</div>
+    <div id="sidebar-artists"></div>
 
     <div class="aside-label" style="margin-top:16px;">Плейлисты</div>
     <div id="sidebar-lists"></div>
@@ -457,6 +563,50 @@ aside {
           </tr>
         </thead>
         <tbody id="tbody-all"></tbody>
+      </table>
+    </div>
+
+    <!-- ARTIST VIEW -->
+    <div class="page" id="page-artist">
+      <div class="page-head">
+        <h2 id="artist-title">Артист</h2>
+        <p id="artist-sub">Профиль артиста</p>
+      </div>
+
+      <div class="artist-head">
+        <div class="artist-left">
+          <img class="avatar" id="artist-avatar" src="" alt="avatar">
+          <div>
+            <div class="artist-name" id="artist-name">—</div>
+            <div class="artist-meta" id="artist-meta">—</div>
+          </div>
+        </div>
+
+        <div class="artist-actions">
+          <button class="sub-btn" id="sub-btn" onclick="toggleSubscribe()">Подписаться</button>
+          <span class="pill" id="subs-pill">0 слушателей</span>
+          <span class="pill" id="tracks-pill">0 треков</span>
+        </div>
+      </div>
+
+      <div id="listeners-wrap" style="margin-bottom:18px;">
+        <div style="font-size:10px;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;margin:2px 0 10px;">
+          Слушатели (подписчики)
+        </div>
+        <div class="listeners" id="listeners"></div>
+      </div>
+
+      <table class="track-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Название</th>
+            <th>Альбом / Тип</th>
+            <th></th>
+            <th>Длина</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-artist"></tbody>
       </table>
     </div>
 
@@ -507,23 +657,106 @@ aside {
   </div>
 </div>
 
+<!-- MODAL: Subscribe name -->
+<div class="overlay" id="modal-sub" onclick="overlayClick(event, this)">
+  <div class="modal">
+    <h3>Подписка</h3>
+    <input id="inp-nick" type="text" placeholder="Как тебя показать в слушателях? (ник)" maxlength="18">
+    <div class="modal-btns">
+      <button class="btn btn-outline" onclick="closeModals()">Отмена</button>
+      <button class="btn btn-accent" onclick="confirmSubscribe()">Готово</button>
+    </div>
+    <div style="margin-top:10px;color:var(--muted2);font-size:11px;line-height:1.45;">
+      Ник сохранится в браузере (localStorage). То есть после перезахода всё останется 👍
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 // ─────────────────────────────────────────
-// ТРЕКИ — добавляй свои сюда
+// АРТИСТЫ — треки добавлять легко ТУТ ✅
 // ─────────────────────────────────────────
-const TRACKS = [
-  { id:1, title:'КАПЦУЦИН',      album:'Новинка · 22.02.2026', type:'hadash & waffle',  dur:'—', url:'https://youtu.be/wU7yTtbyT3c?si=eJN44CbQInBab9TH' },
-  { id:2, title:'БЕЛЫЕ МИШАБАНЫ', album:'Сингл · 15.01.2026',  type:'hadash',    dur:'—', url:'https://youtu.be/aPApq1M2384?si=iJ_qGSH3QoHbFoiA' },
-  { id:3, title:'АБСУРД',         album:'Сингл · 25.12.2025',  type:'valera',    dur:'—', url:'https://youtu.be/RnBmoL8ohGY' },
+const ARTISTS = [
+  {
+    id: 'hadash',
+    name: 'hadash',
+    avatar: 'https://i.ibb.co/3yKMzsBj/Screenshot-2025-11-19-11-51-42-54-dba69a5e82e939c3ddef13f99a115ca3.jpg',
+    tracks: [
+      // hadash — треки: КАПУЦИН, белые мишабаны
+      { title:'КАПУЦИН',       album:'Новинка · 22.02.2026', type:'hadash & waffle', dur:'—', url:'https://youtu.be/wU7yTtbyT3c?si=eJN44CbQInBab9TH' },
+      { title:'БЕЛЫЕ МИШАБАНЫ',album:'Сингл · 15.01.2026',  type:'hadash',          dur:'—', url:'https://youtu.be/aPApq1M2384?si=iJ_qGSH3QoHbFoiA' },
+    ]
+  },
+  {
+    id: 'valera',
+    name: 'valera',
+    avatar: 'https://i.ibb.co/hJxqGfkd/2025-11-27-001446.png',
+    tracks: [
+      // valera — АБСУРД
+      { title:'АБСУРД', album:'Сингл · 25.12.2025', type:'valera', dur:'—', url:'https://youtu.be/RnBmoL8ohGY' },
+    ]
+  },
+  {
+    id: 'waffle',
+    name: 'waffle',
+    avatar: 'https://s1.eda.ru/StaticContent/Photos/150920201609/151130101745/p_O.jpg',
+    tracks: [
+      // waffle — КАПУЦИН (трек общий, но оставляем и тут, чтобы в профиле waffle он тоже был)
+      { title:'КАПУЦИН', album:'Новинка · 22.02.2026', type:'hadash & waffle', dur:'—', url:'https://youtu.be/wU7yTtbyT3c?si=eJN44CbQInBab9TH' },
+    ]
+  },
 ];
-// Чтобы добавить новый трек — скопируй строку выше и вставь название + ссылку
 
+// ─────────────────────────────────────────
+// TRACKS (авто-сборка из артистов) — НИЖЕ не руками
+// ─────────────────────────────────────────
+const TRACKS = buildTracksFromArtists(ARTISTS);
+
+// ─────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────
 let playlists = JSON.parse(localStorage.getItem('kh2_pls') || '[]');
 let nowPlaying = null;
 let pendingTrackId = null;
 let currentPlId = null;
+let currentArtistId = null;
+
+const THEMES = ['dark','midnight','light'];
+
+// ─────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────
+function buildTracksFromArtists(artists) {
+  // Делаем уникальные треки по связке title+url (чтобы "КАПУЦИН" не дублился как два разных id)
+  const map = new Map();
+  let id = 1;
+
+  // сначала проход всех треков
+  for (const a of artists) {
+    for (const t of a.tracks) {
+      const key = (t.title + '|' + (t.url || '')).toLowerCase();
+      if (!map.has(key)) {
+        map.set(key, { id: id++, ...t, artists: new Set([a.id]) });
+      } else {
+        map.get(key).artists.add(a.id);
+      }
+    }
+  }
+
+  // превращаем Set в массив
+  return Array.from(map.values()).map(x => ({ ...x, artists: Array.from(x.artists) }));
+}
+
+function artistById(id) { return ARTISTS.find(a => a.id === id); }
+function subsKey(id) { return `kh2_subs_${id}`; }
+
+function getSubs(id) {
+  try { return JSON.parse(localStorage.getItem(subsKey(id)) || '[]'); }
+  catch { return []; }
+}
+function setSubs(id, arr) { localStorage.setItem(subsKey(id), JSON.stringify(arr)); }
 
 // ─────────────────────────────────────────
 // RENDER ALL TRACKS
@@ -536,6 +769,10 @@ function renderAll() {
 
 function rowHTML(t, i, plId) {
   const playing = nowPlaying === t.id;
+
+  // "NEW" лейбл — если в album есть "Новинка"
+  const isNew = (t.album || '').toLowerCase().includes('новинка');
+
   return `
   <tr class="track-row ${playing ? 'is-playing' : ''}" id="row-${t.id}-${plId ?? 'all'}" onclick="play(${t.id})">
     <td>
@@ -545,10 +782,12 @@ function rowHTML(t, i, plId) {
       </span>
     </td>
     <td>
-      <div class="tr-title">${t.title} ${t.type === 'Новинка' ? '<span style="font-size:9px;background:var(--accent);color:#000;padding:2px 6px;border-radius:2px;letter-spacing:0.1em;margin-left:8px;vertical-align:middle;">NEW</span>' : ''}</div>
-      <div class="tr-album">${t.album}</div>
+      <div class="tr-title">${t.title}
+        ${isNew ? `<span style="font-size:9px;background:var(--accent);color:#000;padding:2px 8px;border-radius:999px;letter-spacing:0.12em;margin-left:8px;vertical-align:middle;">NEW</span>` : ''}
+      </div>
+      <div class="tr-album">${t.album || ''}</div>
     </td>
-    <td style="font-size:11px;color:var(--muted2);letter-spacing:0.05em;">${t.type}</td>
+    <td style="font-size:11px;color:var(--muted2);letter-spacing:0.05em;">${t.type || ''}</td>
     <td>
       <div class="tr-actions" onclick="event.stopPropagation()">
         ${plId !== null
@@ -557,25 +796,164 @@ function rowHTML(t, i, plId) {
         }
       </div>
     </td>
-    <td>${t.dur}</td>
+    <td>${t.dur || '—'}</td>
   </tr>`;
 }
 
 // ─────────────────────────────────────────
-// PLAY — открывает YouTube поиск по треку
+// PLAY — открывает YouTube ссылку трека
 // ─────────────────────────────────────────
 function play(id) {
   nowPlaying = id;
   const t = TRACKS.find(x => x.id === id);
+
   renderAll();
   if (currentPlId !== null) renderPlTracks(currentPlId);
+  if (currentArtistId !== null) renderArtistTracks(currentArtistId);
+
   const query = encodeURIComponent('KHRESHYATIKOV ' + t.title);
   const url = t.url || `https://www.youtube.com/results?search_query=${query}`;
   window.open(url, '_blank');
 }
 
 // ─────────────────────────────────────────
-// SIDEBAR & NAVIGATION
+// SIDEBAR: ARTISTS
+// ─────────────────────────────────────────
+function renderArtistsSidebar() {
+  const el = document.getElementById('sidebar-artists');
+
+  el.innerHTML = ARTISTS.map(a => {
+    const trackCount = tracksByArtist(a.id).length;
+    const subs = getSubs(a.id).length;
+
+    return `
+      <div class="nav-item" onclick="openArtist('${a.id}'); activateNav(this)">
+        <span>${a.name}</span>
+        <span class="count">${trackCount} · ${subs}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+function tracksByArtist(artistId) {
+  return TRACKS.filter(t => t.artists.includes(artistId));
+}
+
+// ─────────────────────────────────────────
+// ARTIST PAGE
+// ─────────────────────────────────────────
+function openArtist(id) {
+  currentArtistId = id;
+  currentPlId = null;
+
+  const a = artistById(id);
+  if (!a) return;
+
+  document.getElementById('artist-title').textContent = a.name;
+  document.getElementById('artist-sub').textContent = `Профиль артиста KHRESHYATIKOV`;
+  document.getElementById('artist-avatar').src = a.avatar;
+  document.getElementById('artist-name').textContent = a.name;
+
+  const tr = tracksByArtist(id);
+  document.getElementById('artist-meta').textContent = `${tr.length} трек(ов) · ${getSubs(id).length} слушателей`;
+  document.getElementById('tracks-pill').textContent = `${tr.length} треков`;
+
+  renderSubscribeUI();
+  renderListeners();
+  renderArtistTracks(id);
+  goPage('artist');
+}
+
+function renderArtistTracks(id) {
+  const tr = tracksByArtist(id);
+  const tbody = document.getElementById('tbody-artist');
+
+  if (!tr.length) {
+    tbody.innerHTML = `<tr><td colspan="5"><div class="empty-state"><span class="e-icon">♫</span>Пока пусто — добавь треки в массив ARTISTS в коде</div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = tr.map((t, i) => rowHTML(t, i, null)).join('');
+}
+
+function renderSubscribeUI() {
+  const btn = document.getElementById('sub-btn');
+  const subs = getSubs(currentArtistId);
+
+  const me = localStorage.getItem('kh2_nick') || '';
+  const isOn = me && subs.includes(me);
+
+  btn.classList.toggle('is-on', !!isOn);
+  btn.textContent = isOn ? 'Вы подписаны' : 'Подписаться';
+
+  document.getElementById('subs-pill').textContent = `${subs.length} слушателей`;
+  // обновим мету
+  const tr = tracksByArtist(currentArtistId).length;
+  document.getElementById('artist-meta').textContent = `${tr} трек(ов) · ${subs.length} слушателей`;
+}
+
+function renderListeners() {
+  const wrap = document.getElementById('listeners');
+  const subs = getSubs(currentArtistId);
+
+  if (!subs.length) {
+    wrap.innerHTML = `<span class="listener-chip"><b>0</b> — пока тишина. Первый подписчик забирает ауру 😄</span>`;
+    return;
+  }
+
+  wrap.innerHTML = subs.map(n => `<span class="listener-chip">🎧 ${escapeHTML(n)}</span>`).join('');
+}
+
+function toggleSubscribe() {
+  if (!currentArtistId) return;
+
+  const savedNick = (localStorage.getItem('kh2_nick') || '').trim();
+  if (!savedNick) {
+    openModal('modal-sub');
+    setTimeout(() => document.getElementById('inp-nick')?.focus(), 60);
+    return;
+  }
+
+  // если ник есть — просто переключаем
+  const subs = getSubs(currentArtistId);
+  const idx = subs.indexOf(savedNick);
+
+  if (idx >= 0) subs.splice(idx, 1);
+  else subs.push(savedNick);
+
+  setSubs(currentArtistId, uniq(subs));
+  renderSubscribeUI();
+  renderListeners();
+  renderArtistsSidebar();
+
+  showToast(idx >= 0 ? 'Подписка снята' : `Подписка: ${savedNick}`);
+}
+
+function confirmSubscribe() {
+  if (!currentArtistId) return;
+
+  const nick = (document.getElementById('inp-nick').value || '').trim();
+  if (!nick) { showToast('Ник пустой :('); return; }
+
+  localStorage.setItem('kh2_nick', nick);
+
+  const subs = getSubs(currentArtistId);
+  if (!subs.includes(nick)) subs.push(nick);
+  setSubs(currentArtistId, uniq(subs));
+
+  closeModals();
+  renderSubscribeUI();
+  renderListeners();
+  renderArtistsSidebar();
+  showToast(`Подписка: ${nick}`);
+}
+
+function uniq(arr) { return Array.from(new Set(arr.filter(Boolean))); }
+function escapeHTML(s) {
+  return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+// ─────────────────────────────────────────
+// SIDEBAR & NAVIGATION (общие)
 // ─────────────────────────────────────────
 function renderSidebar() {
   const el = document.getElementById('sidebar-lists');
@@ -599,6 +977,8 @@ function goPage(name) {
 
 function openPlaylist(id) {
   currentPlId = id;
+  currentArtistId = null;
+
   const pl = playlists.find(p => p.id === id);
   document.getElementById('pl-title').textContent = pl.name;
   document.getElementById('pl-meta').textContent = `${pl.trackIds.length} треков`;
@@ -610,6 +990,7 @@ function renderPlTracks(id) {
   const pl = playlists.find(p => p.id === id);
   const plTracks = TRACKS.filter(t => pl.trackIds.includes(t.id));
   const tbody = document.getElementById('tbody-pl');
+
   if (!plTracks.length) {
     tbody.innerHTML = `<tr><td colspan="5"><div class="empty-state"><span class="e-icon">♫</span>Плейлист пуст — добавь треки через «+»</div></td></tr>`;
     return;
@@ -643,11 +1024,14 @@ function confirmAdd() {
   const plId = parseInt(document.getElementById('sel-playlist').value);
   const pl = playlists.find(p => p.id === plId);
   if (!pl) return;
+
   if (pl.trackIds.includes(pendingTrackId)) { showToast('Уже в плейлисте'); closeModals(); return; }
+
   pl.trackIds.push(pendingTrackId);
   save();
   renderSidebar();
   closeModals();
+
   const t = TRACKS.find(x => x.id === pendingTrackId);
   showToast(`«${t.title}» → «${pl.name}»`);
 }
@@ -672,19 +1056,15 @@ function openModal(id) {
   document.getElementById(id).classList.add('open');
   setTimeout(() => document.getElementById('inp-name')?.focus(), 50);
 }
-
 function closeModals() {
   document.querySelectorAll('.overlay').forEach(o => o.classList.remove('open'));
   document.getElementById('inp-name').value = '';
+  document.getElementById('inp-nick').value = '';
 }
-
 function overlayClick(e, el) { if (e.target === el) closeModals(); }
-
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModals(); });
-
-document.getElementById('inp-name').addEventListener('keydown', e => {
-  if (e.key === 'Enter') createPlaylist();
-});
+document.getElementById('inp-name').addEventListener('keydown', e => { if (e.key === 'Enter') createPlaylist(); });
+document.getElementById('inp-nick').addEventListener('keydown', e => { if (e.key === 'Enter') confirmSubscribe(); });
 
 // ─────────────────────────────────────────
 // TOAST
@@ -695,14 +1075,40 @@ function showToast(msg) {
   el.textContent = msg;
   el.classList.add('show');
   clearTimeout(_tt);
-  _tt = setTimeout(() => el.classList.remove('show'), 2800);
+  _tt = setTimeout(() => el.classList.remove('show'), 2600);
+}
+
+// ─────────────────────────────────────────
+// THEME
+// ─────────────────────────────────────────
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('kh2_theme', t);
+  document.getElementById('theme-label').textContent = 'THEME: ' + t.toUpperCase();
+}
+function cycleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  const i = THEMES.indexOf(cur);
+  const next = THEMES[(i + 1) % THEMES.length];
+  setTheme(next);
+  showToast('Тема: ' + next);
 }
 
 // ─────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────
-renderAll();
-renderSidebar();
+(function init() {
+  // theme restore
+  const t = localStorage.getItem('kh2_theme') || 'dark';
+  setTheme(THEMES.includes(t) ? t : 'dark');
+
+  renderAll();
+  renderArtistsSidebar();
+  renderSidebar();
+
+  // обновим счётчик "все треки" на старте
+  document.getElementById('all-count').textContent = TRACKS.length;
+})();
 </script>
 </body>
 </html>
