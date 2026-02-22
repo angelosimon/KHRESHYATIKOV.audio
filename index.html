@@ -36,7 +36,6 @@ body::before {
   opacity:0.02;
 }
 
-/* HEADER */
 header {
   padding:22px 44px 18px;
   border-bottom:1px solid var(--border);
@@ -69,10 +68,8 @@ header {
 .theme-btn:hover { border-color:var(--accent); color:var(--accent); }
 .theme-dot { width:8px; height:8px; border-radius:50%; background:var(--accent); }
 
-/* LAYOUT */
 .layout { display:grid; grid-template-columns:228px 1fr; min-height:calc(100vh - 104px); }
 
-/* SIDEBAR */
 aside {
   border-right:1px solid var(--border); padding:22px 0;
   position:sticky; top:0; height:calc(100vh - 104px); overflow-y:auto;
@@ -117,28 +114,21 @@ aside {
 }
 .add-pl-btn:hover { border-color:var(--accent); color:var(--accent); }
 
-/* CONTENT */
 .content { padding:36px 44px 120px; }
 .page { display:none; }
 .page.active { display:block; animation:fadeIn 0.2s ease; }
 @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
 
-/* PAGE HEAD */
 .page-head { margin-bottom:22px; }
 .page-head h2 { font-size:22px; font-weight:500; letter-spacing:0.01em; }
 .page-head p { font-size:11px; color:var(--soft-text); margin-top:4px; font-weight:300; }
 
-/* ARTIST HERO — Spotify style */
 .artist-hero {
-  position:relative;
-  margin:-36px -44px 30px;
-  padding:52px 44px 34px;
-  overflow:hidden;
+  position:relative; margin:-36px -44px 30px; padding:52px 44px 34px; overflow:hidden;
   background:linear-gradient(180deg, color-mix(in srgb,var(--accent) 14%,#000) 0%, var(--bg) 100%);
 }
 .artist-hero-blob {
-  position:absolute; top:-80px; left:-80px;
-  width:500px; height:500px; border-radius:50%;
+  position:absolute; top:-80px; left:-80px; width:500px; height:500px; border-radius:50%;
   background:radial-gradient(circle, color-mix(in srgb,var(--accent) 18%,transparent) 0%, transparent 65%);
   filter:blur(80px); pointer-events:none;
 }
@@ -157,10 +147,8 @@ aside {
 
 .artist-hero-name {
   font-size:clamp(38px,6vw,76px); font-weight:700;
-  letter-spacing:-0.02em; line-height:1; color:#fff;
-  margin-bottom:14px;
+  letter-spacing:-0.02em; line-height:1; color:#fff; margin-bottom:14px;
 }
-
 .artist-hero-stats { display:flex; align-items:center; gap:10px; margin-bottom:22px; flex-wrap:wrap; }
 .stat-chip { font-size:11px; color:rgba(255,255,255,0.58); font-weight:300; }
 .stat-chip b { color:rgba(255,255,255,0.82); font-weight:500; }
@@ -187,10 +175,8 @@ aside {
 .sub-btn:hover { border-color:#fff; }
 .sub-btn.is-on { background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.55); }
 
-/* SECTION LABEL */
 .section-label { font-size:17px; font-weight:500; color:var(--text); margin-bottom:14px; margin-top:26px; }
 
-/* LISTENERS */
 .listeners { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:20px; }
 .listener-chip {
   font-size:10.5px; color:var(--text);
@@ -198,7 +184,6 @@ aside {
   padding:5px 11px; border-radius:999px; font-weight:300;
 }
 
-/* LIKED HERO */
 .liked-hero {
   background:linear-gradient(135deg,#450af5 0%,#8833ff 50%,#c4efd9 100%);
   border-radius:14px; padding:30px 26px; margin-bottom:26px;
@@ -208,7 +193,6 @@ aside {
 .liked-hero-text h2 { font-size:26px; font-weight:600; color:#fff; letter-spacing:-0.01em; }
 .liked-hero-text p { font-size:12px; color:rgba(255,255,255,0.68); margin-top:5px; font-weight:300; }
 
-/* TRACK TABLE */
 .track-table { width:100%; border-collapse:collapse; }
 .track-table thead tr { border-bottom:1px solid var(--border); }
 .track-table th {
@@ -242,25 +226,21 @@ aside {
 .tr-album { font-size:10px; color:var(--soft-text); margin-top:2px; font-weight:300; }
 .tr-type { font-size:10.5px; color:var(--soft-text); font-weight:300; }
 
-/* LIKE BTN */
 .like-btn {
   background:none; border:none; cursor:pointer;
   width:28px; height:28px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
-  font-size:15px; transition:all 0.15s; color:var(--muted2);
-  opacity:0;
+  font-size:15px; transition:all 0.15s; color:var(--muted2); opacity:0;
 }
 .track-row:hover .like-btn { opacity:1; }
 .like-btn.liked { opacity:1 !important; color:var(--like); }
 .like-btn:hover { transform:scale(1.25); }
 
-/* ADD BTN (show on hover) */
 .add-btn {
   background:none; border:none; cursor:pointer;
   width:28px; height:28px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
-  font-size:15px; transition:all 0.15s; color:var(--muted2);
-  opacity:0;
+  font-size:15px; transition:all 0.15s; color:var(--muted2); opacity:0;
 }
 .track-row:hover .add-btn { opacity:1; }
 .add-btn:hover { color:var(--accent); transform:scale(1.2); }
@@ -273,7 +253,6 @@ aside {
 .track-row:hover .remove-btn { opacity:1; }
 .remove-btn:hover { color:var(--like); }
 
-/* PLAYING BARS */
 .playing-bars { display:flex; align-items:flex-end; gap:2px; height:14px; justify-content:center; }
 .bar { width:3px; background:var(--accent); border-radius:2px; animation:bar-bounce 0.5s ease-in-out infinite alternate; }
 .bar:nth-child(2) { animation-delay:0.15s; }
@@ -283,7 +262,6 @@ aside {
 .empty-state { padding:54px 0; text-align:center; color:var(--soft-text); font-size:12px; font-weight:300; }
 .empty-state .e-icon { font-size:30px; display:block; margin-bottom:10px; opacity:0.15; }
 
-/* MODAL */
 .overlay {
   position:fixed; inset:0; background:rgba(0,0,0,0.72);
   z-index:400; display:none; align-items:center; justify-content:center; backdrop-filter:blur(10px);
@@ -304,7 +282,6 @@ aside {
 .btn-accent { background:var(--accent); color:#000; font-weight:500; }
 .btn-accent:hover { filter:brightness(0.93); }
 
-/* TOAST */
 .toast {
   position:fixed; bottom:22px; right:22px; padding:10px 15px;
   background:var(--card); border:1px solid var(--accent); color:var(--accent);
@@ -374,7 +351,6 @@ aside {
 
   <div class="content">
 
-    <!-- ALL TRACKS -->
     <div class="page active" id="page-all">
       <div class="page-head">
         <h2>список музыки</h2>
@@ -389,7 +365,6 @@ aside {
       </table>
     </div>
 
-    <!-- LIKED -->
     <div class="page" id="page-liked">
       <div class="liked-hero">
         <div class="liked-hero-icon">♥</div>
@@ -407,7 +382,6 @@ aside {
       </table>
     </div>
 
-    <!-- ARTIST VIEW -->
     <div class="page" id="page-artist">
       <div class="artist-hero">
         <div class="artist-hero-blob"></div>
@@ -450,7 +424,6 @@ aside {
       </table>
     </div>
 
-    <!-- PLAYLIST VIEW -->
     <div class="page" id="page-playlist">
       <div class="page-head">
         <h2 id="pl-title">плейлист</h2>
@@ -467,7 +440,6 @@ aside {
   </div>
 </div>
 
-<!-- MODALS -->
 <div class="overlay" id="modal-create" onclick="overlayClick(event,this)">
   <div class="modal">
     <h3>новый плейлист</h3>
@@ -505,7 +477,6 @@ aside {
 <div class="toast" id="toast"></div>
 
 <script>
-// ─── АРТИСТЫ ───
 const ARTISTS = [
   {
     id:'hadash', name:'Hadash',
@@ -529,6 +500,13 @@ const ARTISTS = [
       {title:'Капуцин', album:'новинка · 22.02.2026', type:'hadash & waffle', dur:'—', url:'https://youtu.be/wU7yTtbyT3c?si=eJN44CbQInBab9TH'},
     ]
   },
+  {
+    id:'puker', name:'Puker',
+    avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQAW8P4xeiyRl0Vb0lQ5tWuI8NPzJZlvXF7w&s',
+    tracks:[
+      {title:'FUCK THE LOADING', album:'новинка · 12.10.2026', type:'puker', dur:'—', url:'https://youtu.be/g4oN2x8piEU'},
+    ]
+  },
 ];
 
 const TRACKS = buildTracks(ARTISTS);
@@ -537,7 +515,6 @@ let liked = JSON.parse(localStorage.getItem('kh2_liked')||'[]');
 let nowPlaying=null, pendingTrackId=null, currentPlId=null, currentArtistId=null;
 const THEMES=['dark','midnight','light'];
 
-// ─── HELPERS ───
 function buildTracks(artists) {
   const map=new Map(); let id=1;
   for(const a of artists) for(const t of a.tracks) {
@@ -557,7 +534,6 @@ function uniq(arr){return Array.from(new Set(arr.filter(Boolean)));}
 function tracksByArtist(aId){return TRACKS.filter(t=>t.artists.includes(aId));}
 function escapeHTML(s){if(!s)return'';return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 
-// ─── ROW ───
 function rowHTML(t, i, plId) {
   const playing=nowPlaying===t.id;
   const lk=isLiked(t.id);
@@ -585,7 +561,6 @@ function rowHTML(t, i, plId) {
   </tr>`;
 }
 
-// ─── LIKE ───
 function toggleLike(id) {
   const idx=liked.indexOf(id);
   if(idx>=0) liked.splice(idx,1); else liked.push(id);
@@ -598,7 +573,6 @@ function updateLikedCount() {
   document.getElementById('liked-hero-sub').textContent=`${liked.length} треков`;
 }
 
-// ─── RENDER ───
 function renderAll() {
   document.getElementById('all-count').textContent=TRACKS.length;
   document.getElementById('tbody-all').innerHTML=TRACKS.map((t,i)=>rowHTML(t,i,null)).join('');
@@ -615,12 +589,12 @@ function rerenderAll() {
   if(currentArtistId!==null) renderArtistTracks(currentArtistId);
 }
 
-// ─── PLAY ───
 function play(id) {
   nowPlaying=id;
   const t=TRACKS.find(x=>x.id===id);
   rerenderAll();
-  window.open(t.url||`https://www.youtube.com/results?search_query=${encodeURIComponent('KHRESHYATIKOV '+t.title)}`,'_blank');
+  if(t.url) window.open(t.url,'_blank');
+  else showToast('скоро на youtube 👀');
 }
 function playFirstArtistTrack() {
   if(!currentArtistId) return;
@@ -628,7 +602,6 @@ function playFirstArtistTrack() {
   if(tr.length) play(tr[0].id);
 }
 
-// ─── SIDEBAR ARTISTS ───
 function renderArtistsSidebar() {
   document.getElementById('sidebar-artists').innerHTML=ARTISTS.map(a=>`
     <div class="nav-item" onclick="openArtist('${a.id}');activateNav(this)">
@@ -645,7 +618,6 @@ function renderArtistsSidebar() {
     </div>`).join('');
 }
 
-// ─── ARTIST PAGE ───
 function openArtist(id) {
   currentArtistId=id; currentPlId=null;
   const a=artistById(id); if(!a) return;
@@ -699,7 +671,6 @@ function confirmSubscribe() {
   showToast(`подписка: ${nick}`);
 }
 
-// ─── SIDEBAR / NAV ───
 function renderSidebar() {
   document.getElementById('sidebar-lists').innerHTML=playlists.map(pl=>`
     <div class="nav-item" onclick="openPlaylist(${pl.id});activateNav(this)">
@@ -732,7 +703,6 @@ function renderPlTracks(id) {
   tbody.innerHTML=plTracks.map((t,i)=>rowHTML(t,i,id)).join('');
 }
 
-// ─── PLAYLISTS ───
 function createPlaylist() {
   const name=document.getElementById('inp-name').value.trim();
   if(!name) return;
@@ -761,7 +731,6 @@ function removeFromPl(plId,trackId) {
 }
 function save(){localStorage.setItem('kh2_pls',JSON.stringify(playlists));}
 
-// ─── MODAL ───
 function openModal(id){document.getElementById(id).classList.add('open');}
 function closeModals(){
   document.querySelectorAll('.overlay').forEach(o=>o.classList.remove('open'));
@@ -773,7 +742,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModals();});
 document.getElementById('inp-name').addEventListener('keydown',e=>{if(e.key==='Enter')createPlaylist();});
 document.getElementById('inp-nick').addEventListener('keydown',e=>{if(e.key==='Enter')confirmSubscribe();});
 
-// ─── TOAST ───
 let _tt;
 function showToast(msg){
   const el=document.getElementById('toast');
@@ -781,7 +749,6 @@ function showToast(msg){
   clearTimeout(_tt); _tt=setTimeout(()=>el.classList.remove('show'),2600);
 }
 
-// ─── THEME ───
 function setTheme(t){
   document.documentElement.setAttribute('data-theme',t);
   localStorage.setItem('kh2_theme',t);
@@ -792,7 +759,6 @@ function cycleTheme(){
   setTheme(THEMES[(THEMES.indexOf(cur)+1)%THEMES.length]);
 }
 
-// ─── INIT ───
 (function(){
   const t=localStorage.getItem('kh2_theme')||'dark';
   setTheme(THEMES.includes(t)?t:'dark');
