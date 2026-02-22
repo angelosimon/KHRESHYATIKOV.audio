@@ -18,8 +18,6 @@
   --like: #e8547a;
   --text2: #cbbcff;
 }
-
-/* готовые темы */
 html[data-theme="midnight"] {
   --bg:#05060f;--card:#0a0c1a;--border:#1a1f3a;
   --accent:#9aa6ff;--text:#eef1ff;--muted:#454a67;--muted2:#787fa8;
@@ -33,11 +31,8 @@ html[data-theme="light"] {
   --text2:#3a2a6a;
 }
 
-/* custom тема будет перезаписывать переменные через style="" на <html> */
-
 html { scroll-behavior: smooth; }
 body { background:var(--bg); color:var(--text); font-family:'DM Mono',monospace; min-height:100vh; }
-
 body::before {
   content:''; position:fixed; inset:0; pointer-events:none; z-index:999;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
@@ -209,6 +204,10 @@ aside {
   text-transform:uppercase; padding:0 12px 12px; text-align:left; font-weight:400;
 }
 .track-table th:first-child { padding-left:0; width:34px; text-align:center; }
+
+/* ✅ новая колонка под обложку */
+.th-cover { width:44px; }
+
 .th-like { width:34px; text-align:center; }
 .track-table th:last-child { width:56px; text-align:right; }
 
@@ -231,6 +230,22 @@ aside {
 
 .tr-num { color:var(--muted2); font-size:12px; }
 .tr-play { display:none !important; align-items:center; justify-content:center; color:var(--accent); font-size:13px; }
+
+/* ✅ обложка трека */
+.tr-cover {
+  width:34px; height:34px;
+  border-radius:10px;
+  object-fit:cover;
+  border:1px solid color-mix(in srgb,var(--border) 75%,transparent);
+  background:color-mix(in srgb,var(--card) 80%,transparent);
+  box-shadow:0 10px 26px var(--shadow);
+  display:block;
+}
+.tr-cover.fallback{
+  display:flex; align-items:center; justify-content:center;
+  font-size:10px; color:var(--soft-text);
+}
+
 .tr-title { font-weight:400; letter-spacing:0.01em; }
 .tr-album { font-size:10px; color:var(--soft-text); margin-top:2px; font-weight:300; }
 .tr-type { font-size:10.5px; color:var(--soft-text); font-weight:300; }
@@ -276,7 +291,7 @@ aside {
   z-index:400; display:none; align-items:center; justify-content:center; backdrop-filter:blur(10px);
 }
 .overlay.open { display:flex; }
-.modal { background:var(--card); border:1px solid var(--border); padding:28px; width:390px; max-width:calc(100vw - 28px); border-radius:16px; box-shadow:0 20px 60px var(--shadow); }
+.modal { background:var(--card); border:1px solid var(--border); padding:28px; width:420px; max-width:calc(100vw - 28px); border-radius:16px; box-shadow:0 20px 60px var(--shadow); }
 .modal h3 { font-size:17px; font-weight:500; letter-spacing:0.01em; margin-bottom:16px; }
 .modal input,.modal select,.modal textarea {
   width:100%; background:var(--bg); border:1px solid var(--border); color:var(--text);
@@ -323,10 +338,7 @@ aside {
 .a-chip:hover{ border-color:var(--accent); color:var(--accent); }
 .a-chip img{ width:18px; height:18px; border-radius:50%; object-fit:cover; }
 
-.settings-grid{
-  display:grid; gap:10px;
-}
-.row2{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.settings-grid{ display:grid; gap:10px; }
 .color-row{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .color-row label{ font-size:10px; letter-spacing:.12em; color:var(--muted2); text-transform:uppercase; display:block; margin:4px 0 6px; }
 .preset-row{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
@@ -419,8 +431,13 @@ aside {
       </div>
       <table class="track-table">
         <thead><tr>
-          <th>#</th><th>название</th><th>артист / тип</th>
-          <th class="th-like"></th><th style="width:34px;"></th><th>длина</th>
+          <th>#</th>
+          <th class="th-cover"></th>
+          <th>название</th>
+          <th>артист / тип</th>
+          <th class="th-like"></th>
+          <th style="width:34px;"></th>
+          <th>длина</th>
         </tr></thead>
         <tbody id="tbody-all"></tbody>
       </table>
@@ -436,8 +453,13 @@ aside {
       </div>
       <table class="track-table">
         <thead><tr>
-          <th>#</th><th>название</th><th>артист / тип</th>
-          <th class="th-like"></th><th style="width:34px;"></th><th>длина</th>
+          <th>#</th>
+          <th class="th-cover"></th>
+          <th>название</th>
+          <th>артист / тип</th>
+          <th class="th-like"></th>
+          <th style="width:34px;"></th>
+          <th>длина</th>
         </tr></thead>
         <tbody id="tbody-liked"></tbody>
       </table>
@@ -478,8 +500,13 @@ aside {
       <div class="section-label">треки</div>
       <table class="track-table">
         <thead><tr>
-          <th>#</th><th>название</th><th>артист / тип</th>
-          <th class="th-like"></th><th style="width:34px;"></th><th>длина</th>
+          <th>#</th>
+          <th class="th-cover"></th>
+          <th>название</th>
+          <th>артист / тип</th>
+          <th class="th-like"></th>
+          <th style="width:34px;"></th>
+          <th>длина</th>
         </tr></thead>
         <tbody id="tbody-artist"></tbody>
       </table>
@@ -492,12 +519,18 @@ aside {
       </div>
       <table class="track-table">
         <thead><tr>
-          <th>#</th><th>название</th><th>артист / тип</th>
-          <th class="th-like"></th><th style="width:34px;"></th><th>длина</th>
+          <th>#</th>
+          <th class="th-cover"></th>
+          <th>название</th>
+          <th>артист / тип</th>
+          <th class="th-like"></th>
+          <th style="width:34px;"></th>
+          <th>длина</th>
         </tr></thead>
         <tbody id="tbody-pl"></tbody>
       </table>
     </div>
+
   </div>
 </div>
 
@@ -538,7 +571,7 @@ aside {
   </div>
 </div>
 
-<!-- модалка: настройки (темы + custom) -->
+<!-- модалка: настройки -->
 <div class="overlay" id="modal-settings" onclick="overlayClick(event,this)">
   <div class="modal">
     <h3>настройки</h3>
@@ -595,13 +628,18 @@ aside {
   </div>
 </div>
 
-<!-- модалка: трек (текст + авторы + кнопки) -->
+<!-- модалка: трек -->
 <div class="overlay" id="modal-track" onclick="overlayClick(event,this)">
   <div class="modal">
-    <h3 id="track-title">трек</h3>
-
-    <div style="font-size:11px;color:var(--soft-text);font-weight:300;margin-top:-6px;">
-      <span id="track-meta">—</span>
+    <!-- ✅ обложка сверху -->
+    <div style="display:flex; gap:14px; align-items:center; margin-bottom:10px;">
+      <img id="track-cover" src="" alt="" style="width:64px;height:64px;border-radius:14px;object-fit:cover;border:1px solid var(--border);box-shadow:0 16px 40px var(--shadow); background:color-mix(in srgb,var(--card) 80%,transparent);" onerror="this.style.display='none'">
+      <div style="min-width:0;">
+        <h3 id="track-title" style="margin-bottom:6px;">трек</h3>
+        <div style="font-size:11px;color:var(--soft-text);font-weight:300;margin-top:-6px;">
+          <span id="track-meta">—</span>
+        </div>
+      </div>
     </div>
 
     <div class="chip-row" id="track-artists"></div>
@@ -630,29 +668,104 @@ aside {
 <div class="toast" id="toast"></div>
 
 <script>
+/* ✅ обложки треков (то что ты дал) */
+const COVERS = {
+  'Абсурд': 'https://i.ibb.co/F4X9Rw1g/Chat-GPT-Image-22-2026-02-59-56.png',
+  'Белые мишабаны': 'https://i.ibb.co/WNHJCtrL/Chat-GPT-Image-22-2026-02-53-25.png',
+  'FUCK THE LOADING': 'https://i.ibb.co/5zzt6wF/Chat-GPT-Image-22-2026-10-51-36.png',
+  'Капуцин': 'https://i.ibb.co/1fq9wPbD/Chat-GPT-Image-22-2026-02-26-38.png',
+};
+
 const ARTISTS = [
   {
     id:'hadash', name:'Hadash',
     avatar:'https://i.ibb.co/3yKMzsBj/Screenshot-2025-11-19-11-51-42-54-dba69a5e82e939c3ddef13f99a115ca3.jpg',
-    url:'https://www.youtube.com/@KHRESHYATIKOV', /* поменяешь на страницу артиста если надо */
+    url:'https://www.youtube.com/@KHRESHYATIKOV',
     tracks:[
       {
         title:'Капуцин', album:'новинка · 22.02.2026', type:'hadash & waffle', dur:'—',
         url:'https://music.youtube.com/watch?v=wU7yTtbyT3c&desc_update=1&si=Cmo2N5pIWNozWaCK',
-        lyrics:`[припев]
-капуцин, капуцин…
-(вставь текст трека сюда)
+        cover:COVERS['Капуцин'],
+        lyrics:`[Припев]
+Это может чика-чика или это капуцин?
+На вид как плюшка или это капуцин?
+Может быть бананчик или это капуцин?
+Это что ль мимимишка — это капуцин
 
-[куплет]
-тут тоже текст…`,
+[Постприпев]
+Ка-пу-цин
+Ка-пу-цин
+Ка-пу-цин
+Это (это) капуцин
+
+[Куплет 1]
+Чувствуй, это чувство
+Да, почувствуй обезьян-флоу
+Делаем сумасбродство
+Банан улетает в небеса
+Выглядим мило
+Но вроде как дико
+Хвост — это стиль
+Абсурд — мой трип
+
+[Предприпев]
+Да-а-а
+Это навсегда-а-а
+Я твой симпа-зверь
+Джунгли, небеса
+Улечу как дрон
+На ветку, как в стрим
+Мой вайб — банан
+
+[Припев]
+Ха-ха-ха — это же кофейня или это капуцин?
+На вид как монашка или это капуцин?
+Может быть эспрессо или это капуцин?
+Это что ль обезьяна — это капуцин
+
+[Постприпев]
+Ка-пу-цин
+Ка-пу-цин
+Ка-пу-цин
+Это (это) капуцин
+
+[Куплет 2]
+Это-это туса, это-это вайб
+Это-это банан, это-это драйв
+Это-это джунгли, это-это рынок
+Это-это маринад, это-это капуцин
+
+[Аутро]
+Ка-пу-цин-цин-цин-цин
+Капуцин, ка-капуцин
+Ка-пу-цин-цин-цин-цин
+Капуцин, ка-капуцин`,
         credits:'made by: hadash & waffle'
       },
       {
         title:'Белые мишабаны', album:'сингл · 15.01.2026', type:'hadash', dur:'—',
         url:'https://music.youtube.com/watch?v=aPApq1M2384&desc_update=1&si=wZIkSN9NqyfIyEad',
-        lyrics:`[hook]
-белые мишабаны…
-(вставь текст трека сюда)`,
+        cover:COVERS['Белые мишабаны'],
+        lyrics:`(khv)
+Белые мишабаны, белые мишабаны
+Беззащитны шимпы под пуканьем моим
+Белые мишабаны, странные бараны
+Люди рыгают, что ж вы натворили с ним?
+(куплет 1)
+Я их пук-пук-пукнул средь зимы морозной
+И сказал им: "Тун-тун, это всё фанк"
+Мишабано плачет, это так серьёзно
+Но рыгаю prettу - это мой талант
+(припев с драмой)
+Ой, мама-мама, что я наделал
+Бананитос, баранитос - всё полетело
+Шимпа-шимпа бано кружит надо мной
+Ригитос вернись домой!
+(куплет 2, в стиле Ласкового мая)
+Мишабана-а-а, ты ушла от меня-а-а
+Из-за того что я пукнул тебе в лицо-о-о
+Баранитос плачет, льётся как река-а-а
+Prettу и not sour - забыто всё!`,
         credits:'made by: hadash'
       },
     ]
@@ -665,8 +778,33 @@ const ARTISTS = [
       {
         title:'Абсурд', album:'сингл · 25.12.2025', type:'valera', dur:'—',
         url:'https://music.youtube.com/watch?v=RnBmoL8ohGY&desc_update=1&si=wYVUwqc-gTdH37QZ',
-        lyrics:`абсурд…
-(вставь текст трека сюда)`,
+        cover:COVERS['Абсурд'],
+        lyrics:`[Verse]
+У тебя мало оперативки я рыганул в ботинки там мишабан
+Я перданул ему в рот там я пнул брейнрот
+Я летаю будто самолёт и вижу обдрыщеный вертолёт
+Валера в дагестане он кушает хинкали
+Я рыганул на его тарелку он в шоке застыл
+Я перданул так громко что горы затряслись
+Мишабан проснулся и снова огрёб
+
+[Verse 2]
+Я взлетел ещё выше пробил облака насквозь
+Вертолёт обдрыщеный летит за мной по пятам
+Я развернулся резко и рыгнул ему в винты
+Он закрутился быстрее полетел к чертям
+
+[Bridge]
+Валера звонит мне кричит где мой обед
+Я ему отвечаю твой обед у меня внутри
+Мишабан бежит за мной но я слишком быстрый
+Я перданул ему в глаза он упал раз два три
+
+[Outro]
+Брейнрот зашкалил мои мозги кипят
+Оперативка дымится но я не замедляюсь
+Ботинки переполнены но я продолжаю полёт
+Самолётом по небу абсурдом наслаждаюсь`,
         credits:'made by: valera'
       },
     ]
@@ -679,9 +817,61 @@ const ARTISTS = [
       {
         title:'Капуцин', album:'новинка · 22.02.2026', type:'hadash & waffle', dur:'—',
         url:'https://music.youtube.com/watch?v=wU7yTtbyT3c&desc_update=1&si=Cmo2N5pIWNozWaCK',
-        lyrics:`[припев]
-капуцин, капуцин…
-(тот же текст трека)`,
+        cover:COVERS['Капуцин'],
+        lyrics:`[Припев]
+Это может чика-чика или это капуцин?
+На вид как плюшка или это капуцин?
+Может быть бананчик или это капуцин?
+Это что ль мимимишка — это капуцин
+
+[Постприпев]
+Ка-пу-цин
+Ка-пу-цин
+Ка-пу-цин
+Это (это) капуцин
+
+[Куплет 1]
+Чувствуй, это чувство
+Да, почувствуй обезьян-флоу
+Делаем сумасбродство
+Банан улетает в небеса
+Выглядим мило
+Но вроде как дико
+Хвост — это стиль
+Абсурд — мой трип
+
+[Предприпев]
+Да-а-а
+Это навсегда-а-а
+Я твой симпа-зверь
+Джунгли, небеса
+Улечу как дрон
+На ветку, как в стрим
+Мой вайб — банан
+
+[Припев]
+Ха-ха-ха — это же кофейня или это капуцин?
+На вид как монашка или это капуцин?
+Может быть эспрессо или это капуцин?
+Это что ль обезьяна — это капуцин
+
+[Постприпев]
+Ка-пу-цин
+Ка-пу-цин
+Ка-пу-цин
+Это (это) капуцин
+
+[Куплет 2]
+Это-это туса, это-это вайб
+Это-это банан, это-это драйв
+Это-это джунгли, это-это рынок
+Это-это маринад, это-это капуцин
+
+[Аутро]
+Ка-пу-цин-цин-цин-цин
+Капуцин, ка-капуцин
+Ка-пу-цин-цин-цин-цин
+Капуцин, ка-капуцин`,
         credits:'made by: hadash & waffle'
       },
     ]
@@ -694,7 +884,34 @@ const ARTISTS = [
       {
         title:'FUCK THE LOADING', album:'новинка · 12.10.2026', type:'puker', dur:'—',
         url:'https://music.youtube.com/watch?v=g4oN2x8piEU&desc_update=1&si=1Q2TA9aDnvwRI8vl',
-        lyrics:`(вставь текст трека сюда)`,
+        cover:COVERS['FUCK THE LOADING'],
+        lyrics:`[Verse 1]
+Оп-оп-оп-оп-еративка
+Где подевался мишабан-бан-бан
+Нука поднимайся вверх-полёт
+Без тормозов-шум-балаган-перепал
+Нравится небо
+Дать вам взрыв ботинок-бом-бом-бом
+В горах этикет-спам
+От рыгани некуда девать
+Самолёт-высот-взлетал-сколь
+Вертолёт-обдрыш-летел-сколь
+Брейнрот купил меня несправст
+Будь уверен сам на пьедестале
+За облаками до небес-матч
+Я не сдам за come on, come on
+Я не сдам за come on, come on
+Come on, come on, come on, come on
+[Chorus]
+I'm ready rhythm of this tongue
+Fuck the lag, fuck the loading, fuck the loading
+Some people waiting for my sound
+Let me proud, let me proud, let me proud
+[Verse 2]
+Валера-хинкал-кушал-кушал
+Тарелка-пуста-там-пук-пук-пук
+Горы затряслись от звука моего
+Мишабан-проснулся-опять-огрёб`,
         credits:'made by: puker'
       },
     ]
@@ -717,6 +934,7 @@ function buildTracks(artists) {
     if(!map.has(key)) map.set(key,{
       id:id++,
       title:t.title, album:t.album, type:t.type, dur:t.dur, url:t.url,
+      cover:t.cover || '',
       lyrics:t.lyrics||'',
       credits:t.credits||'',
       artists:new Set([a.id])
@@ -724,7 +942,7 @@ function buildTracks(artists) {
     else {
       const item = map.get(key);
       item.artists.add(a.id);
-      /* если где-то есть lyrics/credits — заберём */
+      if(!item.cover && t.cover) item.cover = t.cover;
       if(!item.lyrics && t.lyrics) item.lyrics = t.lyrics;
       if(!item.credits && t.credits) item.credits = t.credits;
     }
@@ -742,7 +960,6 @@ function uniq(arr){return Array.from(new Set(arr.filter(Boolean)));}
 function tracksByArtist(aId){return TRACKS.filter(t=>t.artists.includes(aId));}
 function escapeHTML(s){if(!s)return'';return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 
-/* вместо instant-open ссылки — открываем модалку трека */
 function play(id) {
   nowPlaying=id;
   const t=TRACKS.find(x=>x.id===id);
@@ -761,6 +978,15 @@ function openTrackModal(t){
   document.getElementById('track-credit').innerHTML = t.credits
     ? `кто делал: <b>${escapeHTML(t.credits.replace(/^made by:\s*/i,''))}</b>`
     : `кто делал: <b>${escapeHTML(t.type||'—')}</b>`;
+
+  const coverEl = document.getElementById('track-cover');
+  if(t.cover){
+    coverEl.style.display = 'block';
+    coverEl.src = t.cover;
+  }else{
+    coverEl.style.display = 'none';
+    coverEl.src = '';
+  }
 
   const wrap = document.getElementById('track-artists');
   const artists = (t.artists||[]).map(artistById).filter(Boolean);
@@ -783,6 +1009,13 @@ function openYTMusic(){
   window.open(currentTrackUrl, '_blank', 'noopener');
 }
 
+function coverCellHTML(t){
+  if(t.cover){
+    return `<img class="tr-cover" src="${t.cover}" alt="" onerror="this.outerHTML='<div class=&quot;tr-cover fallback&quot;>—</div>'">`;
+  }
+  return `<div class="tr-cover fallback">—</div>`;
+}
+
 function rowHTML(t, i, plId) {
   const playing=nowPlaying===t.id;
   const lk=isLiked(t.id);
@@ -792,6 +1025,7 @@ function rowHTML(t, i, plId) {
       <span class="tr-num">${i+1}</span>
       <span class="tr-play">${playing?`<div class="playing-bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>`:'▶'}</span>
     </td>
+    <td>${coverCellHTML(t)}</td>
     <td>
       <div class="tr-title">${escapeHTML(t.title)}${isNew?`<span style="font-size:8.5px;background:var(--accent);color:#000;padding:2px 7px;border-radius:999px;letter-spacing:.08em;margin-left:8px;vertical-align:middle;">new</span>`:''}</div>
       <div class="tr-album">${escapeHTML(t.album||'')}</div>
@@ -829,7 +1063,7 @@ function renderAll() {
 function renderLiked() {
   const lTracks=TRACKS.filter(t=>liked.includes(t.id));
   const tbody=document.getElementById('tbody-liked');
-  if(!lTracks.length){tbody.innerHTML=`<tr><td colspan="6"><div class="empty-state"><span class="e-icon">♡</span>пока пусто — лайкай треки через ♡</div></td></tr>`;return;}
+  if(!lTracks.length){tbody.innerHTML=`<tr><td colspan="7"><div class="empty-state"><span class="e-icon">♡</span>пока пусто — лайкай треки через ♡</div></td></tr>`;return;}
   tbody.innerHTML=lTracks.map((t,i)=>rowHTML(t,i,null)).join('');
 }
 function rerenderAll() {
@@ -872,7 +1106,7 @@ function openArtist(id) {
 function renderArtistTracks(id) {
   const tr=tracksByArtist(id);
   const tbody=document.getElementById('tbody-artist');
-  if(!tr.length){tbody.innerHTML=`<tr><td colspan="6"><div class="empty-state"><span class="e-icon">♫</span>пока пусто</div></td></tr>`;return;}
+  if(!tr.length){tbody.innerHTML=`<tr><td colspan="7"><div class="empty-state"><span class="e-icon">♫</span>пока пусто</div></td></tr>`;return;}
   tbody.innerHTML=tr.map((t,i)=>rowHTML(t,i,null)).join('');
 }
 function renderSubscribeUI() {
@@ -941,7 +1175,7 @@ function renderPlTracks(id) {
   const pl=playlists.find(p=>p.id===id);
   const plTracks=TRACKS.filter(t=>pl.trackIds.includes(t.id));
   const tbody=document.getElementById('tbody-pl');
-  if(!plTracks.length){tbody.innerHTML=`<tr><td colspan="6"><div class="empty-state"><span class="e-icon">♫</span>плейлист пуст — добавь треки</div></td></tr>`;return;}
+  if(!plTracks.length){tbody.innerHTML=`<tr><td colspan="7"><div class="empty-state"><span class="e-icon">♫</span>плейлист пуст — добавь треки</div></td></tr>`;return;}
   tbody.innerHTML=plTracks.map((t,i)=>rowHTML(t,i,id)).join('');
 }
 
@@ -991,13 +1225,12 @@ function showToast(msg){
   clearTimeout(_tt); _tt=setTimeout(()=>el.classList.remove('show'),2600);
 }
 
-/* -------------------- настройки темы -------------------- */
+/* -------- настройки темы -------- */
 function setTheme(t){
   document.documentElement.setAttribute('data-theme',t);
   localStorage.setItem('kh2_theme',t);
   syncPresetUI(t);
 }
-
 function syncPresetUI(t){
   ['dark','midnight','light','custom'].forEach(x=>{
     const b=document.getElementById('preset-'+x);
@@ -1005,7 +1238,6 @@ function syncPresetUI(t){
   });
   document.getElementById('custom-settings').style.display = (t==='custom') ? 'grid' : 'none';
 }
-
 function applyPreset(t){
   if(t==='custom'){
     loadCustomToInputs();
@@ -1019,7 +1251,6 @@ function applyPreset(t){
   showToast(`тема: ${t}`);
 }
 
-/* custom vars */
 const CUSTOM_KEY='kh2_custom_theme';
 const DEFAULT_CUSTOM = { text:'#f2edff', bg:'#07060b', text2:'#cbbcff', card:'#0e0b16' };
 
@@ -1030,7 +1261,6 @@ function loadCustomToInputs(){
   document.getElementById('c_text2').value = data.text2;
   document.getElementById('c_card').value  = data.card;
 }
-
 function getCustom(){
   try{
     const raw = localStorage.getItem(CUSTOM_KEY);
@@ -1044,7 +1274,6 @@ function getCustom(){
     };
   }catch{ return {...DEFAULT_CUSTOM}; }
 }
-
 function previewCustom(){
   const data = {
     text:  document.getElementById('c_text').value,
@@ -1054,23 +1283,18 @@ function previewCustom(){
   };
   applyCustomVars(data);
 }
-
 function applyCustomVars(data){
   const html = document.documentElement;
   html.style.setProperty('--text', data.text);
   html.style.setProperty('--bg', data.bg);
   html.style.setProperty('--text2', data.text2);
   html.style.setProperty('--card', data.card);
-
-  /* аккуратно подстроим вторичные */
   html.style.setProperty('--border', mix(data.card, data.bg, 0.55));
   html.style.setProperty('--muted2', mix(data.text2, data.bg, 0.55));
   html.style.setProperty('--muted', mix(data.text2, data.bg, 0.70));
   html.style.setProperty('--soft-text', hexToRgba(data.text, 0.58));
   html.style.setProperty('--shadow', 'rgba(0,0,0,0.4)');
-  /* accent оставим фиолетовый как фирменный */
 }
-
 function saveCustom(){
   const data = {
     text:  document.getElementById('c_text').value,
@@ -1082,7 +1306,6 @@ function saveCustom(){
   setTheme('custom');
   showToast('custom сохранён');
 }
-
 function resetCustom(){
   localStorage.setItem(CUSTOM_KEY, JSON.stringify(DEFAULT_CUSTOM));
   loadCustomToInputs();
@@ -1090,20 +1313,16 @@ function resetCustom(){
   setTheme('custom');
   showToast('custom сброшен');
 }
-
 function applyCustomVarsFromStorage(force=false){
   const t = localStorage.getItem('kh2_theme') || 'dark';
   if(t!=='custom' && !force) return;
   const data = getCustom();
   applyCustomVars(data);
 }
-
 function clearCustomInline(){
   const html = document.documentElement;
-  html.removeAttribute('style'); /* снимет все custom vars */
+  html.removeAttribute('style');
 }
-
-/* маленькие helpers */
 function hexToRgba(hex, a){
   const h = hex.replace('#','').trim();
   const full = h.length===3 ? h.split('').map(x=>x+x).join('') : h;
@@ -1112,8 +1331,6 @@ function hexToRgba(hex, a){
   const b=parseInt(full.slice(4,6),16);
   return `rgba(${r},${g},${b},${a})`;
 }
-
-/* смешиваем 2 цвета, weight=0..1 (weight ближе к c1) */
 function mix(c1, c2, weight){
   const a = hexToRgb(c1), b = hexToRgb(c2);
   const w = Math.max(0, Math.min(1, weight));
