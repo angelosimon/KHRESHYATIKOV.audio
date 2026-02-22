@@ -14,9 +14,9 @@
   --accent:#b68cff; --accent2:#efe7ff; --text:#f2edff;
   --muted:#4b4460; --muted2:#7d7494; --shadow:rgba(0,0,0,.35);
 
-  /* Spotify-ish softness */
-  --softText: color-mix(in srgb, var(--text) 86%, transparent);
-  --softMuted: color-mix(in srgb, var(--muted2) 86%, transparent);
+  /* Text clarity (less “washed”, more readable) */
+  --softText: color-mix(in srgb, var(--text) 94%, transparent);
+  --softMuted: color-mix(in srgb, var(--muted2) 92%, transparent);
 
   /* Verified */
   --verified:#2f7dff;
@@ -98,7 +98,7 @@ header{
   font-family:'Bebas Neue', sans-serif;
   font-size:16px;
   letter-spacing:.12em;
-  border-radius:12px;
+  border-radius:999px; /* максимально круглая */
   transition:all .2s;
   white-space:nowrap;
   position:relative;
@@ -121,9 +121,9 @@ header{
   display:inline-flex; align-items:center; gap:10px;
   padding:14px 18px;
   background:transparent;
-  color:var(--softText);
+  color:var(--text); /* читаемее */
   border:1px solid var(--border);
-  border-radius:12px;
+  border-radius:999px; /* максимально круглая */
   cursor:pointer;
   transition:all .15s;
   font-size:11px;
@@ -177,12 +177,12 @@ aside{
   align-items:center;
   justify-content:space-between;
 }
-.nav-item:hover{ color:var(--softText); background:color-mix(in srgb, var(--card) 92%, transparent); }
+.nav-item:hover{ color:var(--text); background:color-mix(in srgb, var(--card) 92%, transparent); }
 .nav-item.active{ color:var(--accent); border-left-color:var(--accent); background:color-mix(in srgb, var(--card) 92%, transparent); }
 
 .nav-item .count{
   font-size:10px;
-  color:var(--muted);
+  color:var(--text); /* читаемее */
   background:color-mix(in srgb, var(--border) 85%, transparent);
   padding:2px 8px;
   border-radius:999px;
@@ -191,16 +191,16 @@ aside{
 
 .add-pl-btn{
   margin:16px 24px 0;
-  padding:10px;
+  padding:10px 14px;
   border:1px dashed var(--muted);
   background:none;
-  color:var(--softMuted);
+  color:var(--text); /* читаемее */
   font-family:'DM Mono', monospace;
   font-size:11px;
   letter-spacing:.04em;
   cursor:pointer;
   transition:all .2s;
-  border-radius:12px;
+  border-radius:999px; /* максимально круглая */
 }
 .add-pl-btn:hover{ border-color:var(--accent); color:var(--accent); }
 
@@ -233,53 +233,45 @@ aside{
   padding:18px;
   border:1px solid var(--border);
   background:color-mix(in srgb, var(--card) 92%, transparent);
-  border-radius:16px;
+  border-radius:18px;
   box-shadow:0 12px 30px var(--shadow);
   margin-bottom:18px;
 }
 .artist-left{ display:flex; align-items:center; gap:16px; }
 
 .avatar{
-  width:82px; height:82px;
+  width:96px; height:96px; /* БОЛЬШЕ */
   border-radius:999px;
   object-fit:cover;
 
-  /* make it POP */
-  border:2px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  border:2px solid color-mix(in srgb, var(--accent) 55%, var(--border));
   box-shadow:
-    0 18px 48px var(--shadow),
-    0 0 0 6px color-mix(in srgb, var(--accent) 12%, transparent),
-    0 0 24px color-mix(in srgb, var(--accent) 16%, transparent);
-  filter: contrast(1.06) saturate(1.08);
+    0 18px 52px var(--shadow),
+    0 0 0 8px color-mix(in srgb, var(--accent) 12%, transparent),
+    0 0 30px color-mix(in srgb, var(--accent) 18%, transparent);
+  filter: contrast(1.10) saturate(1.12);
 }
 
-.artist-name-row{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
+.artist-name-row{ display:flex; align-items:center; gap:10px; }
 .artist-name{
   font-family:'Bebas Neue', sans-serif;
-  font-size:30px;
+  font-size:32px;
   letter-spacing:.08em;
   line-height:1;
+  color:var(--text);
 }
 
-/* VERIFIED BADGE */
+/* VERIFIED */
 .verified{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:18px; height:18px;
+  width:20px; height:20px;
   border-radius:999px;
   background:var(--verified);
   box-shadow:0 10px 22px var(--verifiedGlow);
 }
-.verified svg{
-  width:12px; height:12px;
-  display:block;
-  fill:#fff;
-}
+.verified svg{ width:13px; height:13px; display:block; fill:#fff; }
 
 .artist-meta{
   margin-top:6px;
@@ -291,11 +283,11 @@ aside{
 .artist-actions{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 
 .sub-btn{
-  padding:10px 14px;
-  border-radius:12px;
+  padding:10px 16px;
+  border-radius:999px; /* максимально круглая */
   border:1px solid var(--border);
   background:transparent;
-  color:var(--softText);
+  color:var(--text); /* читаемее */
   cursor:pointer;
   transition:all .15s;
   font-size:11px;
@@ -310,10 +302,11 @@ aside{
 
 .pill{
   font-size:10px;
-  color:var(--softMuted);
+  color:var(--text); /* читаемее */
   border:1px solid var(--border);
-  padding:6px 10px;
-  border-radius:999px;
+  padding:7px 12px;
+  border-radius:999px; /* максимально круглая */
+  background: color-mix(in srgb, var(--card) 70%, transparent);
 }
 
 /* LISTENERS */
@@ -325,10 +318,10 @@ aside{
 }
 .listener-chip{
   font-size:11px;
-  color:var(--softText);
+  color:var(--text); /* читаемее */
   border:1px solid var(--border);
   background:color-mix(in srgb, var(--card) 88%, transparent);
-  padding:7px 10px;
+  padding:8px 12px;
   border-radius:999px;
 }
 .listener-chip b{ color:var(--accent); font-weight:500; }
@@ -339,7 +332,7 @@ aside{
 .track-table th{
   font-size:9px;
   letter-spacing:.2em;
-  color:var(--muted);
+  color:var(--muted2);
   text-transform:uppercase;
   padding:0 12px 12px;
   text-align:left;
@@ -359,7 +352,11 @@ aside{
 .track-row.is-playing{ background:color-mix(in srgb, var(--card) 92%, transparent); }
 .track-row.is-playing .tr-title{ color:var(--accent); }
 
-.track-table td{ padding:14px 12px; font-size:12px; color:var(--softText); }
+.track-table td{
+  padding:14px 12px;
+  font-size:12px;
+  color:var(--text); /* читаемее */
+}
 .track-table td:first-child{ padding-left:0; text-align:center; }
 .track-table td:last-child{ text-align:right; color:var(--softMuted); font-size:11px; }
 
@@ -368,7 +365,7 @@ aside{
 .is-playing .tr-num{ display:none; }
 .is-playing .tr-play{ display:flex !important; }
 
-.tr-title{ font-weight:500; letter-spacing:.01em; color:var(--softText); }
+.tr-title{ font-weight:500; letter-spacing:.01em; color:var(--text); }
 .tr-album{ font-size:11px; color:var(--softMuted); margin-top:3px; letter-spacing:.01em; }
 
 .tr-actions{
@@ -383,9 +380,9 @@ aside{
 .icon-btn{
   background:none;
   border:1px solid var(--border);
-  color:var(--softMuted);
-  width:26px; height:26px;
-  border-radius:12px;
+  color:var(--text); /* читаемее */
+  width:28px; height:28px; /* чуть больше */
+  border-radius:999px; /* максимально круглая */
   cursor:pointer;
   display:flex; align-items:center; justify-content:center;
   font-size:12px;
@@ -396,7 +393,7 @@ aside{
 /* PLAYING BARS */
 .playing-bars{ display:flex; align-items:flex-end; gap:2px; height:14px; justify-content:center; }
 .bar{
-  width:3px; background:var(--accent); border-radius:2px;
+  width:3px; background:var(--accent); border-radius:999px;
   animation:bar-bounce .5s ease-in-out infinite alternate;
 }
 .bar:nth-child(2){ animation-delay:.15s; }
@@ -436,7 +433,7 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
   border:1px solid var(--border);
   padding:28px;
   width:380px;
-  border-radius:16px;
+  border-radius:18px;
   box-shadow:0 16px 46px var(--shadow);
 }
 .modal h3{
@@ -444,17 +441,17 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
   font-size:24px;
   letter-spacing:.08em;
   margin-bottom:16px;
-  color:var(--softText);
+  color:var(--text);
 }
 .modal input, .modal select{
   width:100%;
   background:var(--bg);
   border:1px solid var(--border);
-  color:var(--softText);
+  color:var(--text); /* читаемее */
   font-family:'DM Mono', monospace;
   font-size:12px;
-  padding:10px 14px;
-  border-radius:14px;
+  padding:11px 14px;
+  border-radius:999px; /* максимально круглая */
   outline:none;
   margin-bottom:12px;
   transition:border-color .15s;
@@ -468,13 +465,13 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
   font-size:11px;
   letter-spacing:.04em;
   border:none;
-  border-radius:14px;
+  border-radius:999px; /* максимально круглая */
   cursor:pointer;
   transition:all .15s;
 }
-.btn-outline{ background:transparent; border:1px solid var(--border); color:var(--softMuted); }
-.btn-outline:hover{ border-color:var(--text); color:var(--softText); }
-.btn-accent{ background:var(--accent); color:#000; font-weight:500; }
+.btn-outline{ background:transparent; border:1px solid var(--border); color:var(--text); }
+.btn-outline:hover{ border-color:var(--text); color:var(--text); }
+.btn-accent{ background:var(--accent); color:#000; font-weight:600; }
 .btn-accent:hover{ filter:brightness(.95); }
 
 /* TOAST */
@@ -488,7 +485,7 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
   color:var(--accent);
   font-size:11px;
   letter-spacing:.04em;
-  border-radius:14px;
+  border-radius:999px; /* максимально круглая */
   z-index:600;
   opacity:0;
   transform:translateY(8px);
@@ -508,7 +505,7 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
   aside{ display:none; }
   .content{ padding:24px 20px 100px; }
   .artist-head{ flex-direction:column; align-items:flex-start; }
-  .avatar{ width:92px; height:92px; } /* mobile: ещё заметнее */
+  .avatar{ width:108px; height:108px; } /* mobile: ещё больше */
 }
 </style>
 </head>
@@ -587,15 +584,12 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
           <div>
             <div class="artist-name-row">
               <div class="artist-name" id="artist-name">—</div>
-
-              <!-- VERIFIED ICON -->
               <span class="verified" id="artist-verified" title="Verified">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M9.0 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/>
                 </svg>
               </span>
             </div>
-
             <div class="artist-meta" id="artist-meta">—</div>
           </div>
         </div>
@@ -608,7 +602,7 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
       </div>
 
       <div id="listeners-wrap" style="margin-bottom:18px;">
-        <div style="font-size:10px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin:2px 0 10px;">
+        <div style="font-size:10px;letter-spacing:.2em;color:var(--muted2);text-transform:uppercase;margin:2px 0 10px;">
           Слушатели (подписчики)
         </div>
         <div class="listeners" id="listeners"></div>
@@ -741,7 +735,6 @@ const THEMES = ['dark','midnight','light'];
 function buildTracksFromArtists(artists){
   const map = new Map();
   let id = 1;
-
   for (const a of artists){
     for (const t of a.tracks){
       const key = (t.title + '|' + (t.url || '')).toLowerCase();
@@ -842,7 +835,6 @@ function openArtist(id){
 
   document.getElementById('artist-name').textContent = a.name;
 
-  // Verified toggle
   const v = document.getElementById('artist-verified');
   v.style.display = a.verified ? 'inline-flex' : 'none';
 
