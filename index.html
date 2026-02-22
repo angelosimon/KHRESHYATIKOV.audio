@@ -1,113 +1,116 @@
-<!DOCTYPE html>  <html lang="ru" data-theme="dark">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>KHRESHYATIKOV AUDIO</title>  
-<link rel="preconnect" href="https://fonts.googleapis.com">  
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">  
-<style>  
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }  :root{
---bg:#07060b; --card:#0e0b16; --border:#1b1627;
---accent:#b68cff; --accent2:#efe7ff; --text:#f2edff;
---muted:#4b4460; --muted2:#7d7494; --shadow:rgba(0,0,0,.35);
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KHRESHYATIKOV AUDIO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Text clarity (less “washed”, more readable) */
---softText: color-mix(in srgb, var(--text) 94%, transparent);
---softMuted: color-mix(in srgb, var(--muted2) 92%, transparent);
+:root{
+  --bg:#07060b; --card:#0e0b16; --border:#1b1627;
+  --accent:#b68cff; --accent2:#efe7ff; --text:#f2edff;
+  --muted:#4b4460; --muted2:#7d7494; --shadow:rgba(0,0,0,.35);
 
-/* Verified */
---verified:#2f7dff;
---verifiedGlow: rgba(47,125,255,.35);
+  /* Text clarity (less “washed”, more readable) */
+  --softText: color-mix(in srgb, var(--text) 94%, transparent);
+  --softMuted: color-mix(in srgb, var(--muted2) 92%, transparent);
+
+  /* Verified */
+  --verified:#2f7dff;
+  --verifiedGlow: rgba(47,125,255,.35);
 }
 
 /* THEMES */
 html[data-theme="dark"]{
---bg:#07060b; --card:#0e0b16; --border:#1b1627;
---accent:#b68cff; --accent2:#efe7ff; --text:#f2edff;
---muted:#4b4460; --muted2:#7d7494; --shadow:rgba(0,0,0,.35);
+  --bg:#07060b; --card:#0e0b16; --border:#1b1627;
+  --accent:#b68cff; --accent2:#efe7ff; --text:#f2edff;
+  --muted:#4b4460; --muted2:#7d7494; --shadow:rgba(0,0,0,.35);
 }
 html[data-theme="midnight"]{
---bg:#05060f; --card:#0a0c1a; --border:#1a1f3a;
---accent:#9aa6ff; --accent2:#e9edff; --text:#eef1ff;
---muted:#454a67; --muted2:#787fa8; --shadow:rgba(0,0,0,.40);
+  --bg:#05060f; --card:#0a0c1a; --border:#1a1f3a;
+  --accent:#9aa6ff; --accent2:#e9edff; --text:#eef1ff;
+  --muted:#454a67; --muted2:#787fa8; --shadow:rgba(0,0,0,.40);
 }
 html[data-theme="light"]{
---bg:#f7f4ff; --card:#ffffff; --border:#e7e0ff;
---accent:#6f4dff; --accent2:#2b165e; --text:#1a112f;
---muted:#7b6aa8; --muted2:#6a5e8a; --shadow:rgba(20,10,40,.10);
---verified:#1f64ff; --verifiedGlow: rgba(31,100,255,.22);
+  --bg:#f7f4ff; --card:#ffffff; --border:#e7e0ff;
+  --accent:#6f4dff; --accent2:#2b165e; --text:#1a112f;
+  --muted:#7b6aa8; --muted2:#6a5e8a; --shadow:rgba(20,10,40,.10);
+  --verified:#1f64ff; --verifiedGlow: rgba(31,100,255,.22);
 }
 
 html{ scroll-behavior:smooth; }
 body{
-background:var(--bg);
-color:var(--text);
-font-family:'DM Mono', monospace;
-min-height:100vh;
-cursor:default;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Mono', monospace;
+  min-height:100vh;
+  cursor:default;
 }
 
 /* GRAIN */
 body::before{
-content:'';
-position:fixed; inset:0;
-pointer-events:none;
-z-index:999;
-background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-opacity:.03;
+  content:'';
+  position:fixed; inset:0;
+  pointer-events:none;
+  z-index:999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.03;
 }
 
 /* HEADER */
 header{
-padding:32px 48px 28px;
-border-bottom:1px solid var(--border);
-display:flex;
-align-items:flex-end;
-justify-content:space-between;
-gap:20px;
+  padding:32px 48px 28px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
 }
 .logo-main{
-font-family:'Bebas Neue', sans-serif;
-font-size:clamp(36px,6vw,72px);
-letter-spacing:.06em;
-line-height:1;
-color:var(--text);
+  font-family:'Bebas Neue', sans-serif;
+  font-size:clamp(36px,6vw,72px);
+  letter-spacing:.06em;
+  line-height:1;
+  color:var(--text);
 }
 .logo-main span{ color:var(--accent); }
 .logo-sub{
-font-size:10px;
-letter-spacing:.25em;
-color:var(--softMuted);
-text-transform:uppercase;
-margin-top:6px;
+  font-size:10px;
+  letter-spacing:.25em;
+  color:var(--softMuted);
+  text-transform:uppercase;
+  margin-top:6px;
 }
 
-/* HEADER ACTIONS /
+/* HEADER ACTIONS */
 .header-actions{
-display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+  display:flex; gap:10px; align-items:center; flex-wrap:wrap;
 }
 .yt-btn{
-display:inline-flex; align-items:center; gap:12px;
-padding:14px 22px;
-background:var(--accent);
-color:#000;
-text-decoration:none;
-font-family:'Bebas Neue', sans-serif;
-font-size:16px;
-letter-spacing:.12em;
-border-radius:999px; / максимально круглая */
-transition:all .2s;
-white-space:nowrap;
-position:relative;
-overflow:hidden;
-box-shadow:0 10px 28px var(--shadow);
+  display:inline-flex; align-items:center; gap:12px;
+  padding:14px 22px;
+  background:var(--accent);
+  color:#000;
+  text-decoration:none;
+  font-family:'Bebas Neue', sans-serif;
+  font-size:16px;
+  letter-spacing:.12em;
+  border-radius:999px; /* максимально круглая */
+  transition:all .2s;
+  white-space:nowrap;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 10px 28px var(--shadow);
 }
 .yt-btn::before{
-content:'';
-position:absolute; inset:0;
-background:#000;
-transform:translateX(-100%);
-transition:transform .3s ease;
+  content:'';
+  position:absolute; inset:0;
+  background:#000;
+  transform:translateX(-100%);
+  transition:transform .3s ease;
 }
 .yt-btn:hover::before{ transform:translateX(0); }
 .yt-btn:hover{ color:var(--accent); }
@@ -115,89 +118,89 @@ transition:transform .3s ease;
 .yt-icon{ width:20px; height:20px; flex-shrink:0; }
 
 .theme-btn{
-display:inline-flex; align-items:center; gap:10px;
-padding:14px 18px;
-background:transparent;
-color:var(--text); /* читаемее /
-border:1px solid var(--border);
-border-radius:999px; / максимально круглая */
-cursor:pointer;
-transition:all .15s;
-font-size:11px;
-letter-spacing:.12em;
-text-transform:uppercase;
+  display:inline-flex; align-items:center; gap:10px;
+  padding:14px 18px;
+  background:transparent;
+  color:var(--text); /* читаемее */
+  border:1px solid var(--border);
+  border-radius:999px; /* максимально круглая */
+  cursor:pointer;
+  transition:all .15s;
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
 }
 .theme-btn:hover{ border-color:var(--accent); color:var(--accent); box-shadow:0 10px 24px var(--shadow); }
 .theme-dot{
-width:10px; height:10px; border-radius:999px;
-background:var(--accent);
-box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+  width:10px; height:10px; border-radius:999px;
+  background:var(--accent);
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
 /* LAYOUT */
 .layout{
-display:grid;
-grid-template-columns:270px 1fr;
-min-height:calc(100vh - 130px);
+  display:grid;
+  grid-template-columns:270px 1fr;
+  min-height:calc(100vh - 130px);
 }
 
 /* SIDEBAR */
 aside{
-border-right:1px solid var(--border);
-padding:32px 0;
-position:sticky;
-top:0;
-height:calc(100vh - 130px);
-overflow-y:auto;
-display:flex;
-flex-direction:column;
-gap:8px;
+  border-right:1px solid var(--border);
+  padding:32px 0;
+  position:sticky;
+  top:0;
+  height:calc(100vh - 130px);
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
 }
 .aside-label{
-font-size:9px;
-letter-spacing:.3em;
-color:var(--muted);
-text-transform:uppercase;
-padding:0 24px;
-margin:12px 0 6px;
+  font-size:9px;
+  letter-spacing:.3em;
+  color:var(--muted);
+  text-transform:uppercase;
+  padding:0 24px;
+  margin:12px 0 6px;
 }
 
 .nav-item{
-padding:10px 24px;
-font-size:12px;
-letter-spacing:.02em;
-color:var(--softMuted);
-cursor:pointer;
-transition:all .15s;
-border-left:2px solid transparent;
-display:flex;
-align-items:center;
-justify-content:space-between;
+  padding:10px 24px;
+  font-size:12px;
+  letter-spacing:.02em;
+  color:var(--softMuted);
+  cursor:pointer;
+  transition:all .15s;
+  border-left:2px solid transparent;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 .nav-item:hover{ color:var(--text); background:color-mix(in srgb, var(--card) 92%, transparent); }
 .nav-item.active{ color:var(--accent); border-left-color:var(--accent); background:color-mix(in srgb, var(--card) 92%, transparent); }
 
 .nav-item .count{
-font-size:10px;
-color:var(--text); /* читаемее */
-background:color-mix(in srgb, var(--border) 85%, transparent);
-padding:2px 8px;
-border-radius:999px;
+  font-size:10px;
+  color:var(--text); /* читаемее */
+  background:color-mix(in srgb, var(--border) 85%, transparent);
+  padding:2px 8px;
+  border-radius:999px;
 }
 .nav-item.active .count{ background:color-mix(in srgb, var(--accent) 12%, transparent); color:var(--accent); }
 
 .add-pl-btn{
-margin:16px 24px 0;
-padding:10px 14px;
-border:1px dashed var(--muted);
-background:none;
-color:var(--text); /* читаемее /
-font-family:'DM Mono', monospace;
-font-size:11px;
-letter-spacing:.04em;
-cursor:pointer;
-transition:all .2s;
-border-radius:999px; / максимально круглая */
+  margin:16px 24px 0;
+  padding:10px 14px;
+  border:1px dashed var(--muted);
+  background:none;
+  color:var(--text); /* читаемее */
+  font-family:'DM Mono', monospace;
+  font-size:11px;
+  letter-spacing:.04em;
+  cursor:pointer;
+  transition:all .2s;
+  border-radius:999px; /* максимально круглая */
 }
 .add-pl-btn:hover{ border-color:var(--accent); color:var(--accent); }
 
@@ -209,117 +212,117 @@ border-radius:999px; / максимально круглая */
 
 .page-head{ margin-bottom:26px; }
 .page-head h2{
-font-family:'Bebas Neue', sans-serif;
-font-size:40px;
-letter-spacing:.06em;
-line-height:1;
+  font-family:'Bebas Neue', sans-serif;
+  font-size:40px;
+  letter-spacing:.06em;
+  line-height:1;
 }
 .page-head p{
-font-size:12px;
-color:var(--softMuted);
-letter-spacing:.02em;
-margin-top:6px;
+  font-size:12px;
+  color:var(--softMuted);
+  letter-spacing:.02em;
+  margin-top:6px;
 }
 
 /* ARTIST HEADER */
 .artist-head{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:18px;
-padding:18px;
-border:1px solid var(--border);
-background:color-mix(in srgb, var(--card) 92%, transparent);
-border-radius:18px;
-box-shadow:0 12px 30px var(--shadow);
-margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:18px;
+  border:1px solid var(--border);
+  background:color-mix(in srgb, var(--card) 92%, transparent);
+  border-radius:18px;
+  box-shadow:0 12px 30px var(--shadow);
+  margin-bottom:18px;
 }
 .artist-left{ display:flex; align-items:center; gap:16px; }
 
 .avatar{
-width:96px; height:96px; /* БОЛЬШЕ */
-border-radius:999px;
-object-fit:cover;
+  width:96px; height:96px; /* БОЛЬШЕ */
+  border-radius:999px;
+  object-fit:cover;
 
-border:2px solid color-mix(in srgb, var(--accent) 55%, var(--border));
-box-shadow:
-0 18px 52px var(--shadow),
-0 0 0 8px color-mix(in srgb, var(--accent) 12%, transparent),
-0 0 30px color-mix(in srgb, var(--accent) 18%, transparent);
-filter: contrast(1.10) saturate(1.12);
+  border:2px solid color-mix(in srgb, var(--accent) 55%, var(--border));
+  box-shadow:
+    0 18px 52px var(--shadow),
+    0 0 0 8px color-mix(in srgb, var(--accent) 12%, transparent),
+    0 0 30px color-mix(in srgb, var(--accent) 18%, transparent);
+  filter: contrast(1.10) saturate(1.12);
 }
 
 .artist-name-row{ display:flex; align-items:center; gap:10px; }
 .artist-name{
-font-family:'Bebas Neue', sans-serif;
-font-size:32px;
-letter-spacing:.08em;
-line-height:1;
-color:var(--text);
+  font-family:'Bebas Neue', sans-serif;
+  font-size:32px;
+  letter-spacing:.08em;
+  line-height:1;
+  color:var(--text);
 }
 
 /* VERIFIED */
 .verified{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-width:20px; height:20px;
-border-radius:999px;
-background:var(--verified);
-box-shadow:0 10px 22px var(--verifiedGlow);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:20px; height:20px;
+  border-radius:999px;
+  background:var(--verified);
+  box-shadow:0 10px 22px var(--verifiedGlow);
 }
 .verified svg{ width:13px; height:13px; display:block; fill:#fff; }
 
 .artist-meta{
-margin-top:6px;
-font-size:12px;
-color:var(--softMuted);
-letter-spacing:.02em;
+  margin-top:6px;
+  font-size:12px;
+  color:var(--softMuted);
+  letter-spacing:.02em;
 }
 
 .artist-actions{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 
 .sub-btn{
-padding:10px 16px;
-border-radius:999px; /* максимально круглая /
-border:1px solid var(--border);
-background:transparent;
-color:var(--text); / читаемее */
-cursor:pointer;
-transition:all .15s;
-font-size:11px;
-letter-spacing:.06em;
+  padding:10px 16px;
+  border-radius:999px; /* максимально круглая */
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--text); /* читаемее */
+  cursor:pointer;
+  transition:all .15s;
+  font-size:11px;
+  letter-spacing:.06em;
 }
 .sub-btn:hover{ border-color:var(--accent); color:var(--accent); }
 .sub-btn.is-on{
-background:var(--accent);
-color:#000;
-border-color:var(--accent);
+  background:var(--accent);
+  color:#000;
+  border-color:var(--accent);
 }
 
 .pill{
-font-size:10px;
-color:var(--text); /* читаемее /
-border:1px solid var(--border);
-padding:7px 12px;
-border-radius:999px; / максимально круглая */
-background: color-mix(in srgb, var(--card) 70%, transparent);
+  font-size:10px;
+  color:var(--text); /* читаемее */
+  border:1px solid var(--border);
+  padding:7px 12px;
+  border-radius:999px; /* максимально круглая */
+  background: color-mix(in srgb, var(--card) 70%, transparent);
 }
 
-/* LISTENERS /
+/* LISTENERS */
 .listeners{
-margin-top:10px;
-display:flex;
-flex-wrap:wrap;
-gap:8px;
+  margin-top:10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
 }
 .listener-chip{
-font-size:11px;
-color:var(--text); / читаемее */
-border:1px solid var(--border);
-background:color-mix(in srgb, var(--card) 88%, transparent);
-padding:8px 12px;
-border-radius:999px;
+  font-size:11px;
+  color:var(--text); /* читаемее */
+  border:1px solid var(--border);
+  background:color-mix(in srgb, var(--card) 88%, transparent);
+  padding:8px 12px;
+  border-radius:999px;
 }
 .listener-chip b{ color:var(--accent); font-weight:500; }
 
@@ -327,21 +330,21 @@ border-radius:999px;
 .track-table{ width:100%; border-collapse:collapse; }
 .track-table thead tr{ border-bottom:1px solid var(--border); }
 .track-table th{
-font-size:9px;
-letter-spacing:.2em;
-color:var(--muted2);
-text-transform:uppercase;
-padding:0 12px 12px;
-text-align:left;
-font-weight:400;
+  font-size:9px;
+  letter-spacing:.2em;
+  color:var(--muted2);
+  text-transform:uppercase;
+  padding:0 12px 12px;
+  text-align:left;
+  font-weight:400;
 }
 .track-table th:first-child{ padding-left:0; width:36px; text-align:center; }
 .track-table th:last-child{ width:70px; text-align:right; }
 
 .track-row{
-border-bottom:1px solid var(--border);
-cursor:pointer;
-transition:background .12s;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+  transition:background .12s;
 }
 .track-row:hover{ background:color-mix(in srgb, var(--card) 92%, transparent); }
 .track-row:hover .tr-num{ display:none; }
@@ -350,9 +353,9 @@ transition:background .12s;
 .track-row.is-playing .tr-title{ color:var(--accent); }
 
 .track-table td{
-padding:14px 12px;
-font-size:12px;
-color:var(--text); /* читаемее */
+  padding:14px 12px;
+  font-size:12px;
+  color:var(--text); /* читаемее */
 }
 .track-table td:first-child{ padding-left:0; text-align:center; }
 .track-table td:last-child{ text-align:right; color:var(--softMuted); font-size:11px; }
@@ -366,32 +369,32 @@ color:var(--text); /* читаемее */
 .tr-album{ font-size:11px; color:var(--softMuted); margin-top:3px; letter-spacing:.01em; }
 
 .tr-actions{
-opacity:0;
-transition:opacity .15s;
-display:flex;
-justify-content:flex-end;
-gap:6px;
+  opacity:0;
+  transition:opacity .15s;
+  display:flex;
+  justify-content:flex-end;
+  gap:6px;
 }
 .track-row:hover .tr-actions{ opacity:1; }
 
 .icon-btn{
-background:none;
-border:1px solid var(--border);
-color:var(--text); /* читаемее /
-width:28px; height:28px; / чуть больше /
-border-radius:999px; / максимально круглая */
-cursor:pointer;
-display:flex; align-items:center; justify-content:center;
-font-size:12px;
-transition:all .15s;
+  background:none;
+  border:1px solid var(--border);
+  color:var(--text); /* читаемее */
+  width:28px; height:28px; /* чуть больше */
+  border-radius:999px; /* максимально круглая */
+  cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px;
+  transition:all .15s;
 }
 .icon-btn:hover{ border-color:var(--accent); color:var(--accent); }
 
 /* PLAYING BARS */
 .playing-bars{ display:flex; align-items:flex-end; gap:2px; height:14px; justify-content:center; }
 .bar{
-width:3px; background:var(--accent); border-radius:999px;
-animation:bar-bounce .5s ease-in-out infinite alternate;
+  width:3px; background:var(--accent); border-radius:999px;
+  animation:bar-bounce .5s ease-in-out infinite alternate;
 }
 .bar:nth-child(2){ animation-delay:.15s; }
 .bar:nth-child(3){ animation-delay:.3s; }
@@ -399,96 +402,96 @@ animation:bar-bounce .5s ease-in-out infinite alternate;
 
 /* EMPTY */
 .empty-state{
-padding:60px 0;
-text-align:center;
-color:var(--softMuted);
-font-size:12px;
-letter-spacing:.02em;
+  padding:60px 0;
+  text-align:center;
+  color:var(--softMuted);
+  font-size:12px;
+  letter-spacing:.02em;
 }
 .empty-state .e-icon{
-font-size:36px;
-display:block;
-margin-bottom:14px;
-opacity:.2;
+  font-size:36px;
+  display:block;
+  margin-bottom:14px;
+  opacity:.2;
 }
 
 /* MODAL */
 .overlay{
-position:fixed; inset:0;
-background:rgba(0,0,0,.65);
-z-index:400;
-display:none;
-align-items:center;
-justify-content:center;
-backdrop-filter:blur(6px);
+  position:fixed; inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:400;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  backdrop-filter:blur(6px);
 }
 html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
 .overlay.open{ display:flex; }
 
 .modal{
-background:var(--card);
-border:1px solid var(--border);
-padding:28px;
-width:380px;
-border-radius:18px;
-box-shadow:0 16px 46px var(--shadow);
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:28px;
+  width:380px;
+  border-radius:18px;
+  box-shadow:0 16px 46px var(--shadow);
 }
 .modal h3{
-font-family:'Bebas Neue', sans-serif;
-font-size:24px;
-letter-spacing:.08em;
-margin-bottom:16px;
-color:var(--text);
+  font-family:'Bebas Neue', sans-serif;
+  font-size:24px;
+  letter-spacing:.08em;
+  margin-bottom:16px;
+  color:var(--text);
 }
 .modal input, .modal select{
-width:100%;
-background:var(--bg);
-border:1px solid var(--border);
-color:var(--text); /* читаемее /
-font-family:'DM Mono', monospace;
-font-size:12px;
-padding:11px 14px;
-border-radius:999px; / максимально круглая */
-outline:none;
-margin-bottom:12px;
-transition:border-color .15s;
+  width:100%;
+  background:var(--bg);
+  border:1px solid var(--border);
+  color:var(--text); /* читаемее */
+  font-family:'DM Mono', monospace;
+  font-size:12px;
+  padding:11px 14px;
+  border-radius:999px; /* максимально круглая */
+  outline:none;
+  margin-bottom:12px;
+  transition:border-color .15s;
 }
 .modal input:focus, .modal select:focus{ border-color:var(--accent); }
 
 .modal-btns{ display:flex; gap:10px; justify-content:flex-end; margin-top:4px; }
 .btn{
-padding:10px 16px;
-font-family:'DM Mono', monospace;
-font-size:11px;
-letter-spacing:.04em;
-border:none;
-border-radius:999px; /* максимально круглая */
-cursor:pointer;
-transition:all .15s;
+  padding:10px 16px;
+  font-family:'DM Mono', monospace;
+  font-size:11px;
+  letter-spacing:.04em;
+  border:none;
+  border-radius:999px; /* максимально круглая */
+  cursor:pointer;
+  transition:all .15s;
 }
 .btn-outline{ background:transparent; border:1px solid var(--border); color:var(--text); }
 .btn-outline:hover{ border-color:var(--text); color:var(--text); }
 .btn-accent{ background:var(--accent); color:#000; font-weight:600; }
 .btn-accent:hover{ filter:brightness(.95); }
 
-/* TOAST /
+/* TOAST */
 .toast{
-position:fixed;
-bottom:26px;
-right:26px;
-padding:12px 16px;
-background:var(--card);
-border:1px solid var(--accent);
-color:var(--accent);
-font-size:11px;
-letter-spacing:.04em;
-border-radius:999px; / максимально круглая */
-z-index:600;
-opacity:0;
-transform:translateY(8px);
-transition:all .25s;
-pointer-events:none;
-box-shadow:0 16px 50px var(--shadow);
+  position:fixed;
+  bottom:26px;
+  right:26px;
+  padding:12px 16px;
+  background:var(--card);
+  border:1px solid var(--accent);
+  color:var(--accent);
+  font-size:11px;
+  letter-spacing:.04em;
+  border-radius:999px; /* максимально круглая */
+  z-index:600;
+  opacity:0;
+  transform:translateY(8px);
+  transition:all .25s;
+  pointer-events:none;
+  box-shadow:0 16px 50px var(--shadow);
 }
 .toast.show{ opacity:1; transform:translateY(0); }
 
@@ -497,188 +500,199 @@ box-shadow:0 16px 50px var(--shadow);
 ::-webkit-scrollbar-thumb{ background:color-mix(in srgb, var(--border) 85%, transparent); border-radius:999px; }
 
 @media (max-width:720px){
-header{ padding:20px 20px 16px; flex-direction:column; align-items:flex-start; }
-.layout{ grid-template-columns:1fr; }
-aside{ display:none; }
-.content{ padding:24px 20px 100px; }
-.artist-head{ flex-direction:column; align-items:flex-start; }
-.avatar{ width:108px; height:108px; } /* mobile: ещё больше */
+  header{ padding:20px 20px 16px; flex-direction:column; align-items:flex-start; }
+  .layout{ grid-template-columns:1fr; }
+  aside{ display:none; }
+  .content{ padding:24px 20px 100px; }
+  .artist-head{ flex-direction:column; align-items:flex-start; }
+  .avatar{ width:108px; height:108px; } /* mobile: ещё больше */
 }
 </style>
+</head>
+<body>
 
-</head>  
-<body>  <header>  
-  <div class="logo-block">  
-    <div class="logo-main">KHRESHYATIKOV <span>AUDIO</span></div>  
-    <div class="logo-sub">Музыка · Плейлисты · Независимый проект</div>  
-  </div>    <div class="header-actions">  
-    <button class="theme-btn" onclick="cycleTheme()" title="Сменить тему">  
-      <span class="theme-dot"></span>  
-      <span id="theme-label">THEME: DARK</span>  
-    </button>  <a class="yt-btn" href="https://www.youtube.com/@KHRESHYATIKOV" target="_blank" rel="noopener">  
-  <svg class="yt-icon" viewBox="0 0 24 24" fill="currentColor">  
-    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/>  
-  </svg>  
-  <span>Смотреть на YouTube</span>  
-</a>
+<header>
+  <div class="logo-block">
+    <div class="logo-main">KHRESHYATIKOV <span>AUDIO</span></div>
+    <div class="logo-sub">Музыка · Плейлисты · Независимый проект</div>
+  </div>
 
-  </div>  
-</header>  <div class="layout">  
-  <aside>  
-    <div class="aside-label">Библиотека</div>  
-    <div class="nav-item active" onclick="goPage('all'); activateNav(this)">  
-      <span>Все треки</span>  
-      <span class="count" id="all-count">0</span>  
-    </div>  <div class="aside-label" style="margin-top:16px;">Артисты</div>  
-<div id="sidebar-artists"></div>  
+  <div class="header-actions">
+    <button class="theme-btn" onclick="cycleTheme()" title="Сменить тему">
+      <span class="theme-dot"></span>
+      <span id="theme-label">THEME: DARK</span>
+    </button>
 
-<div class="aside-label" style="margin-top:16px;">Плейлисты</div>  
-<div id="sidebar-lists"></div>  
+    <a class="yt-btn" href="https://www.youtube.com/@KHRESHYATIKOV" target="_blank" rel="noopener">
+      <svg class="yt-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/>
+      </svg>
+      <span>Смотреть на YouTube</span>
+    </a>
+  </div>
+</header>
 
-<button class="add-pl-btn" onclick="openModal('modal-create')">+ Новый плейлист</button>
+<div class="layout">
+  <aside>
+    <div class="aside-label">Библиотека</div>
+    <div class="nav-item active" onclick="goPage('all'); activateNav(this)">
+      <span>Все треки</span>
+      <span class="count" id="all-count">0</span>
+    </div>
 
-  </aside>    <div class="content">  <!-- ALL TRACKS -->  
-<div class="page active" id="page-all">  
-  <div class="page-head">  
-    <h2>Все треки</h2>  
-    <p>KHRESHYATIKOV — полная дискография</p>  
-  </div>  
-  <table class="track-table">  
-    <thead>  
-      <tr>  
-        <th>#</th>  
-        <th>Название</th>  
-        <th>Альбом / Тип</th>  
-        <th></th>  
-        <th>Длина</th>  
-      </tr>  
-    </thead>  
-    <tbody id="tbody-all"></tbody>  
-  </table>  
-</div>  
+    <div class="aside-label" style="margin-top:16px;">Артисты</div>
+    <div id="sidebar-artists"></div>
 
-<!-- ARTIST VIEW -->  
-<div class="page" id="page-artist">  
-  <div class="page-head">  
-    <h2 id="artist-title">Артист</h2>  
-    <p id="artist-sub">Профиль артиста</p>  
-  </div>  
+    <div class="aside-label" style="margin-top:16px;">Плейлисты</div>
+    <div id="sidebar-lists"></div>
 
-  <div class="artist-head">  
-    <div class="artist-left">  
-      <img class="avatar" id="artist-avatar" src="" alt="avatar">  
-      <div>  
-        <div class="artist-name-row">  
-          <div class="artist-name" id="artist-name">—</div>  
-          <span class="verified" id="artist-verified" title="Verified">  
-            <svg viewBox="0 0 24 24" aria-hidden="true">  
-              <path d="M9.0 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/>  
-            </svg>  
-          </span>  
-        </div>  
-        <div class="artist-meta" id="artist-meta">—</div>  
-      </div>  
-    </div>  
+    <button class="add-pl-btn" onclick="openModal('modal-create')">+ Новый плейлист</button>
+  </aside>
 
-    <div class="artist-actions">  
-      <button class="sub-btn" id="sub-btn" onclick="toggleSubscribe()">Подписаться</button>  
-      <span class="pill" id="subs-pill">0 слушателей</span>  
-      <span class="pill" id="tracks-pill">0 треков</span>  
-    </div>  
-  </div>  
+  <div class="content">
 
-  <div id="listeners-wrap" style="margin-bottom:18px;">  
-    <div style="font-size:10px;letter-spacing:.2em;color:var(--muted2);text-transform:uppercase;margin:2px 0 10px;">  
-      Слушатели (подписчики)  
-    </div>  
-    <div class="listeners" id="listeners"></div>  
-  </div>  
+    <!-- ALL TRACKS -->
+    <div class="page active" id="page-all">
+      <div class="page-head">
+        <h2>Все треки</h2>
+        <p>KHRESHYATIKOV — полная дискография</p>
+      </div>
+      <table class="track-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Название</th>
+            <th>Альбом / Тип</th>
+            <th></th>
+            <th>Длина</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-all"></tbody>
+      </table>
+    </div>
 
-  <table class="track-table">  
-    <thead>  
-      <tr>  
-        <th>#</th>  
-        <th>Название</th>  
-        <th>Альбом / Тип</th>  
-        <th></th>  
-        <th>Длина</th>  
-      </tr>  
-    </thead>  
-    <tbody id="tbody-artist"></tbody>  
-  </table>  
-</div>  
+    <!-- ARTIST VIEW -->
+    <div class="page" id="page-artist">
+      <div class="page-head">
+        <h2 id="artist-title">Артист</h2>
+        <p id="artist-sub">Профиль артиста</p>
+      </div>
 
-<!-- PLAYLIST VIEW -->  
-<div class="page" id="page-playlist">  
-  <div class="page-head">  
-    <h2 id="pl-title">Плейлист</h2>  
-    <p id="pl-meta">0 треков</p>  
-  </div>  
-  <table class="track-table">  
-    <thead>  
-      <tr>  
-        <th>#</th>  
-        <th>Название</th>  
-        <th>Альбом / Тип</th>  
-        <th></th>  
-        <th>Длина</th>  
-      </tr>  
-    </thead>  
-    <tbody id="tbody-pl"></tbody>  
-  </table>  
+      <div class="artist-head">
+        <div class="artist-left">
+          <img class="avatar" id="artist-avatar" src="" alt="avatar">
+          <div>
+            <div class="artist-name-row">
+              <div class="artist-name" id="artist-name">—</div>
+              <span class="verified" id="artist-verified" title="Verified">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9.0 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/>
+                </svg>
+              </span>
+            </div>
+            <div class="artist-meta" id="artist-meta">—</div>
+          </div>
+        </div>
+
+        <div class="artist-actions">
+          <button class="sub-btn" id="sub-btn" onclick="toggleSubscribe()">Подписаться</button>
+          <span class="pill" id="subs-pill">0 слушателей</span>
+          <span class="pill" id="tracks-pill">0 треков</span>
+        </div>
+      </div>
+
+      <div id="listeners-wrap" style="margin-bottom:18px;">
+        <div style="font-size:10px;letter-spacing:.2em;color:var(--muted2);text-transform:uppercase;margin:2px 0 10px;">
+          Слушатели (подписчики)
+        </div>
+        <div class="listeners" id="listeners"></div>
+      </div>
+
+      <table class="track-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Название</th>
+            <th>Альбом / Тип</th>
+            <th></th>
+            <th>Длина</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-artist"></tbody>
+      </table>
+    </div>
+
+    <!-- PLAYLIST VIEW -->
+    <div class="page" id="page-playlist">
+      <div class="page-head">
+        <h2 id="pl-title">Плейлист</h2>
+        <p id="pl-meta">0 треков</p>
+      </div>
+      <table class="track-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Название</th>
+            <th>Альбом / Тип</th>
+            <th></th>
+            <th>Длина</th>
+          </tr>
+        </thead>
+        <tbody id="tbody-pl"></tbody>
+      </table>
+    </div>
+
+  </div>
 </div>
 
-  </div>  
-</div>  <!-- MODAL: Create Playlist -->  <div class="overlay" id="modal-create" onclick="overlayClick(event, this)">  
-  <div class="modal">  
-    <h3>Новый плейлист</h3>  
-    <input id="inp-name" type="text" placeholder="Название плейлиста..." maxlength="40">  
-    <div class="modal-btns">  
-      <button class="btn btn-outline" onclick="closeModals()">Отмена</button>  
-      <button class="btn btn-accent" onclick="createPlaylist()">Создать</button>  
-    </div>  
-  </div>  
-</div>  <!-- MODAL: Add to Playlist -->  <div class="overlay" id="modal-add" onclick="overlayClick(event, this)">  
-  <div class="modal">  
-    <h3>В плейлист</h3>  
-    <select id="sel-playlist"></select>  
-    <div class="modal-btns">  
-      <button class="btn btn-outline" onclick="closeModals()">Отмена</button>  
-      <button class="btn btn-accent" onclick="confirmAdd()">Добавить</button>  
-    </div>  
-  </div>  
-</div>  <!-- MODAL: Subscribe name -->  <div class="overlay" id="modal-sub" onclick="overlayClick(event, this)">  
-  <div class="modal">  
-    <h3>Подписка</h3>  
-    <input id="inp-nick" type="text" placeholder="Как тебя показать в слушателях? (ник)" maxlength="18">  
-    <div class="modal-btns">  
-      <button class="btn btn-outline" onclick="closeModals()">Отмена</button>  
-      <button class="btn btn-accent" onclick="confirmSubscribe()">Готово</button>  
-    </div>  
-    <div style="margin-top:10px;color:var(--softMuted);font-size:11px;line-height:1.45;">  
-      Ник сохранится в браузере (localStorage). После перезахода всё останется 👌  
-    </div>  
-  </div>  
-</div>  <div class="toast" id="toast"></div>  <script>  
-// ─────────────────────────────────────────  
-// АРТИСТЫ — добавляй/правь треки легко ТУТ ✅  
-// verified: true/false — галочка синяя  
-// ─────────────────────────────────────────  
-const ARTISTS = [  
-  {  
-    id:'hadash',  
-    name:'hadash',  
-    verified:true,  
-    avatar:'https://i.ibb.co/3yKMzsBj/Screenshot-2025-11-19-11-51-42-54-dba69a5e82e939c3ddef13f99a115ca3.jpg',  
-    tracks:[  
-      { title:'КАПУЦИН',        album:'Новинка · 22.02.2026', type:'hadash & waffle', dur:'—', url:'https://youtu.be/wU7yTtbyT3c?si=eJN44CbQInBab9TH' },  
-      { title:'БЕЛЫЕ МИШАБАНЫ', album:'Сингл · 15.01.2026',  type:'hadash',          dur:'—', url:'https://youtu.be/aPApq1M2384?si=iJ_qGSH3QoHbFoiA' },  
-    ]  
-  },  
-  {  
-    id:'valera',  
-    name:'valera',  
-    verified:true,  
-    avatar:'https://i.ibb.co/hJxqGfkd/2025-11-27-001446.png',  
-    tracks:[  
-      { title:'АБСУРД', album:'Сингл · 25.12.2025', type:'valera'
+<!-- MODAL: Create Playlist -->
+<div class="overlay" id="modal-create" onclick="overlayClick(event, this)">
+  <div class="modal">
+    <h3>Новый плейлист</h3>
+    <input id="inp-name" type="text" placeholder="Название плейлиста..." maxlength="40">
+    <div class="modal-btns">
+      <button class="btn btn-outline" onclick="closeModals()">Отмена</button>
+      <button class="btn btn-accent" onclick="createPlaylist()">Создать</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Add to Playlist -->
+<div class="overlay" id="modal-add" onclick="overlayClick(event, this)">
+  <div class="modal">
+    <h3>В плейлист</h3>
+    <select id="sel-playlist"></select>
+    <div class="modal-btns">
+      <button class="btn btn-outline" onclick="closeModals()">Отмена</button>
+      <button class="btn btn-accent" onclick="confirmAdd()">Добавить</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Subscribe name -->
+<div class="overlay" id="modal-sub" onclick="overlayClick(event, this)">
+  <div class="modal">
+    <h3>Подписка</h3>
+    <input id="inp-nick" type="text" placeholder="Как тебя показать в слушателях? (ник)" maxlength="18">
+    <div class="modal-btns">
+      <button class="btn btn-outline" onclick="closeModals()">Отмена</button>
+      <button class="btn btn-accent" onclick="confirmSubscribe()">Готово</button>
+    </div>
+    <div style="margin-top:10px;color:var(--softMuted);font-size:11px;line-height:1.45;">
+      Ник сохранится в браузере (localStorage). После перезахода всё останется 👌
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ─────────────────────────────────────────
+// АРТИСТЫ — добавляй/правь треки легко ТУТ ✅
+// verified: true/false — галочка синяя
+// ─────────────────────────────────────────
+const ARTISTS = [
+  {
+    id:'hadash',
+    name:'hadash',
+    verified:
