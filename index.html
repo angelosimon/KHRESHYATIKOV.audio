@@ -6,48 +6,77 @@
 <title>KHRESHYATIKOV AUDIO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root{
-  --bg:#07060b; --card:#0e0b16; --border:#1b1627;
-  --accent:#b68cff; --accent2:#efe7ff; --text:#f2edff;
-  --muted:#4b4460; --muted2:#7d7494; --shadow:rgba(0,0,0,.35);
+  /* base */
+  --bg:#07060b;
+  --card:#0f0b18;
+  --card2:#120d1f;
+  --border:#221a33;
 
-  /* Text clarity (less “washed”, more readable) */
-  --softText: color-mix(in srgb, var(--text) 94%, transparent);
-  --softMuted: color-mix(in srgb, var(--muted2) 92%, transparent);
+  /* text */
+  --text:#f5f1ff;
+  --text2:#d9d2ee;
+  --muted:#b5abcc;
+  --muted2:#8f84ad;
 
-  /* Verified */
+  /* accent */
+  --accent:#b68cff;
+  --accentSoft: rgba(182,140,255,.14);
+  --shadow: rgba(0,0,0,.45);
+
+  /* verified */
   --verified:#2f7dff;
   --verifiedGlow: rgba(47,125,255,.35);
+
+  /* sizing */
+  --radius: 18px;
+  --pill: 999px;
+
+  /* typography */
+  --fs-xs: 12px;
+  --fs-sm: 13px;
+  --fs-md: 15px;
+  --fs-lg: 18px;
+
+  --line: 1.55;
 }
 
 /* THEMES */
 html[data-theme="dark"]{
-  --bg:#07060b; --card:#0e0b16; --border:#1b1627;
-  --accent:#b68cff; --accent2:#efe7ff; --text:#f2edff;
-  --muted:#4b4460; --muted2:#7d7494; --shadow:rgba(0,0,0,.35);
-}
-html[data-theme="midnight"]{
-  --bg:#05060f; --card:#0a0c1a; --border:#1a1f3a;
-  --accent:#9aa6ff; --accent2:#e9edff; --text:#eef1ff;
-  --muted:#454a67; --muted2:#787fa8; --shadow:rgba(0,0,0,.40);
-}
-html[data-theme="light"]{
-  --bg:#f7f4ff; --card:#ffffff; --border:#e7e0ff;
-  --accent:#6f4dff; --accent2:#2b165e; --text:#1a112f;
-  --muted:#7b6aa8; --muted2:#6a5e8a; --shadow:rgba(20,10,40,.10);
-  --verified:#1f64ff; --verifiedGlow: rgba(31,100,255,.22);
+  --bg:#07060b; --card:#0f0b18; --card2:#120d1f; --border:#221a33;
+  --text:#f5f1ff; --text2:#d9d2ee; --muted:#b5abcc; --muted2:#8f84ad;
+  --accent:#b68cff; --accentSoft: rgba(182,140,255,.14);
+  --shadow: rgba(0,0,0,.45);
+  --verified:#2f7dff; --verifiedGlow: rgba(47,125,255,.35);
 }
 
-html{ scroll-behavior:smooth; }
+html[data-theme="midnight"]{
+  --bg:#050612; --card:#0a0c1a; --card2:#0c1024; --border:#1d2442;
+  --text:#eef1ff; --text2:#d9dcff; --muted:#b6bbef; --muted2:#848cc5;
+  --accent:#9aa6ff; --accentSoft: rgba(154,166,255,.14);
+  --shadow: rgba(0,0,0,.50);
+  --verified:#2f7dff; --verifiedGlow: rgba(47,125,255,.28);
+}
+
+html[data-theme="light"]{
+  --bg:#f6f3ff; --card:#ffffff; --card2:#fbf9ff; --border:#e7e0ff;
+  --text:#161028; --text2:#2c1a55; --muted:#4f3c7c; --muted2:#6a5b8d;
+  --accent:#6f4dff; --accentSoft: rgba(111,77,255,.12);
+  --shadow: rgba(20,10,40,.12);
+  --verified:#1f64ff; --verifiedGlow: rgba(31,100,255,.20);
+}
+
+html { scroll-behavior: smooth; }
 body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'DM Mono', monospace;
-  min-height:100vh;
-  cursor:default;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  min-height: 100vh;
+  line-height: var(--line);
 }
 
 /* GRAIN */
@@ -62,453 +91,491 @@ body::before{
 
 /* HEADER */
 header{
-  padding:32px 48px 28px;
-  border-bottom:1px solid var(--border);
+  padding: 28px 44px 22px;
+  border-bottom: 1px solid var(--border);
   display:flex;
   align-items:flex-end;
   justify-content:space-between;
-  gap:20px;
+  gap:18px;
 }
+
 .logo-main{
   font-family:'Bebas Neue', sans-serif;
-  font-size:clamp(36px,6vw,72px);
-  letter-spacing:.06em;
-  line-height:1;
-  color:var(--text);
+  font-size: clamp(40px, 6vw, 74px);
+  letter-spacing: .06em;
+  line-height: 1;
 }
-.logo-main span{ color:var(--accent); }
+.logo-main span{ color: var(--accent); }
+
 .logo-sub{
-  font-size:10px;
-  letter-spacing:.25em;
-  color:var(--softMuted);
-  text-transform:uppercase;
-  margin-top:6px;
+  margin-top: 8px;
+  font-size: var(--fs-sm);
+  color: var(--muted2);
+  letter-spacing: .14em;
+  text-transform: uppercase;
 }
 
 /* HEADER ACTIONS */
 .header-actions{
   display:flex; gap:10px; align-items:center; flex-wrap:wrap;
 }
+
 .yt-btn{
   display:inline-flex; align-items:center; gap:12px;
-  padding:14px 22px;
-  background:var(--accent);
+  padding: 13px 20px;
+  background: var(--accent);
   color:#000;
   text-decoration:none;
   font-family:'Bebas Neue', sans-serif;
-  font-size:16px;
-  letter-spacing:.12em;
-  border-radius:999px; /* максимально круглая */
-  transition:all .2s;
-  white-space:nowrap;
+  font-size: 16px;
+  letter-spacing: .12em;
+  border-radius: var(--pill);
+  transition: .18s;
+  box-shadow: 0 14px 34px var(--shadow);
   position:relative;
   overflow:hidden;
-  box-shadow:0 10px 28px var(--shadow);
 }
 .yt-btn::before{
   content:'';
   position:absolute; inset:0;
   background:#000;
-  transform:translateX(-100%);
-  transition:transform .3s ease;
+  transform: translateX(-110%);
+  transition: transform .28s ease;
 }
-.yt-btn:hover::before{ transform:translateX(0); }
-.yt-btn:hover{ color:var(--accent); }
+.yt-btn:hover::before{ transform: translateX(0); }
+.yt-btn:hover{ color: var(--accent); }
 .yt-btn svg, .yt-btn span{ position:relative; z-index:1; }
 .yt-icon{ width:20px; height:20px; flex-shrink:0; }
 
 .theme-btn{
   display:inline-flex; align-items:center; gap:10px;
-  padding:14px 18px;
-  background:transparent;
-  color:var(--text); /* читаемее */
-  border:1px solid var(--border);
-  border-radius:999px; /* максимально круглая */
+  padding: 13px 16px;
+  border-radius: var(--pill);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
   cursor:pointer;
-  transition:all .15s;
-  font-size:11px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
+  transition: .18s;
+  font-size: var(--fs-xs);
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
-.theme-btn:hover{ border-color:var(--accent); color:var(--accent); box-shadow:0 10px 24px var(--shadow); }
+.theme-btn:hover{
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 12px 30px var(--shadow);
+}
 .theme-dot{
-  width:10px; height:10px; border-radius:999px;
-  background:var(--accent);
-  box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+  width:10px; height:10px; border-radius: var(--pill);
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accentSoft);
 }
 
 /* LAYOUT */
 .layout{
   display:grid;
-  grid-template-columns:270px 1fr;
-  min-height:calc(100vh - 130px);
+  grid-template-columns: 290px 1fr;
+  min-height: calc(100vh - 120px);
 }
 
 /* SIDEBAR */
 aside{
   border-right:1px solid var(--border);
-  padding:32px 0;
-  position:sticky;
+  padding: 26px 0;
+  position: sticky;
   top:0;
-  height:calc(100vh - 130px);
+  height: calc(100vh - 120px);
   overflow-y:auto;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
 }
+
 .aside-label{
-  font-size:9px;
-  letter-spacing:.3em;
-  color:var(--muted);
-  text-transform:uppercase;
-  padding:0 24px;
-  margin:12px 0 6px;
+  font-size: var(--fs-xs);
+  letter-spacing: .20em;
+  color: var(--muted2);
+  text-transform: uppercase;
+  padding: 0 22px;
+  margin: 14px 0 10px;
 }
 
 .nav-item{
-  padding:10px 24px;
-  font-size:12px;
-  letter-spacing:.02em;
-  color:var(--softMuted);
+  padding: 12px 22px;
+  font-size: var(--fs-md);
+  color: var(--text2);
   cursor:pointer;
-  transition:all .15s;
-  border-left:2px solid transparent;
+  transition:.14s;
+  border-left: 3px solid transparent;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:14px;
 }
-.nav-item:hover{ color:var(--text); background:color-mix(in srgb, var(--card) 92%, transparent); }
-.nav-item.active{ color:var(--accent); border-left-color:var(--accent); background:color-mix(in srgb, var(--card) 92%, transparent); }
+.nav-item:hover{
+  background: var(--accentSoft);
+  color: var(--text);
+}
+.nav-item.active{
+  background: var(--accentSoft);
+  color: var(--accent);
+  border-left-color: var(--accent);
+}
 
 .nav-item .count{
-  font-size:10px;
-  color:var(--text); /* читаемее */
-  background:color-mix(in srgb, var(--border) 85%, transparent);
-  padding:2px 8px;
-  border-radius:999px;
+  font-size: var(--fs-sm);
+  color: var(--text);
+  background: color-mix(in srgb, var(--border) 70%, transparent);
+  padding: 4px 10px;
+  border-radius: var(--pill);
 }
-.nav-item.active .count{ background:color-mix(in srgb, var(--accent) 12%, transparent); color:var(--accent); }
+.nav-item.active .count{
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent);
+}
 
 .add-pl-btn{
-  margin:16px 24px 0;
-  padding:10px 14px;
-  border:1px dashed var(--muted);
-  background:none;
-  color:var(--text); /* читаемее */
-  font-family:'DM Mono', monospace;
-  font-size:11px;
-  letter-spacing:.04em;
+  margin: 16px 22px 0;
+  padding: 12px 14px;
+  border: 1px dashed color-mix(in srgb, var(--muted2) 55%, transparent);
+  background: none;
+  color: var(--text);
+  font-size: var(--fs-sm);
   cursor:pointer;
-  transition:all .2s;
-  border-radius:999px; /* максимально круглая */
+  border-radius: var(--pill);
+  transition: .18s;
 }
-.add-pl-btn:hover{ border-color:var(--accent); color:var(--accent); }
+.add-pl-btn:hover{
+  border-color: var(--accent);
+  color: var(--accent);
+}
 
 /* CONTENT */
-.content{ padding:40px 48px 120px; }
-.page{ display:none; }
-.page.active{ display:block; animation:fadeIn .2s ease; }
-@keyframes fadeIn{ from{ opacity:0; transform:translateY(6px);} to{ opacity:1; transform:translateY(0);} }
+.content{
+  padding: 34px 44px 120px;
+}
 
-.page-head{ margin-bottom:26px; }
+.page{ display:none; }
+.page.active{ display:block; animation: fadeIn .18s ease; }
+@keyframes fadeIn{ from{ opacity:0; transform: translateY(6px);} to{ opacity:1; transform: translateY(0);} }
+
+.page-head{ margin-bottom: 18px; }
 .page-head h2{
-  font-family:'Bebas Neue', sans-serif;
-  font-size:40px;
-  letter-spacing:.06em;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 44px;
+  letter-spacing: .06em;
   line-height:1;
 }
 .page-head p{
-  font-size:12px;
-  color:var(--softMuted);
-  letter-spacing:.02em;
-  margin-top:6px;
+  margin-top: 8px;
+  font-size: var(--fs-md);
+  color: var(--muted2);
 }
 
-/* ARTIST HEADER */
+/* ARTIST CARD */
 .artist-head{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:18px;
-  padding:18px;
-  border:1px solid var(--border);
-  background:color-mix(in srgb, var(--card) 92%, transparent);
-  border-radius:18px;
-  box-shadow:0 12px 30px var(--shadow);
-  margin-bottom:18px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  background: var(--card2);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 46px var(--shadow);
+  margin: 14px 0 18px;
 }
-.artist-left{ display:flex; align-items:center; gap:16px; }
+
+.artist-left{ display:flex; align-items:center; gap:18px; }
 
 .avatar{
-  width:96px; height:96px; /* БОЛЬШЕ */
-  border-radius:999px;
-  object-fit:cover;
-
-  border:2px solid color-mix(in srgb, var(--accent) 55%, var(--border));
+  width: 110px;
+  height: 110px;
+  border-radius: var(--pill);
+  object-fit: cover;
+  border: 2px solid color-mix(in srgb, var(--accent) 55%, var(--border));
   box-shadow:
-    0 18px 52px var(--shadow),
-    0 0 0 8px color-mix(in srgb, var(--accent) 12%, transparent),
-    0 0 30px color-mix(in srgb, var(--accent) 18%, transparent);
-  filter: contrast(1.10) saturate(1.12);
+    0 20px 55px var(--shadow),
+    0 0 0 8px var(--accentSoft);
+  filter: contrast(1.08) saturate(1.14);
 }
 
 .artist-name-row{ display:flex; align-items:center; gap:10px; }
 .artist-name{
   font-family:'Bebas Neue', sans-serif;
-  font-size:32px;
-  letter-spacing:.08em;
-  line-height:1;
-  color:var(--text);
+  font-size: 36px;
+  letter-spacing: .08em;
+  line-height: 1;
+  color: var(--text);
 }
 
-/* VERIFIED */
 .verified{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:20px; height:20px;
-  border-radius:999px;
-  background:var(--verified);
-  box-shadow:0 10px 22px var(--verifiedGlow);
+  width: 22px; height: 22px;
+  border-radius: var(--pill);
+  background: var(--verified);
+  box-shadow: 0 12px 26px var(--verifiedGlow);
 }
-.verified svg{ width:13px; height:13px; display:block; fill:#fff; }
+.verified svg{ width:14px; height:14px; fill:#fff; }
 
 .artist-meta{
-  margin-top:6px;
-  font-size:12px;
-  color:var(--softMuted);
-  letter-spacing:.02em;
+  margin-top: 8px;
+  font-size: var(--fs-md);
+  color: var(--muted);
 }
 
-.artist-actions{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.artist-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
 
 .sub-btn{
-  padding:10px 16px;
-  border-radius:999px; /* максимально круглая */
-  border:1px solid var(--border);
-  background:transparent;
-  color:var(--text); /* читаемее */
+  padding: 12px 18px;
+  border-radius: var(--pill);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
   cursor:pointer;
-  transition:all .15s;
-  font-size:11px;
-  letter-spacing:.06em;
+  font-size: var(--fs-sm);
+  transition:.15s;
 }
-.sub-btn:hover{ border-color:var(--accent); color:var(--accent); }
+.sub-btn:hover{
+  border-color: var(--accent);
+  color: var(--accent);
+}
 .sub-btn.is-on{
-  background:var(--accent);
-  color:#000;
-  border-color:var(--accent);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #000;
+  font-weight: 600;
 }
 
 .pill{
-  font-size:10px;
-  color:var(--text); /* читаемее */
-  border:1px solid var(--border);
-  padding:7px 12px;
-  border-radius:999px; /* максимально круглая */
-  background: color-mix(in srgb, var(--card) 70%, transparent);
+  font-size: var(--fs-sm);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: var(--pill);
+  background: color-mix(in srgb, var(--card2) 70%, transparent);
 }
 
 /* LISTENERS */
 .listeners{
-  margin-top:10px;
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
+  gap:10px;
+  margin: 10px 0 18px;
 }
 .listener-chip{
-  font-size:11px;
-  color:var(--text); /* читаемее */
-  border:1px solid var(--border);
-  background:color-mix(in srgb, var(--card) 88%, transparent);
-  padding:8px 12px;
-  border-radius:999px;
+  font-size: var(--fs-sm);
+  color: var(--text);
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card2) 85%, transparent);
+  padding: 10px 14px;
+  border-radius: var(--pill);
 }
-.listener-chip b{ color:var(--accent); font-weight:500; }
 
 /* TABLE */
-.track-table{ width:100%; border-collapse:collapse; }
-.track-table thead tr{ border-bottom:1px solid var(--border); }
+.track-table{ width:100%; border-collapse: collapse; }
+.track-table thead tr{ border-bottom: 1px solid var(--border); }
 .track-table th{
-  font-size:9px;
-  letter-spacing:.2em;
-  color:var(--muted2);
-  text-transform:uppercase;
-  padding:0 12px 12px;
+  font-size: var(--fs-sm);
+  letter-spacing: .12em;
+  color: var(--muted2);
+  text-transform: uppercase;
+  padding: 0 12px 14px;
   text-align:left;
-  font-weight:400;
+  font-weight: 500;
 }
-.track-table th:first-child{ padding-left:0; width:36px; text-align:center; }
-.track-table th:last-child{ width:70px; text-align:right; }
+.track-table th:first-child{ padding-left:0; width: 44px; text-align:center; }
+.track-table th:last-child{ width: 82px; text-align:right; }
 
 .track-row{
-  border-bottom:1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   cursor:pointer;
-  transition:background .12s;
+  transition: background .12s;
 }
-.track-row:hover{ background:color-mix(in srgb, var(--card) 92%, transparent); }
-.track-row:hover .tr-num{ display:none; }
-.track-row:hover .tr-play{ display:flex !important; }
-.track-row.is-playing{ background:color-mix(in srgb, var(--card) 92%, transparent); }
-.track-row.is-playing .tr-title{ color:var(--accent); }
+.track-row:hover{ background: var(--accentSoft); }
+.track-row.is-playing{ background: var(--accentSoft); }
+.track-row.is-playing .tr-title{ color: var(--accent); }
 
 .track-table td{
-  padding:14px 12px;
-  font-size:12px;
-  color:var(--text); /* читаемее */
+  padding: 16px 12px;
+  font-size: var(--fs-md);
+  color: var(--text);
 }
 .track-table td:first-child{ padding-left:0; text-align:center; }
-.track-table td:last-child{ text-align:right; color:var(--softMuted); font-size:11px; }
+.track-table td:last-child{ text-align:right; color: var(--muted); font-size: var(--fs-sm); }
 
-.tr-num{ color:var(--softMuted); font-size:12px; }
-.tr-play{ display:none !important; align-items:center; justify-content:center; color:var(--accent); font-size:12px; }
+.tr-num{ color: var(--muted); font-size: var(--fs-md); }
+.tr-play{ display:none !important; align-items:center; justify-content:center; color: var(--accent); font-size: 14px; }
+.track-row:hover .tr-num{ display:none; }
+.track-row:hover .tr-play{ display:flex !important; }
 .is-playing .tr-num{ display:none; }
 .is-playing .tr-play{ display:flex !important; }
 
-.tr-title{ font-weight:500; letter-spacing:.01em; color:var(--text); }
-.tr-album{ font-size:11px; color:var(--softMuted); margin-top:3px; letter-spacing:.01em; }
+.tr-title{ font-weight: 600; letter-spacing: .01em; color: var(--text); }
+.tr-album{ margin-top: 6px; font-size: var(--fs-sm); color: var(--muted2); }
 
 .tr-actions{
   opacity:0;
-  transition:opacity .15s;
+  transition: opacity .14s;
   display:flex;
   justify-content:flex-end;
-  gap:6px;
+  gap:8px;
 }
 .track-row:hover .tr-actions{ opacity:1; }
 
 .icon-btn{
-  background:none;
-  border:1px solid var(--border);
-  color:var(--text); /* читаемее */
-  width:28px; height:28px; /* чуть больше */
-  border-radius:999px; /* максимально круглая */
+  width: 34px; height: 34px;
+  border-radius: var(--pill);
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
   cursor:pointer;
   display:flex; align-items:center; justify-content:center;
-  font-size:12px;
-  transition:all .15s;
+  transition: .15s;
+  font-size: 14px;
 }
-.icon-btn:hover{ border-color:var(--accent); color:var(--accent); }
+.icon-btn:hover{ border-color: var(--accent); color: var(--accent); }
 
 /* PLAYING BARS */
-.playing-bars{ display:flex; align-items:flex-end; gap:2px; height:14px; justify-content:center; }
+.playing-bars{ display:flex; align-items:flex-end; gap:3px; height: 16px; justify-content:center; }
 .bar{
-  width:3px; background:var(--accent); border-radius:999px;
-  animation:bar-bounce .5s ease-in-out infinite alternate;
+  width:3px; background: var(--accent); border-radius: var(--pill);
+  animation: bar-bounce .55s ease-in-out infinite alternate;
 }
-.bar:nth-child(2){ animation-delay:.15s; }
-.bar:nth-child(3){ animation-delay:.3s; }
-@keyframes bar-bounce{ from{ height:3px; } to{ height:13px; } }
+.bar:nth-child(2){ animation-delay: .12s; }
+.bar:nth-child(3){ animation-delay: .24s; }
+@keyframes bar-bounce{ from{ height:3px; } to{ height:15px; } }
 
 /* EMPTY */
 .empty-state{
-  padding:60px 0;
+  padding: 52px 0;
   text-align:center;
-  color:var(--softMuted);
-  font-size:12px;
-  letter-spacing:.02em;
+  color: var(--muted);
+  font-size: var(--fs-md);
 }
 .empty-state .e-icon{
-  font-size:36px;
+  font-size: 36px;
   display:block;
-  margin-bottom:14px;
-  opacity:.2;
+  margin-bottom: 12px;
+  opacity:.25;
 }
 
 /* MODAL */
 .overlay{
   position:fixed; inset:0;
-  background:rgba(0,0,0,.65);
-  z-index:400;
+  background: rgba(0,0,0,.6);
+  z-index: 400;
   display:none;
   align-items:center;
   justify-content:center;
-  backdrop-filter:blur(6px);
+  backdrop-filter: blur(6px);
 }
-html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
+html[data-theme="light"] .overlay{ background: rgba(20,10,40,.28); }
 .overlay.open{ display:flex; }
 
 .modal{
-  background:var(--card);
-  border:1px solid var(--border);
-  padding:28px;
-  width:380px;
-  border-radius:18px;
-  box-shadow:0 16px 46px var(--shadow);
+  width: 420px;
+  max-width: calc(100vw - 26px);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 22px 70px var(--shadow);
 }
 .modal h3{
   font-family:'Bebas Neue', sans-serif;
-  font-size:24px;
-  letter-spacing:.08em;
-  margin-bottom:16px;
-  color:var(--text);
+  font-size: 28px;
+  letter-spacing: .08em;
+  margin-bottom: 14px;
 }
 .modal input, .modal select{
-  width:100%;
-  background:var(--bg);
-  border:1px solid var(--border);
-  color:var(--text); /* читаемее */
-  font-family:'DM Mono', monospace;
-  font-size:12px;
-  padding:11px 14px;
-  border-radius:999px; /* максимально круглая */
+  width: 100%;
+  border-radius: var(--pill);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: var(--fs-md);
+  padding: 12px 14px;
   outline:none;
-  margin-bottom:12px;
-  transition:border-color .15s;
+  margin-bottom: 12px;
 }
-.modal input:focus, .modal select:focus{ border-color:var(--accent); }
+.modal input:focus, .modal select:focus{ border-color: var(--accent); }
 
-.modal-btns{ display:flex; gap:10px; justify-content:flex-end; margin-top:4px; }
-.btn{
-  padding:10px 16px;
-  font-family:'DM Mono', monospace;
-  font-size:11px;
-  letter-spacing:.04em;
-  border:none;
-  border-radius:999px; /* максимально круглая */
-  cursor:pointer;
-  transition:all .15s;
+.modal-btns{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  margin-top: 6px;
 }
-.btn-outline{ background:transparent; border:1px solid var(--border); color:var(--text); }
-.btn-outline:hover{ border-color:var(--text); color:var(--text); }
-.btn-accent{ background:var(--accent); color:#000; font-weight:600; }
-.btn-accent:hover{ filter:brightness(.95); }
+
+.btn{
+  border-radius: var(--pill);
+  padding: 12px 16px;
+  cursor:pointer;
+  font-size: var(--fs-sm);
+  transition: .15s;
+}
+.btn-outline{
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.btn-outline:hover{
+  border-color: var(--text);
+}
+.btn-accent{
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color:#000;
+  font-weight: 700;
+}
+.btn-accent:hover{ filter: brightness(.95); }
 
 /* TOAST */
 .toast{
   position:fixed;
-  bottom:26px;
-  right:26px;
-  padding:12px 16px;
-  background:var(--card);
-  border:1px solid var(--accent);
-  color:var(--accent);
-  font-size:11px;
-  letter-spacing:.04em;
-  border-radius:999px; /* максимально круглая */
-  z-index:600;
+  right: 26px;
+  bottom: 26px;
+  padding: 12px 16px;
+  border-radius: var(--pill);
+  border: 1px solid var(--accent);
+  background: var(--card);
+  color: var(--accent);
+  font-size: var(--fs-sm);
+  box-shadow: 0 22px 65px var(--shadow);
   opacity:0;
-  transform:translateY(8px);
-  transition:all .25s;
+  transform: translateY(10px);
+  transition: .22s;
   pointer-events:none;
-  box-shadow:0 16px 50px var(--shadow);
+  z-index: 600;
 }
-.toast.show{ opacity:1; transform:translateY(0); }
+.toast.show{ opacity:1; transform: translateY(0); }
 
 /* SCROLLBAR */
-::-webkit-scrollbar{ width:4px; }
-::-webkit-scrollbar-thumb{ background:color-mix(in srgb, var(--border) 85%, transparent); border-radius:999px; }
+::-webkit-scrollbar{ width: 6px; }
+::-webkit-scrollbar-thumb{
+  background: color-mix(in srgb, var(--border) 80%, transparent);
+  border-radius: var(--pill);
+}
 
-@media (max-width:720px){
-  header{ padding:20px 20px 16px; flex-direction:column; align-items:flex-start; }
-  .layout{ grid-template-columns:1fr; }
+/* RESPONSIVE */
+@media (max-width: 720px){
+  header{ padding: 20px 18px 16px; flex-direction:column; align-items:flex-start; }
+  .layout{ grid-template-columns: 1fr; }
   aside{ display:none; }
-  .content{ padding:24px 20px 100px; }
+  .content{ padding: 22px 18px 100px; }
   .artist-head{ flex-direction:column; align-items:flex-start; }
-  .avatar{ width:108px; height:108px; } /* mobile: ещё больше */
+  .artist-actions{ justify-content:flex-start; }
+  .avatar{ width: 122px; height: 122px; }
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -540,10 +607,10 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
       <span class="count" id="all-count">0</span>
     </div>
 
-    <div class="aside-label" style="margin-top:16px;">Артисты</div>
+    <div class="aside-label">Артисты</div>
     <div id="sidebar-artists"></div>
 
-    <div class="aside-label" style="margin-top:16px;">Плейлисты</div>
+    <div class="aside-label">Плейлисты</div>
     <div id="sidebar-lists"></div>
 
     <button class="add-pl-btn" onclick="openModal('modal-create')">+ Новый плейлист</button>
@@ -557,6 +624,7 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
         <h2>Все треки</h2>
         <p>KHRESHYATIKOV — полная дискография</p>
       </div>
+
       <table class="track-table">
         <thead>
           <tr>
@@ -601,14 +669,12 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
         </div>
       </div>
 
-      <div id="listeners-wrap" style="margin-bottom:18px;">
-        <div style="font-size:10px;letter-spacing:.2em;color:var(--muted2);text-transform:uppercase;margin:2px 0 10px;">
-          Слушатели (подписчики)
-        </div>
-        <div class="listeners" id="listeners"></div>
+      <div style="font-size:var(--fs-sm);letter-spacing:.10em;color:var(--muted2);text-transform:uppercase;margin:2px 0 10px;">
+        Слушатели (подписчики)
       </div>
+      <div class="listeners" id="listeners"></div>
 
-      <table class="track-table">
+      <table class="track-table" style="margin-top:10px;">
         <thead>
           <tr>
             <th>#</th>
@@ -628,6 +694,7 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
         <h2 id="pl-title">Плейлист</h2>
         <p id="pl-meta">0 треков</p>
       </div>
+
       <table class="track-table">
         <thead>
           <tr>
@@ -645,7 +712,7 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
   </div>
 </div>
 
-<!-- MODAL: Create Playlist -->
+<!-- MODALS -->
 <div class="overlay" id="modal-create" onclick="overlayClick(event, this)">
   <div class="modal">
     <h3>Новый плейлист</h3>
@@ -657,7 +724,6 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
   </div>
 </div>
 
-<!-- MODAL: Add to Playlist -->
 <div class="overlay" id="modal-add" onclick="overlayClick(event, this)">
   <div class="modal">
     <h3>В плейлист</h3>
@@ -669,17 +735,16 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
   </div>
 </div>
 
-<!-- MODAL: Subscribe name -->
 <div class="overlay" id="modal-sub" onclick="overlayClick(event, this)">
   <div class="modal">
     <h3>Подписка</h3>
-    <input id="inp-nick" type="text" placeholder="Как тебя показать в слушателях? (ник)" maxlength="18">
+    <input id="inp-nick" type="text" placeholder="Как тебя показать? (ник)" maxlength="18">
     <div class="modal-btns">
       <button class="btn btn-outline" onclick="closeModals()">Отмена</button>
       <button class="btn btn-accent" onclick="confirmSubscribe()">Готово</button>
     </div>
-    <div style="margin-top:10px;color:var(--softMuted);font-size:11px;line-height:1.45;">
-      Ник сохранится в браузере (localStorage). После перезахода всё останется 👌
+    <div style="margin-top:10px;color:var(--muted2);font-size:var(--fs-sm);">
+      Ник сохранится в браузере (localStorage) 👍
     </div>
   </div>
 </div>
@@ -687,10 +752,6 @@ html[data-theme="light"] .overlay{ background:rgba(20,10,40,.35); }
 <div class="toast" id="toast"></div>
 
 <script>
-// ─────────────────────────────────────────
-// АРТИСТЫ — добавляй/правь треки легко ТУТ ✅
-// verified: true/false — галочка синяя
-// ─────────────────────────────────────────
 const ARTISTS = [
   {
     id:'hadash',
@@ -706,378 +767,4 @@ const ARTISTS = [
     id:'valera',
     name:'valera',
     verified:true,
-    avatar:'https://i.ibb.co/hJxqGfkd/2025-11-27-001446.png',
-    tracks:[
-      { title:'АБСУРД', album:'Сингл · 25.12.2025', type:'valera', dur:'—', url:'https://youtu.be/RnBmoL8ohGY' },
-    ]
-  },
-  {
-    id:'waffle',
-    name:'waffle',
-    verified:true,
-    avatar:'https://s1.eda.ru/StaticContent/Photos/150920201609/151130101745/p_O.jpg',
-    tracks:[
-      { title:'КАПУЦИН', album:'Новинка · 22.02.2026', type:'hadash & waffle', dur:'—', url:'https://youtu.be/wU7yTtbyT3c?si=eJN44CbQInBab9TH' },
-    ]
-  },
-];
-
-const TRACKS = buildTracksFromArtists(ARTISTS);
-
-let playlists = JSON.parse(localStorage.getItem('kh2_pls') || '[]');
-let nowPlaying = null;
-let pendingTrackId = null;
-let currentPlId = null;
-let currentArtistId = null;
-
-const THEMES = ['dark','midnight','light'];
-
-function buildTracksFromArtists(artists){
-  const map = new Map();
-  let id = 1;
-  for (const a of artists){
-    for (const t of a.tracks){
-      const key = (t.title + '|' + (t.url || '')).toLowerCase();
-      if (!map.has(key)){
-        map.set(key, { id:id++, ...t, artists:new Set([a.id]) });
-      } else {
-        map.get(key).artists.add(a.id);
-      }
-    }
-  }
-  return Array.from(map.values()).map(x => ({ ...x, artists:Array.from(x.artists) }));
-}
-
-function artistById(id){ return ARTISTS.find(a => a.id === id); }
-function tracksByArtist(artistId){ return TRACKS.filter(t => t.artists.includes(artistId)); }
-
-function subsKey(id){ return `kh2_subs_${id}`; }
-function getSubs(id){ try{ return JSON.parse(localStorage.getItem(subsKey(id)) || '[]'); }catch{ return []; } }
-function setSubs(id, arr){ localStorage.setItem(subsKey(id), JSON.stringify(arr)); }
-
-function renderAll(){
-  document.getElementById('all-count').textContent = TRACKS.length;
-  document.getElementById('tbody-all').innerHTML = TRACKS.map((t,i)=>rowHTML(t,i,null)).join('');
-}
-
-function rowHTML(t,i,plId){
-  const playing = nowPlaying === t.id;
-  const isNew = (t.album || '').toLowerCase().includes('новинка');
-
-  return `
-  <tr class="track-row ${playing ? 'is-playing' : ''}" onclick="play(${t.id})">
-    <td>
-      <span class="tr-num">${i + 1}</span>
-      <span class="tr-play">
-        ${playing ? `<div class="playing-bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>` : '▶'}
-      </span>
-    </td>
-    <td>
-      <div class="tr-title">${t.title}
-        ${isNew ? `<span style="font-size:9px;background:var(--accent);color:#000;padding:2px 10px;border-radius:999px;letter-spacing:.12em;margin-left:8px;vertical-align:middle;">NEW</span>` : ''}
-      </div>
-      <div class="tr-album">${t.album || ''}</div>
-    </td>
-    <td style="font-size:11px;color:var(--softMuted);letter-spacing:.02em;">${t.type || ''}</td>
-    <td>
-      <div class="tr-actions" onclick="event.stopPropagation()">
-        ${plId !== null
-          ? `<button class="icon-btn" onclick="removeFromPl(${plId},${t.id})" title="Убрать">✕</button>`
-          : `<button class="icon-btn" onclick="openAdd(${t.id})" title="В плейлист">+</button>`
-        }
-      </div>
-    </td>
-    <td>${t.dur || '—'}</td>
-  </tr>`;
-}
-
-function play(id){
-  nowPlaying = id;
-  const t = TRACKS.find(x => x.id === id);
-
-  renderAll();
-  if (currentPlId !== null) renderPlTracks(currentPlId);
-  if (currentArtistId !== null) renderArtistTracks(currentArtistId);
-
-  const query = encodeURIComponent('KHRESHYATIKOV ' + t.title);
-  const url = t.url || `https://www.youtube.com/results?search_query=${query}`;
-  window.open(url, '_blank');
-}
-
-/* Sidebar artists */
-function renderArtistsSidebar(){
-  const el = document.getElementById('sidebar-artists');
-  el.innerHTML = ARTISTS.map(a => {
-    const trackCount = tracksByArtist(a.id).length;
-    const subs = getSubs(a.id).length;
-    return `
-      <div class="nav-item" onclick="openArtist('${a.id}'); activateNav(this)">
-        <span>${a.name}${a.verified ? ' ✓' : ''}</span>
-        <span class="count">${trackCount} · ${subs}</span>
-      </div>
-    `;
-  }).join('');
-}
-
-/* Artist page */
-function openArtist(id){
-  currentArtistId = id;
-  currentPlId = null;
-
-  const a = artistById(id);
-  if (!a) return;
-
-  document.getElementById('artist-title').textContent = a.name;
-  document.getElementById('artist-sub').textContent = `Профиль артиста KHRESHYATIKOV`;
-
-  const avatar = document.getElementById('artist-avatar');
-  avatar.src = a.avatar;
-
-  document.getElementById('artist-name').textContent = a.name;
-
-  const v = document.getElementById('artist-verified');
-  v.style.display = a.verified ? 'inline-flex' : 'none';
-
-  const tr = tracksByArtist(id);
-  const subsCount = getSubs(id).length;
-
-  document.getElementById('artist-meta').textContent = `${tr.length} трек(ов) · ${subsCount} слушателей`;
-  document.getElementById('tracks-pill').textContent = `${tr.length} треков`;
-
-  renderSubscribeUI();
-  renderListeners();
-  renderArtistTracks(id);
-  goPage('artist');
-}
-
-function renderArtistTracks(id){
-  const tr = tracksByArtist(id);
-  const tbody = document.getElementById('tbody-artist');
-
-  if (!tr.length){
-    tbody.innerHTML = `<tr><td colspan="5"><div class="empty-state"><span class="e-icon">♫</span>Пока пусто — добавь треки в массив ARTISTS в коде</div></td></tr>`;
-    return;
-  }
-  tbody.innerHTML = tr.map((t,i)=>rowHTML(t,i,null)).join('');
-}
-
-function renderSubscribeUI(){
-  const btn = document.getElementById('sub-btn');
-  const subs = getSubs(currentArtistId);
-  const me = (localStorage.getItem('kh2_nick') || '').trim();
-  const isOn = me && subs.includes(me);
-
-  btn.classList.toggle('is-on', !!isOn);
-  btn.textContent = isOn ? 'Вы подписаны' : 'Подписаться';
-
-  document.getElementById('subs-pill').textContent = `${subs.length} слушателей`;
-
-  const tr = tracksByArtist(currentArtistId).length;
-  document.getElementById('artist-meta').textContent = `${tr} трек(ов) · ${subs.length} слушателей`;
-}
-
-function renderListeners(){
-  const wrap = document.getElementById('listeners');
-  const subs = getSubs(currentArtistId);
-
-  if (!subs.length){
-    wrap.innerHTML = `<span class="listener-chip"><b>0</b> — пока тишина. Первый подписчик забирает ауру 😄</span>`;
-    return;
-  }
-  wrap.innerHTML = subs.map(n => `<span class="listener-chip">🎧 ${escapeHTML(n)}</span>`).join('');
-}
-
-function toggleSubscribe(){
-  if (!currentArtistId) return;
-
-  const savedNick = (localStorage.getItem('kh2_nick') || '').trim();
-  if (!savedNick){
-    openModal('modal-sub');
-    setTimeout(()=>document.getElementById('inp-nick')?.focus(), 60);
-    return;
-  }
-
-  const subs = getSubs(currentArtistId);
-  const idx = subs.indexOf(savedNick);
-
-  if (idx >= 0) subs.splice(idx, 1);
-  else subs.push(savedNick);
-
-  setSubs(currentArtistId, uniq(subs));
-  renderSubscribeUI();
-  renderListeners();
-  renderArtistsSidebar();
-
-  showToast(idx >= 0 ? 'Подписка снята' : `Подписка: ${savedNick}`);
-}
-
-function confirmSubscribe(){
-  if (!currentArtistId) return;
-
-  const nick = (document.getElementById('inp-nick').value || '').trim();
-  if (!nick){ showToast('Ник пустой :('); return; }
-
-  localStorage.setItem('kh2_nick', nick);
-
-  const subs = getSubs(currentArtistId);
-  if (!subs.includes(nick)) subs.push(nick);
-  setSubs(currentArtistId, uniq(subs));
-
-  closeModals();
-  renderSubscribeUI();
-  renderListeners();
-  renderArtistsSidebar();
-  showToast(`Подписка: ${nick}`);
-}
-
-function uniq(arr){ return Array.from(new Set(arr.filter(Boolean))); }
-function escapeHTML(s){ return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
-
-/* Sidebar playlists */
-function renderSidebar(){
-  const el = document.getElementById('sidebar-lists');
-  el.innerHTML = playlists.map(pl => `
-    <div class="nav-item" onclick="openPlaylist(${pl.id}); activateNav(this)">
-      <span>${pl.name}</span>
-      <span class="count">${pl.trackIds.length}</span>
-    </div>
-  `).join('');
-}
-
-function activateNav(el){
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  el.classList.add('active');
-}
-
-function goPage(name){
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + name)?.classList.add('active');
-}
-
-function openPlaylist(id){
-  currentPlId = id;
-  currentArtistId = null;
-
-  const pl = playlists.find(p => p.id === id);
-  document.getElementById('pl-title').textContent = pl.name;
-  document.getElementById('pl-meta').textContent = `${pl.trackIds.length} треков`;
-  renderPlTracks(id);
-  goPage('playlist');
-}
-
-function renderPlTracks(id){
-  const pl = playlists.find(p => p.id === id);
-  const plTracks = TRACKS.filter(t => pl.trackIds.includes(t.id));
-  const tbody = document.getElementById('tbody-pl');
-
-  if (!plTracks.length){
-    tbody.innerHTML = `<tr><td colspan="5"><div class="empty-state"><span class="e-icon">♫</span>Плейлист пуст — добавь треки через «+»</div></td></tr>`;
-    return;
-  }
-  tbody.innerHTML = plTracks.map((t,i)=>rowHTML(t,i,id)).join('');
-}
-
-function createPlaylist(){
-  const name = document.getElementById('inp-name').value.trim();
-  if (!name) return;
-
-  const pl = { id: Date.now(), name, trackIds: [] };
-  playlists.push(pl);
-  save();
-  renderSidebar();
-  closeModals();
-  showToast('Плейлист «' + name + '» создан');
-}
-
-function openAdd(trackId){
-  if (!playlists.length){ showToast('Сначала создай плейлист'); return; }
-  pendingTrackId = trackId;
-
-  const sel = document.getElementById('sel-playlist');
-  sel.innerHTML = playlists.map(pl => `<option value="${pl.id}">${pl.name}</option>`).join('');
-  openModal('modal-add');
-}
-
-function confirmAdd(){
-  const plId = parseInt(document.getElementById('sel-playlist').value);
-  const pl = playlists.find(p => p.id === plId);
-  if (!pl) return;
-
-  if (pl.trackIds.includes(pendingTrackId)){ showToast('Уже в плейлисте'); closeModals(); return; }
-
-  pl.trackIds.push(pendingTrackId);
-  save();
-  renderSidebar();
-  closeModals();
-
-  const t = TRACKS.find(x => x.id === pendingTrackId);
-  showToast(`«${t.title}» → «${pl.name}»`);
-}
-
-function removeFromPl(plId, trackId){
-  const pl = playlists.find(p => p.id === plId);
-  if (!pl) return;
-
-  pl.trackIds = pl.trackIds.filter(id => id !== trackId);
-  save();
-  renderSidebar();
-  renderPlTracks(plId);
-
-  document.getElementById('pl-meta').textContent = `${pl.trackIds.length} треков`;
-  showToast('Трек убран');
-}
-
-function save(){ localStorage.setItem('kh2_pls', JSON.stringify(playlists)); }
-
-/* Modals */
-function openModal(id){
-  document.getElementById(id).classList.add('open');
-  setTimeout(()=>document.getElementById('inp-name')?.focus(), 50);
-}
-function closeModals(){
-  document.querySelectorAll('.overlay').forEach(o => o.classList.remove('open'));
-  const n = document.getElementById('inp-name'); if (n) n.value = '';
-  const k = document.getElementById('inp-nick'); if (k) k.value = '';
-}
-function overlayClick(e, el){ if (e.target === el) closeModals(); }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModals(); });
-document.getElementById('inp-name').addEventListener('keydown', e => { if (e.key === 'Enter') createPlaylist(); });
-document.getElementById('inp-nick').addEventListener('keydown', e => { if (e.key === 'Enter') confirmSubscribe(); });
-
-/* Toast */
-let _tt;
-function showToast(msg){
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(_tt);
-  _tt = setTimeout(()=>el.classList.remove('show'), 2600);
-}
-
-/* Theme */
-function setTheme(t){
-  document.documentElement.setAttribute('data-theme', t);
-  localStorage.setItem('kh2_theme', t);
-  document.getElementById('theme-label').textContent = 'THEME: ' + t.toUpperCase();
-}
-function cycleTheme(){
-  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
-  const i = THEMES.indexOf(cur);
-  const next = THEMES[(i + 1) % THEMES.length];
-  setTheme(next);
-  showToast('Тема: ' + next);
-}
-
-/* INIT */
-(function init(){
-  const t = localStorage.getItem('kh2_theme') || 'dark';
-  setTheme(THEMES.includes(t) ? t : 'dark');
-
-  renderAll();
-  renderArtistsSidebar();
-  renderSidebar();
-  document.getElementById('all-count').textContent = TRACKS.length;
-})();
-</script>
-</body>
-</html>
+    avatar:'https://i.ibb.co/hJxqGfkd/2025-1
