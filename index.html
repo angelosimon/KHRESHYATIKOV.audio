@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="ru" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KHRESHYATIKOV AUDIO</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>khreshyatikov audio</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ------------------------------------------------------
+   premium reset
+------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; }
+button, input, select { font: inherit; }
+a { color: inherit; text-decoration: none; }
+img { display:block; max-width:100%; }
 
 :root{
   /* base */
@@ -26,14 +35,15 @@
   /* accent */
   --accent:#b68cff;
   --accentSoft: rgba(182,140,255,.14);
-  --shadow: rgba(0,0,0,.45);
+  --shadow: rgba(0,0,0,.55);
 
   /* verified */
   --verified:#2f7dff;
-  --verifiedGlow: rgba(47,125,255,.35);
+  --verifiedGlow: rgba(47,125,255,.30);
 
   /* sizing */
   --radius: 18px;
+  --radius2: 22px;
   --pill: 999px;
 
   /* typography */
@@ -41,24 +51,26 @@
   --fs-sm: 13px;
   --fs-md: 15px;
   --fs-lg: 18px;
+  --line: 1.6;
 
-  --line: 1.55;
+  /* motion */
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --dur: .28s;
 }
 
-/* THEMES */
 html[data-theme="dark"]{
   --bg:#07060b; --card:#0f0b18; --card2:#120d1f; --border:#221a33;
   --text:#f5f1ff; --text2:#d9d2ee; --muted:#b5abcc; --muted2:#8f84ad;
   --accent:#b68cff; --accentSoft: rgba(182,140,255,.14);
-  --shadow: rgba(0,0,0,.45);
-  --verified:#2f7dff; --verifiedGlow: rgba(47,125,255,.35);
+  --shadow: rgba(0,0,0,.55);
+  --verified:#2f7dff; --verifiedGlow: rgba(47,125,255,.30);
 }
 
 html[data-theme="midnight"]{
   --bg:#050612; --card:#0a0c1a; --card2:#0c1024; --border:#1d2442;
   --text:#eef1ff; --text2:#d9dcff; --muted:#b6bbef; --muted2:#848cc5;
   --accent:#9aa6ff; --accentSoft: rgba(154,166,255,.14);
-  --shadow: rgba(0,0,0,.50);
+  --shadow: rgba(0,0,0,.60);
   --verified:#2f7dff; --verifiedGlow: rgba(47,125,255,.28);
 }
 
@@ -66,44 +78,52 @@ html[data-theme="light"]{
   --bg:#f6f3ff; --card:#ffffff; --card2:#fbf9ff; --border:#e7e0ff;
   --text:#161028; --text2:#2c1a55; --muted:#4f3c7c; --muted2:#6a5b8d;
   --accent:#6f4dff; --accentSoft: rgba(111,77,255,.12);
-  --shadow: rgba(20,10,40,.12);
-  --verified:#1f64ff; --verifiedGlow: rgba(31,100,255,.20);
+  --shadow: rgba(20,10,40,.14);
+  --verified:#1f64ff; --verifiedGlow: rgba(31,100,255,.18);
 }
 
 html { scroll-behavior: smooth; }
 body{
-  background: var(--bg);
+  background: radial-gradient(1200px 700px at 70% -10%, rgba(182,140,255,.10), transparent 60%),
+              radial-gradient(900px 600px at 10% 10%, rgba(182,140,255,.07), transparent 55%),
+              var(--bg);
   color: var(--text);
   font-family: 'DM Mono', monospace;
-  min-height: 100vh;
   line-height: var(--line);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
 }
 
-/* GRAIN */
-body::before{
-  content:'';
-  position:fixed; inset:0;
-  pointer-events:none;
-  z-index:999;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  opacity:.03;
+/* nicer focus */
+:focus-visible{
+  outline: 2px solid color-mix(in srgb, var(--accent) 70%, transparent);
+  outline-offset: 3px;
+  border-radius: 10px;
 }
 
-/* HEADER */
+/* ------------------------------------------------------
+   header (premium + sticky)
+------------------------------------------------------ */
 header{
-  padding: 28px 44px 22px;
-  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  padding: 22px 44px 18px;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(12px);
   display:flex;
   align-items:flex-end;
   justify-content:space-between;
-  gap:18px;
+  gap:16px;
 }
 
 .logo-main{
   font-family:'Bebas Neue', sans-serif;
-  font-size: clamp(40px, 6vw, 74px);
+  font-size: clamp(38px, 5.6vw, 72px);
   letter-spacing: .06em;
   line-height: 1;
+  text-transform: lowercase;
 }
 .logo-main span{ color: var(--accent); }
 
@@ -111,59 +131,51 @@ header{
   margin-top: 8px;
   font-size: var(--fs-sm);
   color: var(--muted2);
-  letter-spacing: .14em;
-  text-transform: uppercase;
+  letter-spacing: .10em;
+  text-transform: lowercase;
 }
+.logo-sub::after{ content: "."; }
 
-/* HEADER ACTIONS */
 .header-actions{
   display:flex; gap:10px; align-items:center; flex-wrap:wrap;
 }
 
 .yt-btn{
   display:inline-flex; align-items:center; gap:12px;
-  padding: 13px 20px;
-  background: var(--accent);
-  color:#000;
-  text-decoration:none;
-  font-family:'Bebas Neue', sans-serif;
-  font-size: 16px;
-  letter-spacing: .12em;
+  padding: 12px 18px;
   border-radius: var(--pill);
-  transition: .18s;
-  box-shadow: 0 14px 34px var(--shadow);
-  position:relative;
-  overflow:hidden;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: color-mix(in srgb, var(--accentSoft) 90%, transparent);
+  color: var(--text);
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);
+  box-shadow: 0 18px 55px var(--shadow);
 }
-.yt-btn::before{
-  content:'';
-  position:absolute; inset:0;
-  background:#000;
-  transform: translateX(-110%);
-  transition: transform .28s ease;
+.yt-btn:hover{
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
+  background: color-mix(in srgb, var(--accentSoft) 120%, transparent);
 }
-.yt-btn:hover::before{ transform: translateX(0); }
-.yt-btn:hover{ color: var(--accent); }
-.yt-btn svg, .yt-btn span{ position:relative; z-index:1; }
-.yt-icon{ width:20px; height:20px; flex-shrink:0; }
+.yt-btn:active{ transform: translateY(0); }
+.yt-icon{ width:20px; height:20px; flex-shrink:0; color: var(--accent); }
 
 .theme-btn{
   display:inline-flex; align-items:center; gap:10px;
-  padding: 13px 16px;
+  padding: 12px 14px;
   border-radius: var(--pill);
   background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  color: var(--text2);
   cursor:pointer;
-  transition: .18s;
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
   font-size: var(--fs-xs);
   letter-spacing: .12em;
-  text-transform: uppercase;
+  text-transform: lowercase;
 }
 .theme-btn:hover{
-  border-color: var(--accent);
-  color: var(--accent);
-  box-shadow: 0 12px 30px var(--shadow);
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
+  color: var(--text);
+  box-shadow: 0 16px 55px var(--shadow);
 }
 .theme-dot{
   width:10px; height:10px; border-radius: var(--pill);
@@ -171,38 +183,43 @@ header{
   box-shadow: 0 0 0 4px var(--accentSoft);
 }
 
-/* LAYOUT */
+#theme-label{ text-transform: lowercase; }
+#theme-label::after{ content:"."; }
+
+/* ------------------------------------------------------
+   layout
+------------------------------------------------------ */
 .layout{
   display:grid;
-  grid-template-columns: 290px 1fr;
-  min-height: calc(100vh - 120px);
+  grid-template-columns: 300px 1fr;
+  min-height: calc(100vh - 90px);
 }
 
-/* SIDEBAR */
 aside{
-  border-right:1px solid var(--border);
-  padding: 26px 0;
+  border-right:1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  padding: 22px 0;
   position: sticky;
-  top:0;
-  height: calc(100vh - 120px);
+  top: 86px;
+  height: calc(100vh - 86px);
   overflow-y:auto;
 }
 
 .aside-label{
   font-size: var(--fs-xs);
-  letter-spacing: .20em;
+  letter-spacing: .16em;
   color: var(--muted2);
-  text-transform: uppercase;
+  text-transform: lowercase;
   padding: 0 22px;
-  margin: 14px 0 10px;
+  margin: 12px 0 10px;
 }
+.aside-label::after{ content:"."; }
 
 .nav-item{
   padding: 12px 22px;
   font-size: var(--fs-md);
   color: var(--text2);
   cursor:pointer;
-  transition:.14s;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease);
   border-left: 3px solid transparent;
   display:flex;
   align-items:center;
@@ -210,11 +227,12 @@ aside{
   gap:14px;
 }
 .nav-item:hover{
-  background: var(--accentSoft);
+  background: color-mix(in srgb, var(--accentSoft) 90%, transparent);
   color: var(--text);
+  transform: translateX(2px);
 }
 .nav-item.active{
-  background: var(--accentSoft);
+  background: color-mix(in srgb, var(--accentSoft) 110%, transparent);
   color: var(--accent);
   border-left-color: var(--accent);
 }
@@ -222,7 +240,7 @@ aside{
 .nav-item .count{
   font-size: var(--fs-sm);
   color: var(--text);
-  background: color-mix(in srgb, var(--border) 70%, transparent);
+  background: color-mix(in srgb, var(--border) 72%, transparent);
   padding: 4px 10px;
   border-radius: var(--pill);
 }
@@ -235,26 +253,34 @@ aside{
   margin: 16px 22px 0;
   padding: 12px 14px;
   border: 1px dashed color-mix(in srgb, var(--muted2) 55%, transparent);
-  background: none;
-  color: var(--text);
+  background: transparent;
+  color: var(--text2);
   font-size: var(--fs-sm);
   cursor:pointer;
   border-radius: var(--pill);
-  transition: .18s;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  text-transform: lowercase;
 }
+.add-pl-btn::after{ content:"."; }
 .add-pl-btn:hover{
-  border-color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 70%, var(--border));
   color: var(--accent);
+  transform: translateY(-1px);
 }
 
-/* CONTENT */
+/* ------------------------------------------------------
+   content
+------------------------------------------------------ */
 .content{
-  padding: 34px 44px 120px;
+  padding: 32px 44px 120px;
 }
 
 .page{ display:none; }
-.page.active{ display:block; animation: fadeIn .18s ease; }
-@keyframes fadeIn{ from{ opacity:0; transform: translateY(6px);} to{ opacity:1; transform: translateY(0);} }
+.page.active{ display:block; animation: fadeIn var(--dur) var(--ease); }
+@keyframes fadeIn{
+  from{ opacity:0; transform: translateY(8px); }
+  to{ opacity:1; transform: translateY(0); }
+}
 
 .page-head{ margin-bottom: 18px; }
 .page-head h2{
@@ -262,39 +288,43 @@ aside{
   font-size: 44px;
   letter-spacing: .06em;
   line-height:1;
+  text-transform: lowercase;
 }
 .page-head p{
   margin-top: 8px;
   font-size: var(--fs-md);
   color: var(--muted2);
+  text-transform: lowercase;
 }
+.page-head p::after{ content:"."; }
 
-/* ARTIST CARD */
+/* artist card */
 .artist-head{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:18px;
   padding: 18px;
-  border: 1px solid var(--border);
-  background: var(--card2);
-  border-radius: var(--radius);
-  box-shadow: 0 18px 46px var(--shadow);
+  border: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--card2) 92%, transparent),
+    color-mix(in srgb, var(--card) 92%, transparent)
+  );
+  border-radius: var(--radius2);
+  box-shadow: 0 26px 80px var(--shadow);
   margin: 14px 0 18px;
 }
 
 .artist-left{ display:flex; align-items:center; gap:18px; }
 
 .avatar{
-  width: 110px;
-  height: 110px;
+  width: 108px;
+  height: 108px;
   border-radius: var(--pill);
   object-fit: cover;
-  border: 2px solid color-mix(in srgb, var(--accent) 55%, var(--border));
-  box-shadow:
-    0 20px 55px var(--shadow),
-    0 0 0 8px var(--accentSoft);
-  filter: contrast(1.08) saturate(1.14);
+  border: 1px solid color-mix(in srgb, var(--accent) 48%, var(--border));
+  box-shadow: 0 22px 70px var(--shadow), 0 0 0 8px var(--accentSoft);
+  filter: contrast(1.05) saturate(1.08);
 }
 
 .artist-name-row{ display:flex; align-items:center; gap:10px; }
@@ -304,6 +334,7 @@ aside{
   letter-spacing: .08em;
   line-height: 1;
   color: var(--text);
+  text-transform: lowercase;
 }
 
 .verified{
@@ -313,7 +344,7 @@ aside{
   width: 22px; height: 22px;
   border-radius: var(--pill);
   background: var(--verified);
-  box-shadow: 0 12px 26px var(--verifiedGlow);
+  box-shadow: 0 14px 34px var(--verifiedGlow);
 }
 .verified svg{ width:14px; height:14px; fill:#fff; }
 
@@ -321,7 +352,9 @@ aside{
   margin-top: 8px;
   font-size: var(--fs-md);
   color: var(--muted);
+  text-transform: lowercase;
 }
+.artist-meta::after{ content:"."; }
 
 .artist-actions{
   display:flex;
@@ -334,34 +367,39 @@ aside{
 .sub-btn{
   padding: 12px 18px;
   border-radius: var(--pill);
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
   background: transparent;
-  color: var(--text);
+  color: var(--text2);
   cursor:pointer;
   font-size: var(--fs-sm);
-  transition:.15s;
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);
+  text-transform: lowercase;
 }
+.sub-btn::after{ content:"."; }
 .sub-btn:hover{
-  border-color: var(--accent);
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 70%, var(--border));
   color: var(--accent);
+  box-shadow: 0 18px 60px var(--shadow);
 }
 .sub-btn.is-on{
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #000;
-  font-weight: 600;
+  background: color-mix(in srgb, var(--accent) 80%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 90%, var(--border));
+  color: var(--text);
 }
 
 .pill{
   font-size: var(--fs-sm);
-  color: var(--text);
-  border: 1px solid var(--border);
+  color: var(--text2);
+  border: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
   padding: 10px 14px;
   border-radius: var(--pill);
-  background: color-mix(in srgb, var(--card2) 70%, transparent);
+  background: color-mix(in srgb, var(--card2) 75%, transparent);
+  text-transform: lowercase;
 }
+.pill::after{ content:"."; }
 
-/* LISTENERS */
+/* listeners */
 .listeners{
   display:flex;
   flex-wrap:wrap;
@@ -370,21 +408,21 @@ aside{
 }
 .listener-chip{
   font-size: var(--fs-sm);
-  color: var(--text);
-  border: 1px solid var(--border);
-  background: color-mix(in srgb, var(--card2) 85%, transparent);
+  color: var(--text2);
+  border: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+  background: color-mix(in srgb, var(--card2) 82%, transparent);
   padding: 10px 14px;
   border-radius: var(--pill);
 }
 
-/* TABLE */
+/* table */
 .track-table{ width:100%; border-collapse: collapse; }
-.track-table thead tr{ border-bottom: 1px solid var(--border); }
+.track-table thead tr{ border-bottom: 1px solid color-mix(in srgb, var(--border) 75%, transparent); }
 .track-table th{
   font-size: var(--fs-sm);
   letter-spacing: .12em;
   color: var(--muted2);
-  text-transform: uppercase;
+  text-transform: lowercase;
   padding: 0 12px 14px;
   text-align:left;
   font-weight: 500;
@@ -393,12 +431,12 @@ aside{
 .track-table th:last-child{ width: 82px; text-align:right; }
 
 .track-row{
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
   cursor:pointer;
-  transition: background .12s;
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
-.track-row:hover{ background: var(--accentSoft); }
-.track-row.is-playing{ background: var(--accentSoft); }
+.track-row:hover{ background: color-mix(in srgb, var(--accentSoft) 92%, transparent); transform: translateY(-1px); }
+.track-row.is-playing{ background: color-mix(in srgb, var(--accentSoft) 110%, transparent); }
 .track-row.is-playing .tr-title{ color: var(--accent); }
 
 .track-table td{
@@ -407,7 +445,8 @@ aside{
   color: var(--text);
 }
 .track-table td:first-child{ padding-left:0; text-align:center; }
-.track-table td:last-child{ text-align:right; color: var(--muted); font-size: var(--fs-sm); }
+.track-table td:last-child{ text-align:right; color: var(--muted); font-size: var(--fs-sm); text-transform: lowercase; }
+.track-table td:last-child::after{ content:"."; }
 
 .tr-num{ color: var(--muted); font-size: var(--fs-md); }
 .tr-play{ display:none !important; align-items:center; justify-content:center; color: var(--accent); font-size: 14px; }
@@ -416,12 +455,23 @@ aside{
 .is-playing .tr-num{ display:none; }
 .is-playing .tr-play{ display:flex !important; }
 
-.tr-title{ font-weight: 600; letter-spacing: .01em; color: var(--text); }
-.tr-album{ margin-top: 6px; font-size: var(--fs-sm); color: var(--muted2); }
+.tr-title{
+  font-weight: 600;
+  letter-spacing: .01em;
+  color: var(--text);
+  text-transform: lowercase;
+}
+.tr-album{
+  margin-top: 6px;
+  font-size: var(--fs-sm);
+  color: var(--muted2);
+  text-transform: lowercase;
+}
+.tr-album::after{ content:"."; }
 
 .tr-actions{
   opacity:0;
-  transition: opacity .14s;
+  transition: opacity var(--dur) var(--ease);
   display:flex;
   justify-content:flex-end;
   gap:8px;
@@ -432,16 +482,21 @@ aside{
   width: 34px; height: 34px;
   border-radius: var(--pill);
   background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  color: var(--text2);
   cursor:pointer;
   display:flex; align-items:center; justify-content:center;
-  transition: .15s;
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), background var(--dur) var(--ease);
   font-size: 14px;
 }
-.icon-btn:hover{ border-color: var(--accent); color: var(--accent); }
+.icon-btn:hover{
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 70%, var(--border));
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accentSoft) 70%, transparent);
+}
 
-/* PLAYING BARS */
+/* playing bars */
 .playing-bars{ display:flex; align-items:flex-end; gap:3px; height: 16px; justify-content:center; }
 .bar{
   width:3px; background: var(--accent); border-radius: var(--pill);
@@ -451,13 +506,15 @@ aside{
 .bar:nth-child(3){ animation-delay: .24s; }
 @keyframes bar-bounce{ from{ height:3px; } to{ height:15px; } }
 
-/* EMPTY */
+/* empty */
 .empty-state{
   padding: 52px 0;
   text-align:center;
   color: var(--muted);
   font-size: var(--fs-md);
+  text-transform: lowercase;
 }
+.empty-state::after{ content:"."; }
 .empty-state .e-icon{
   font-size: 36px;
   display:block;
@@ -465,46 +522,53 @@ aside{
   opacity:.25;
 }
 
-/* MODAL */
+/* modal */
 .overlay{
   position:fixed; inset:0;
-  background: rgba(0,0,0,.6);
+  background: rgba(0,0,0,.62);
   z-index: 400;
   display:none;
   align-items:center;
   justify-content:center;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(10px);
 }
-html[data-theme="light"] .overlay{ background: rgba(20,10,40,.28); }
+html[data-theme="light"] .overlay{ background: rgba(20,10,40,.26); }
 .overlay.open{ display:flex; }
 
 .modal{
   width: 420px;
   max-width: calc(100vw - 26px);
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 22px;
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+  border-radius: 24px;
   padding: 22px;
-  box-shadow: 0 22px 70px var(--shadow);
+  box-shadow: 0 30px 95px var(--shadow);
+  transform: translateY(2px);
 }
 .modal h3{
   font-family:'Bebas Neue', sans-serif;
   font-size: 28px;
   letter-spacing: .08em;
   margin-bottom: 14px;
+  text-transform: lowercase;
 }
+.modal h3::after{ content:"."; }
+
 .modal input, .modal select{
   width: 100%;
   border-radius: var(--pill);
-  background: var(--bg);
-  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
   color: var(--text);
   font-size: var(--fs-md);
   padding: 12px 14px;
   outline:none;
   margin-bottom: 12px;
 }
-.modal input:focus, .modal select:focus{ border-color: var(--accent); }
+.modal input::placeholder{ color: var(--muted2); }
+.modal input:focus, .modal select:focus{
+  border-color: color-mix(in srgb, var(--accent) 70%, var(--border));
+}
 
 .modal-btns{
   display:flex;
@@ -518,60 +582,71 @@ html[data-theme="light"] .overlay{ background: rgba(20,10,40,.28); }
   padding: 12px 16px;
   cursor:pointer;
   font-size: var(--fs-sm);
-  transition: .15s;
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  text-transform: lowercase;
 }
+.btn::after{ content:"."; }
 .btn-outline{
   background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  color: var(--text2);
 }
 .btn-outline:hover{
-  border-color: var(--text);
+  border-color: color-mix(in srgb, var(--text) 50%, var(--border));
+  transform: translateY(-1px);
 }
 .btn-accent{
   background: var(--accent);
   border: 1px solid var(--accent);
   color:#000;
   font-weight: 700;
+  box-shadow: 0 22px 70px var(--shadow);
 }
-.btn-accent:hover{ filter: brightness(.95); }
+.btn-accent:hover{ transform: translateY(-1px); filter: brightness(.97); }
 
-/* TOAST */
+/* toast */
 .toast{
   position:fixed;
   right: 26px;
   bottom: 26px;
   padding: 12px 16px;
   border-radius: var(--pill);
-  border: 1px solid var(--accent);
-  background: var(--card);
-  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 70%, var(--border));
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  color: var(--text);
   font-size: var(--fs-sm);
-  box-shadow: 0 22px 65px var(--shadow);
+  box-shadow: 0 26px 90px var(--shadow);
   opacity:0;
   transform: translateY(10px);
-  transition: .22s;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
   pointer-events:none;
   z-index: 600;
+  text-transform: lowercase;
 }
 .toast.show{ opacity:1; transform: translateY(0); }
+.toast::after{ content:"."; }
 
-/* SCROLLBAR */
-::-webkit-scrollbar{ width: 6px; }
+/* scrollbar */
+::-webkit-scrollbar{ width: 8px; }
 ::-webkit-scrollbar-thumb{
-  background: color-mix(in srgb, var(--border) 80%, transparent);
+  background: color-mix(in srgb, var(--border) 82%, transparent);
   border-radius: var(--pill);
 }
 
-/* RESPONSIVE */
+/* responsive */
 @media (max-width: 720px){
-  header{ padding: 20px 18px 16px; flex-direction:column; align-items:flex-start; }
+  header{ padding: 18px 18px 14px; flex-direction:column; align-items:flex-start; }
   .layout{ grid-template-columns: 1fr; }
   aside{ display:none; }
   .content{ padding: 22px 18px 100px; }
   .artist-head{ flex-direction:column; align-items:flex-start; }
   .artist-actions{ justify-content:flex-start; }
-  .avatar{ width: 122px; height: 122px; }
+  .avatar{ width: 120px; height: 120px; }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; animation:none !important; scroll-behavior:auto !important; }
 }
 </style>
 </head>
@@ -580,40 +655,40 @@ html[data-theme="light"] .overlay{ background: rgba(20,10,40,.28); }
 
 <header>
   <div class="logo-block">
-    <div class="logo-main">KHRESHYATIKOV <span>AUDIO</span></div>
-    <div class="logo-sub">Музыка · Плейлисты · Независимый проект</div>
+    <div class="logo-main">khreshyatikov <span>audio</span></div>
+    <div class="logo-sub">музыка · плейлисты · независимый проект</div>
   </div>
 
   <div class="header-actions">
-    <button class="theme-btn" onclick="cycleTheme()" title="Сменить тему">
+    <button class="theme-btn" onclick="cycleTheme()" title="сменить тему">
       <span class="theme-dot"></span>
-      <span id="theme-label">THEME: DARK</span>
+      <span id="theme-label">theme: dark</span>
     </button>
 
     <a class="yt-btn" href="https://www.youtube.com/@KHRESHYATIKOV" target="_blank" rel="noopener">
-      <svg class="yt-icon" viewBox="0 0 24 24" fill="currentColor">
+      <svg class="yt-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/>
       </svg>
-      <span>Смотреть на YouTube</span>
+      <span style="text-transform:lowercase;">смотреть на youtube.</span>
     </a>
   </div>
 </header>
 
 <div class="layout">
   <aside>
-    <div class="aside-label">Библиотека</div>
+    <div class="aside-label">библиотека</div>
     <div class="nav-item active" onclick="goPage('all'); activateNav(this)">
-      <span>Все треки</span>
+      <span style="text-transform:lowercase;">все треки.</span>
       <span class="count" id="all-count">0</span>
     </div>
 
-    <div class="aside-label">Артисты</div>
+    <div class="aside-label">артисты</div>
     <div id="sidebar-artists"></div>
 
-    <div class="aside-label">Плейлисты</div>
+    <div class="aside-label">плейлисты</div>
     <div id="sidebar-lists"></div>
 
-    <button class="add-pl-btn" onclick="openModal('modal-create')">+ Новый плейлист</button>
+    <button class="add-pl-btn" onclick="openModal('modal-create')">+ новый плейлист</button>
   </aside>
 
   <div class="content">
@@ -621,18 +696,18 @@ html[data-theme="light"] .overlay{ background: rgba(20,10,40,.28); }
     <!-- ALL TRACKS -->
     <div class="page active" id="page-all">
       <div class="page-head">
-        <h2>Все треки</h2>
-        <p>KHRESHYATIKOV — полная дискография</p>
+        <h2>все треки</h2>
+        <p>khreshyatikov — полная дискография</p>
       </div>
 
       <table class="track-table">
         <thead>
           <tr>
             <th>#</th>
-            <th>Название</th>
-            <th>Альбом / Тип</th>
+            <th>название</th>
+            <th>альбом / тип</th>
             <th></th>
-            <th>Длина</th>
+            <th>длина</th>
           </tr>
         </thead>
         <tbody id="tbody-all"></tbody>
@@ -642,8 +717,8 @@ html[data-theme="light"] .overlay{ background: rgba(20,10,40,.28); }
     <!-- ARTIST VIEW -->
     <div class="page" id="page-artist">
       <div class="page-head">
-        <h2 id="artist-title">Артист</h2>
-        <p id="artist-sub">Профиль артиста</p>
+        <h2 id="artist-title">артист</h2>
+        <p id="artist-sub">профиль артиста</p>
       </div>
 
       <div class="artist-head">
@@ -652,7 +727,7 @@ html[data-theme="light"] .overlay{ background: rgba(20,10,40,.28); }
           <div>
             <div class="artist-name-row">
               <div class="artist-name" id="artist-name">—</div>
-              <span class="verified" id="artist-verified" title="Verified">
+              <span class="verified" id="artist-verified" title="verified">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M9.0 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/>
                 </svg>
@@ -663,14 +738,14 @@ html[data-theme="light"] .overlay{ background: rgba(20,10,40,.28); }
         </div>
 
         <div class="artist-actions">
-          <button class="sub-btn" id="sub-btn" onclick="toggleSubscribe()">Подписаться</button>
+          <button class="sub-btn" id="sub-btn" onclick="toggleSubscribe()">подписаться</button>
           <span class="pill" id="subs-pill">0 слушателей</span>
           <span class="pill" id="tracks-pill">0 треков</span>
         </div>
       </div>
 
-      <div style="font-size:var(--fs-sm);letter-spacing:.10em;color:var(--muted2);text-transform:uppercase;margin:2px 0 10px;">
-        Слушатели (подписчики)
+      <div style="font-size:var(--fs-sm);letter-spacing:.10em;color:var(--muted2);text-transform:lowercase;margin:2px 0 10px;">
+        слушатели (подписчики).
       </div>
       <div class="listeners" id="listeners"></div>
 
@@ -678,10 +753,10 @@ html[data-theme="light"] .overlay{ background: rgba(20,10,40,.28); }
         <thead>
           <tr>
             <th>#</th>
-            <th>Название</th>
-            <th>Альбом / Тип</th>
+            <th>название</th>
+            <th>альбом / тип</th>
             <th></th>
-            <th>Длина</th>
+            <th>длина</th>
           </tr>
         </thead>
         <tbody id="tbody-artist"></tbody>
@@ -691,7 +766,7 @@ html[data-theme="light"] .overlay{ background: rgba(20,10,40,.28); }
     <!-- PLAYLIST VIEW -->
     <div class="page" id="page-playlist">
       <div class="page-head">
-        <h2 id="pl-title">Плейлист</h2>
+        <h2 id="pl-title">плейлист</h2>
         <p id="pl-meta">0 треков</p>
       </div>
 
@@ -699,10 +774,10 @@ html[data-theme="light"] .overlay{ background: rgba(20,10,40,.28); }
         <thead>
           <tr>
             <th>#</th>
-            <th>Название</th>
-            <th>Альбом / Тип</th>
+            <th>название</th>
+            <th>альбом / тип</th>
             <th></th>
-            <th>Длина</th>
+            <th>длина</th>
           </tr>
         </thead>
         <tbody id="tbody-pl"></tbody>
@@ -715,36 +790,36 @@ html[data-theme="light"] .overlay{ background: rgba(20,10,40,.28); }
 <!-- MODALS -->
 <div class="overlay" id="modal-create" onclick="overlayClick(event, this)">
   <div class="modal">
-    <h3>Новый плейлист</h3>
-    <input id="inp-name" type="text" placeholder="Название плейлиста..." maxlength="40">
+    <h3>новый плейлист</h3>
+    <input id="inp-name" type="text" placeholder="название плейлиста..." maxlength="40">
     <div class="modal-btns">
-      <button class="btn btn-outline" onclick="closeModals()">Отмена</button>
-      <button class="btn btn-accent" onclick="createPlaylist()">Создать</button>
+      <button class="btn btn-outline" onclick="closeModals()">отмена</button>
+      <button class="btn btn-accent" onclick="createPlaylist()">создать</button>
     </div>
   </div>
 </div>
 
 <div class="overlay" id="modal-add" onclick="overlayClick(event, this)">
   <div class="modal">
-    <h3>В плейлист</h3>
+    <h3>в плейлист</h3>
     <select id="sel-playlist"></select>
     <div class="modal-btns">
-      <button class="btn btn-outline" onclick="closeModals()">Отмена</button>
-      <button class="btn btn-accent" onclick="confirmAdd()">Добавить</button>
+      <button class="btn btn-outline" onclick="closeModals()">отмена</button>
+      <button class="btn btn-accent" onclick="confirmAdd()">добавить</button>
     </div>
   </div>
 </div>
 
 <div class="overlay" id="modal-sub" onclick="overlayClick(event, this)">
   <div class="modal">
-    <h3>Подписка</h3>
-    <input id="inp-nick" type="text" placeholder="Как тебя показать? (ник)" maxlength="18">
+    <h3>подписка</h3>
+    <input id="inp-nick" type="text" placeholder="как тебя показать? (ник)" maxlength="18">
     <div class="modal-btns">
-      <button class="btn btn-outline" onclick="closeModals()">Отмена</button>
-      <button class="btn btn-accent" onclick="confirmSubscribe()">Готово</button>
+      <button class="btn btn-outline" onclick="closeModals()">отмена</button>
+      <button class="btn btn-accent" onclick="confirmSubscribe()">готово</button>
     </div>
-    <div style="margin-top:10px;color:var(--muted2);font-size:var(--fs-sm);">
-      Ник сохранится в браузере (localStorage) 👍
+    <div style="margin-top:10px;color:var(--muted2);font-size:var(--fs-sm);text-transform:lowercase;">
+      ник сохранится в браузере (localstorage) 👍.
     </div>
   </div>
 </div>
@@ -759,8 +834,8 @@ const ARTISTS = [
     verified:true,
     avatar:'https://i.ibb.co/3yKMzsBj/Screenshot-2025-11-19-11-51-42-54-dba69a5e82e939c3ddef13f99a115ca3.jpg',
     tracks:[
-      { title:'КАПУЦИН',        album:'Новинка · 22.02.2026', type:'hadash & waffle', dur:'—', url:'https://youtu.be/wU7yTtbyT3c?si=eJN44CbQInBab9TH' },
-      { title:'БЕЛЫЕ МИШАБАНЫ', album:'Сингл · 15.01.2026',  type:'hadash',          dur:'—', url:'https://youtu.be/aPApq1M2384?si=iJ_qGSH3QoHbFoiA' },
+      { title:'капуцин',        album:'новинка · 22.02.2026', type:'hadash & waffle', dur:'—', url:'https://youtu.be/wU7yTtbyT3c?si=eJN44CbQInBab9TH' },
+      { title:'белые мишабаны', album:'сингл · 15.01.2026',  type:'hadash',          dur:'—', url:'https://youtu.be/aPApq1M2384?si=iJ_qGSH3QoHbFoiA' },
     ]
   },
   {
@@ -769,7 +844,7 @@ const ARTISTS = [
     verified:true,
     avatar:'https://i.ibb.co/hJxqGfkd/2025-11-27-001446.png',
     tracks:[
-      { title:'АБСУРД', album:'Сингл · 25.12.2025', type:'valera', dur:'—', url:'https://youtu.be/RnBmoL8ohGY' },
+      { title:'абсурд', album:'сингл · 25.12.2025', type:'valera', dur:'—', url:'https://youtu.be/RnBmoL8ohGY' },
     ]
   },
   {
@@ -778,7 +853,7 @@ const ARTISTS = [
     verified:true,
     avatar:'https://s1.eda.ru/StaticContent/Photos/150920201609/151130101745/p_O.jpg',
     tracks:[
-      { title:'КАПУЦИН', album:'Новинка · 22.02.2026', type:'hadash & waffle', dur:'—', url:'https://youtu.be/wU7yTtbyT3c?si=eJN44CbQInBab9TH' },
+      { title:'капуцин', album:'новинка · 22.02.2026', type:'hadash & waffle', dur:'—', url:'https://youtu.be/wU7yTtbyT3c?si=eJN44CbQInBab9TH' },
     ]
   },
 ];
@@ -819,9 +894,11 @@ function renderAll(){
   document.getElementById('all-count').textContent = TRACKS.length;
   document.getElementById('tbody-all').innerHTML = TRACKS.map((t,i)=>rowHTML(t,i,null)).join('');
 }
+
 function rowHTML(t,i,plId){
   const playing = nowPlaying === t.id;
   const isNew = (t.album || '').toLowerCase().includes('новинка');
+
   return `
   <tr class="track-row ${playing ? 'is-playing' : ''}" onclick="play(${t.id})">
     <td>
@@ -831,21 +908,21 @@ function rowHTML(t,i,plId){
       </span>
     </td>
     <td>
-      <div class="tr-title">${t.title}
-        ${isNew ? `<span style="font-size:12px;background:var(--accent);color:#000;padding:3px 10px;border-radius:999px;letter-spacing:.10em;margin-left:10px;vertical-align:middle;">NEW</span>` : ''}
+      <div class="tr-title">${escapeHTML(t.title)}
+        ${isNew ? `<span style="font-size:11px;border:1px solid color-mix(in srgb, var(--accent) 55%, var(--border));color:var(--accent);padding:3px 10px;border-radius:999px;letter-spacing:.10em;margin-left:10px;vertical-align:middle;text-transform:lowercase;background:color-mix(in srgb, var(--accentSoft) 85%, transparent);">new.</span>` : ''}
       </div>
-      <div class="tr-album">${t.album || ''}</div>
+      <div class="tr-album">${escapeHTML(t.album || '')}</div>
     </td>
-    <td style="font-size:13px;color:var(--muted2);">${t.type || ''}</td>
+    <td style="font-size:13px;color:var(--muted2);text-transform:lowercase;">${escapeHTML(t.type || '')}.</td>
     <td>
       <div class="tr-actions" onclick="event.stopPropagation()">
         ${plId !== null
-          ? `<button class="icon-btn" onclick="removeFromPl(${plId},${t.id})" title="Убрать">✕</button>`
-          : `<button class="icon-btn" onclick="openAdd(${t.id})" title="В плейлист">+</button>`
+          ? `<button class="icon-btn" onclick="removeFromPl(${plId},${t.id})" title="убрать">✕</button>`
+          : `<button class="icon-btn" onclick="openAdd(${t.id})" title="в плейлист">+</button>`
         }
       </div>
     </td>
-    <td>${t.dur || '—'}</td>
+    <td>${escapeHTML(t.dur || '—')}</td>
   </tr>`;
 }
 
@@ -855,12 +932,13 @@ function play(id){
   renderAll();
   if (currentPlId !== null) renderPlTracks(currentPlId);
   if (currentArtistId !== null) renderArtistTracks(currentArtistId);
+
   const query = encodeURIComponent('KHRESHYATIKOV ' + t.title);
   const url = t.url || `https://www.youtube.com/results?search_query=${query}`;
   window.open(url, '_blank');
 }
 
-/* Artists sidebar */
+/* artists sidebar */
 function renderArtistsSidebar(){
   const el = document.getElementById('sidebar-artists');
   el.innerHTML = ARTISTS.map(a => {
@@ -868,14 +946,14 @@ function renderArtistsSidebar(){
     const subs = getSubs(a.id).length;
     return `
       <div class="nav-item" onclick="openArtist('${a.id}'); activateNav(this)">
-        <span>${a.name}${a.verified ? ' ✓' : ''}</span>
+        <span style="text-transform:lowercase;">${escapeHTML(a.name)}${a.verified ? ' ✓' : ''}.</span>
         <span class="count">${trackCount} · ${subs}</span>
       </div>
     `;
   }).join('');
 }
 
-/* Artist page */
+/* artist page */
 function openArtist(id){
   currentArtistId = id;
   currentPlId = null;
@@ -883,11 +961,11 @@ function openArtist(id){
   const a = artistById(id);
   if (!a) return;
 
-  document.getElementById('artist-title').textContent = a.name;
-  document.getElementById('artist-sub').textContent = 'Профиль артиста';
+  document.getElementById('artist-title').textContent = a.name.toLowerCase();
+  document.getElementById('artist-sub').textContent = 'профиль артиста.';
 
   document.getElementById('artist-avatar').src = a.avatar;
-  document.getElementById('artist-name').textContent = a.name;
+  document.getElementById('artist-name').textContent = a.name.toLowerCase();
 
   const v = document.getElementById('artist-verified');
   v.style.display = a.verified ? 'inline-flex' : 'none';
@@ -895,9 +973,7 @@ function openArtist(id){
   const tr = tracksByArtist(id);
   const subsCount = getSubs(id).length;
 
-  document.getElementById('artist-meta').textContent = `${tr.length} трек(ов) · ${subsCount} слушателей`;
   document.getElementById('tracks-pill').textContent = `${tr.length} треков`;
-
   renderSubscribeUI();
   renderListeners();
   renderArtistTracks(id);
@@ -908,7 +984,7 @@ function renderArtistTracks(id){
   const tr = tracksByArtist(id);
   const tbody = document.getElementById('tbody-artist');
   if (!tr.length){
-    tbody.innerHTML = `<tr><td colspan="5"><div class="empty-state"><span class="e-icon">♫</span>Пока пусто — добавь треки в массив ARTISTS</div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="5"><div class="empty-state"><span class="e-icon">♫</span>пока пусто — добавь треки в массив artists</div></td></tr>`;
     return;
   }
   tbody.innerHTML = tr.map((t,i)=>rowHTML(t,i,null)).join('');
@@ -921,22 +997,21 @@ function renderSubscribeUI(){
   const isOn = me && subs.includes(me);
 
   btn.classList.toggle('is-on', !!isOn);
-  btn.textContent = isOn ? 'Вы подписаны' : 'Подписаться';
+  btn.textContent = isOn ? 'вы подписаны' : 'подписаться';
 
   document.getElementById('subs-pill').textContent = `${subs.length} слушателей`;
-
   const tr = tracksByArtist(currentArtistId).length;
-  document.getElementById('artist-meta').textContent = `${tr} трек(ов) · ${subs.length} слушателей`;
+  document.getElementById('artist-meta').textContent = `${tr} трек(ов) · ${subs.length} слушателей.`;
 }
 
 function renderListeners(){
   const wrap = document.getElementById('listeners');
   const subs = getSubs(currentArtistId);
   if (!subs.length){
-    wrap.innerHTML = `<span class="listener-chip">Пока нет подписчиков — будь первым 😄</span>`;
+    wrap.innerHTML = `<span class="listener-chip">пока нет подписчиков — будь первым 😄.</span>`;
     return;
   }
-  wrap.innerHTML = subs.map(n => `<span class="listener-chip">🎧 ${escapeHTML(n)}</span>`).join('');
+  wrap.innerHTML = subs.map(n => `<span class="listener-chip">🎧 ${escapeHTML(n)}.</span>`).join('');
 }
 
 function toggleSubscribe(){
@@ -960,14 +1035,14 @@ function toggleSubscribe(){
   renderListeners();
   renderArtistsSidebar();
 
-  showToast(idx >= 0 ? 'Подписка снята' : `Подписка: ${savedNick}`);
+  showToast(idx >= 0 ? 'подписка снята' : `подписка: ${savedNick}`);
 }
 
 function confirmSubscribe(){
   if (!currentArtistId) return;
 
   const nick = (document.getElementById('inp-nick').value || '').trim();
-  if (!nick){ showToast('Ник пустой :('); return; }
+  if (!nick){ showToast('ник пустой'); return; }
 
   localStorage.setItem('kh2_nick', nick);
 
@@ -979,18 +1054,18 @@ function confirmSubscribe(){
   renderSubscribeUI();
   renderListeners();
   renderArtistsSidebar();
-  showToast(`Подписка: ${nick}`);
+  showToast(`подписка: ${nick}`);
 }
 
 function uniq(arr){ return Array.from(new Set(arr.filter(Boolean))); }
-function escapeHTML(s){ return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function escapeHTML(s){ return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
 
-/* Playlists sidebar */
+/* playlists sidebar */
 function renderSidebar(){
   const el = document.getElementById('sidebar-lists');
   el.innerHTML = playlists.map(pl => `
     <div class="nav-item" onclick="openPlaylist(${pl.id}); activateNav(this)">
-      <span>${pl.name}</span>
+      <span style="text-transform:lowercase;">${escapeHTML(pl.name).toLowerCase()}.</span>
       <span class="count">${pl.trackIds.length}</span>
     </div>
   `).join('');
@@ -1004,6 +1079,7 @@ function activateNav(el){
 function goPage(name){
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name)?.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function openPlaylist(id){
@@ -1011,8 +1087,8 @@ function openPlaylist(id){
   currentArtistId = null;
 
   const pl = playlists.find(p => p.id === id);
-  document.getElementById('pl-title').textContent = pl.name;
-  document.getElementById('pl-meta').textContent = `${pl.trackIds.length} треков`;
+  document.getElementById('pl-title').textContent = pl.name.toLowerCase();
+  document.getElementById('pl-meta').textContent = `${pl.trackIds.length} треков.`;
   renderPlTracks(id);
   goPage('playlist');
 }
@@ -1023,7 +1099,7 @@ function renderPlTracks(id){
   const tbody = document.getElementById('tbody-pl');
 
   if (!plTracks.length){
-    tbody.innerHTML = `<tr><td colspan="5"><div class="empty-state"><span class="e-icon">♫</span>Плейлист пуст — добавь треки через «+»</div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="5"><div class="empty-state"><span class="e-icon">♫</span>плейлист пуст — добавь треки через «+»</div></td></tr>`;
     return;
   }
   tbody.innerHTML = plTracks.map((t,i)=>rowHTML(t,i,id)).join('');
@@ -1038,15 +1114,15 @@ function createPlaylist(){
   save();
   renderSidebar();
   closeModals();
-  showToast('Плейлист «' + name + '» создан');
+  showToast('плейлист создан');
 }
 
 function openAdd(trackId){
-  if (!playlists.length){ showToast('Сначала создай плейлист'); return; }
+  if (!playlists.length){ showToast('сначала создай плейлист'); return; }
   pendingTrackId = trackId;
 
   const sel = document.getElementById('sel-playlist');
-  sel.innerHTML = playlists.map(pl => `<option value="${pl.id}">${pl.name}</option>`).join('');
+  sel.innerHTML = playlists.map(pl => `<option value="${pl.id}">${escapeHTML(pl.name).toLowerCase()}.</option>`).join('');
   openModal('modal-add');
 }
 
@@ -1055,7 +1131,7 @@ function confirmAdd(){
   const pl = playlists.find(p => p.id === plId);
   if (!pl) return;
 
-  if (pl.trackIds.includes(pendingTrackId)){ showToast('Уже в плейлисте'); closeModals(); return; }
+  if (pl.trackIds.includes(pendingTrackId)){ showToast('уже в плейлисте'); closeModals(); return; }
 
   pl.trackIds.push(pendingTrackId);
   save();
@@ -1063,7 +1139,7 @@ function confirmAdd(){
   closeModals();
 
   const t = TRACKS.find(x => x.id === pendingTrackId);
-  showToast(`«${t.title}» → «${pl.name}»`);
+  showToast(`${t.title} → ${pl.name}`);
 }
 
 function removeFromPl(plId, trackId){
@@ -1075,13 +1151,13 @@ function removeFromPl(plId, trackId){
   renderSidebar();
   renderPlTracks(plId);
 
-  document.getElementById('pl-meta').textContent = `${pl.trackIds.length} треков`;
-  showToast('Трек убран');
+  document.getElementById('pl-meta').textContent = `${pl.trackIds.length} треков.`;
+  showToast('трек убран');
 }
 
 function save(){ localStorage.setItem('kh2_pls', JSON.stringify(playlists)); }
 
-/* Modals */
+/* modals */
 function openModal(id){
   document.getElementById(id).classList.add('open');
   setTimeout(()=>document.getElementById('inp-name')?.focus(), 50);
@@ -1096,31 +1172,31 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModals(
 document.getElementById('inp-name').addEventListener('keydown', e => { if (e.key === 'Enter') createPlaylist(); });
 document.getElementById('inp-nick').addEventListener('keydown', e => { if (e.key === 'Enter') confirmSubscribe(); });
 
-/* Toast */
+/* toast */
 let _tt;
 function showToast(msg){
   const el = document.getElementById('toast');
-  el.textContent = msg;
+  el.textContent = String(msg || '').toLowerCase();
   el.classList.add('show');
   clearTimeout(_tt);
   _tt = setTimeout(()=>el.classList.remove('show'), 2600);
 }
 
-/* Theme */
+/* theme */
 function setTheme(t){
   document.documentElement.setAttribute('data-theme', t);
   localStorage.setItem('kh2_theme', t);
-  document.getElementById('theme-label').textContent = 'THEME: ' + t.toUpperCase();
+  document.getElementById('theme-label').textContent = 'theme: ' + t;
 }
 function cycleTheme(){
   const cur = document.documentElement.getAttribute('data-theme') || 'dark';
   const i = THEMES.indexOf(cur);
   const next = THEMES[(i + 1) % THEMES.length];
   setTheme(next);
-  showToast('Тема: ' + next);
+  showToast('тема: ' + next);
 }
 
-/* INIT */
+/* init */
 (function init(){
   const t = localStorage.getItem('kh2_theme') || 'dark';
   setTheme(THEMES.includes(t) ? t : 'dark');
