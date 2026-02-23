@@ -173,7 +173,7 @@ aside {
   padding:9px 22px; border-radius:999px;
   border:1.5px solid rgba(255,255,255,0.32);
   background:transparent; color:#fff;
-  cursor:pointer; transition:all 0.18s;
+  cursor:pointer; transition:all 0.18px;
   font-size:11px; letter-spacing:0.07em; font-family:'DM Mono',monospace;
 }
 .sub-btn:hover { border-color:#fff; }
@@ -205,7 +205,6 @@ aside {
 }
 .track-table th:first-child { padding-left:0; width:34px; text-align:center; }
 
-/* ✅ новая колонка под обложку */
 .th-cover { width:44px; }
 
 .th-like { width:34px; text-align:center; }
@@ -231,7 +230,6 @@ aside {
 .tr-num { color:var(--muted2); font-size:12px; }
 .tr-play { display:none !important; align-items:center; justify-content:center; color:var(--accent); font-size:13px; }
 
-/* ✅ обложка трека */
 .tr-cover {
   width:34px; height:34px;
   border-radius:10px;
@@ -631,7 +629,6 @@ aside {
 <!-- модалка: трек -->
 <div class="overlay" id="modal-track" onclick="overlayClick(event,this)">
   <div class="modal">
-    <!-- ✅ обложка сверху -->
     <div style="display:flex; gap:14px; align-items:center; margin-bottom:10px;">
       <img id="track-cover" src="" alt="" style="width:64px;height:64px;border-radius:14px;object-fit:cover;border:1px solid var(--border);box-shadow:0 16px 40px var(--shadow); background:color-mix(in srgb,var(--card) 80%,transparent);" onerror="this.style.display='none'">
       <div style="min-width:0;">
@@ -668,12 +665,12 @@ aside {
 <div class="toast" id="toast"></div>
 
 <script>
-/* ✅ обложки треков (то что ты дал) */
 const COVERS = {
   'Абсурд': 'https://i.ibb.co/F4X9Rw1g/Chat-GPT-Image-22-2026-02-59-56.png',
   'Белые мишабаны': 'https://i.ibb.co/WNHJCtrL/Chat-GPT-Image-22-2026-02-53-25.png',
   'FUCK THE LOADING': 'https://i.ibb.co/5zzt6wF/Chat-GPT-Image-22-2026-10-51-36.png',
   'Капуцин': 'https://i.ibb.co/1fq9wPbD/Chat-GPT-Image-22-2026-02-26-38.png',
+  'ГАРБАЗБРОС': 'https://i.postimg.cc/Vkjg2LLq/Chat-GPT-Image-23-fevr-2026-g-22-37-08.png',
 };
 
 const ARTISTS = [
@@ -682,6 +679,40 @@ const ARTISTS = [
     avatar:'https://i.ibb.co/3yKMzsBj/Screenshot-2025-11-19-11-51-42-54-dba69a5e82e939c3ddef13f99a115ca3.jpg',
     url:'https://www.youtube.com/@KHRESHYATIKOV',
     tracks:[
+      {
+        title:'ГАРБАЗБРОС', album:'новинка · 24.02.2026', type:'hadash', dur:'—',
+        url:'https://music.youtube.com/watch?v=nhRGMVH6nVU',
+        cover:COVERS['ГАРБАЗБРОС'],
+        lyrics:`[Интро]
+Гарба-зброс...
+Шимпавоз...
+
+[Хук]
+Сходил в туалет — зробил гарба-зброс (зброс-зброс)
+Вышел из клозета — сел в Шимпавоз (Шимпавоз)
+Сходил в туалет — зробил гарба-зброс (зброс-зброс)
+Вышел из клозета — сел в Шимпавоз (эй-эй)
+
+[Куплет]
+Кепка LA, цепь на шее, шампань в лапе (yeah)
+Сижу на троне — это не на диване (few)
+Кряк за кряком, зброс за зброс (зброс)
+Спасибо за подписку на Хадаша (Спасибо!)
+Вышел из клозета — свежий как матрас
+Шимпавоз уже заводит газ
+Мне лень, мне лень, мне лень, мне лень
+Сходить ещё раз — ну а чё, могу себе позволить
+
+[Хук]
+Сходил в туалет — зробил гарба-зброс (зброс-зброс)
+Вышел из клозета — сел в Шимпавоз (Шимпавоз)
+Сходил в туалет — зробил гарба-зброс (зброс-зброс)
+Вышел из клозета — сел в Шимпавоз (эй-эй)
+
+[Аутро]
+Валера, что ты сделал?`,
+        credits:'made by: hadash'
+      },
       {
         title:'Капуцин', album:'новинка · 22.02.2026', type:'hadash & MAX-NITRO', dur:'—',
         url:'https://music.youtube.com/watch?v=wU7yTtbyT3c&desc_update=1&si=Cmo2N5pIWNozWaCK',
