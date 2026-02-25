@@ -78,6 +78,18 @@ html[data-theme="light"] {
   color: #fff;
   text-shadow: 0 4px 40px rgba(182,140,255,0.35);
 }
+.featured-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.featured-section-label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  font-weight: 300;
+}
 .featured-hits-row {
   display: flex;
   gap: 14px;
@@ -297,12 +309,10 @@ aside {
 
 .section-label { font-size:17px; font-weight:500; color:var(--text); margin-bottom:14px; margin-top:26px; }
 
-.listeners { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:20px; }
-.listener-chip {
-  font-size:10.5px; color:var(--text);
-  border:1px solid var(--border); background:color-mix(in srgb,var(--card) 85%,transparent);
-  padding:5px 11px; border-radius:999px; font-weight:300;
+.subs-count-display {
+  font-size:12px; color:var(--soft-text); margin-bottom:20px; font-weight:300;
 }
+.subs-count-display b { color:var(--text2); }
 
 .liked-hero {
   background:linear-gradient(135deg,#450af5 0%,#8833ff 50%,#c4efd9 100%);
@@ -543,30 +553,49 @@ aside {
 <div class="featured-release">
   <div class="featured-bg-blob"></div>
   <div class="featured-bg-covers">
-    <img src="https://https://iili.io/qKYgf3v.png" alt="">
-    <img src="https://iili.io/qKaHYu9.png" alt="">
+    <img src="https://i.ibb.co/JwQwZDYC/image.webp" alt="">
+    <img src="https://iili.io/qKYgf3v.png" alt="">
   </div>
   <div class="featured-bg-overlay"></div>
   <div class="featured-info">
-    <div class="featured-main-title">НОВИНКИ<br>24 ФЕВРАЛЯ 2026</div>
-    <div class="featured-hits-row">
-      <div class="featured-hit-card" onclick="play(2)">
-        <img src="https://iili.io/qKYgf3v.png" alt="">
-        <div class="featured-hit-info">
-          <div class="featured-hit-title">ГАРБАЗБРОС</div>
-          <div class="featured-hit-sub">hadash</div>
+    <div class="featured-main-title">НОВИНКИ</div>
+
+    <div class="featured-section">
+      <div class="featured-section-label">26 февраля 2026</div>
+      <div class="featured-hits-row">
+        <div class="featured-hit-card" onclick="playByTitle('ЯЙЦА ВАЛЕРЫ')">
+          <img src="https://i.ibb.co/JwQwZDYC/image.webp" alt="">
+          <div class="featured-hit-info">
+            <div class="featured-hit-title">ЯЙЦА ВАЛЕРЫ</div>
+            <div class="featured-hit-sub">hadash</div>
+          </div>
+          <button class="featured-hit-btn">▶</button>
         </div>
-        <button class="featured-hit-btn">▶</button>
-      </div>
-      <div class="featured-hit-card" onclick="play(1)">
-        <img src="https://iili.io/qKaHYu9.png" alt="">
-        <div class="featured-hit-info">
-          <div class="featured-hit-title">ШИМПАВОЗ</div>
-          <div class="featured-hit-sub">hadash & MAX-NITRO & valera</div>
-        </div>
-        <button class="featured-hit-btn">▶</button>
       </div>
     </div>
+
+    <div class="featured-section">
+      <div class="featured-section-label">24 февраля 2026</div>
+      <div class="featured-hits-row">
+        <div class="featured-hit-card" onclick="playByTitle('ГАРБАЗБРОС')">
+          <img src="https://iili.io/qKYgf3v.png" alt="">
+          <div class="featured-hit-info">
+            <div class="featured-hit-title">ГАРБАЗБРОС</div>
+            <div class="featured-hit-sub">hadash</div>
+          </div>
+          <button class="featured-hit-btn">▶</button>
+        </div>
+        <div class="featured-hit-card" onclick="playByTitle('ШИМПАВОЗ')">
+          <img src="https://iili.io/qKaHYu9.png" alt="">
+          <div class="featured-hit-info">
+            <div class="featured-hit-title">ШИМПАВОЗ</div>
+            <div class="featured-hit-sub">hadash & MAX-NITRO & valera</div>
+          </div>
+          <button class="featured-hit-btn">▶</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
       <div class="page-head">
@@ -636,9 +665,8 @@ aside {
         </div>
       </div>
 
-      <div style="margin-bottom:6px;">
-        <div style="font-size:12px;color:var(--soft-text);font-weight:300;margin-bottom:10px;">слушатели</div>
-        <div class="listeners" id="listeners"></div>
+      <div class="subs-count-display" id="subs-count-display">
+        <b id="subs-count-num">0</b> слушателей подписано
       </div>
 
       <div class="section-label">треки</div>
@@ -811,6 +839,25 @@ aside {
 <div class="toast" id="toast"></div>
 
 <script>
+// ===== SHARED SUBS via storage API =====
+const STORAGE_PREFIX = 'subs:';
+
+async function getSharedSubs(artistId) {
+  try {
+    const result = await window.storage.get(STORAGE_PREFIX + artistId, true);
+    if (!result) return [];
+    return JSON.parse(result.value) || [];
+  } catch(e) {
+    return [];
+  }
+}
+
+async function setSharedSubs(artistId, arr) {
+  try {
+    await window.storage.set(STORAGE_PREFIX + artistId, JSON.stringify(arr), true);
+  } catch(e) {}
+}
+
 const COVERS = {
   'Абсурд': 'https://i.ibb.co/F4X9Rw1g/Chat-GPT-Image-22-2026-02-59-56.png',
   'Белые мишабаны': 'https://i.ibb.co/WNHJCtrL/Chat-GPT-Image-22-2026-02-53-25.png',
@@ -820,6 +867,7 @@ const COVERS = {
   'ШИМПАВОЗ': 'https://iili.io/qKaHYu9.png',
   'SHIMPIKI MODE': 'https://iili.io/qKvWjqv.png',
   'Тыныш Cash': 'https://iili.io/qKvmadx.png',
+  'ЯЙЦА ВАЛЕРЫ': 'https://i.ibb.co/JwQwZDYC/image.webp',
 };
 
 const ARTISTS = [
@@ -829,21 +877,65 @@ const ARTISTS = [
     url:'https://www.youtube.com/@KHRESHYATIKOV',
     tracks:[
       {
-  title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & valera', dur:'—',
-  url:'https://music.youtube.com/watch?v=PiHA04UK92o&desc_update=1&si=ZTIxY-BwQKaGVq5c',
-  cover:COVERS['ШИМПАВОЗ'],
-  lyrics:`**[Интро]**
+        title:'ЯЙЦА ВАЛЕРЫ', album:'новинка · 26.02.2026', type:'hadash', dur:'—',
+        url:'https://potom.comvalra',
+        cover:COVERS['ЯЙЦА ВАЛЕРЫ'],
+        lyrics:`Валера ты реально существо, блять, хм
+У тебя только яйца в голове, ого
+Скользим неспеша, закат провожаем
+Красавчик, но желток вместо мозгов, понимаем
+
+Валера ты реально существо
+У тебя только яйца в голове
+
+Доктор звонит — иди нахуй, браток
+В кармане лоток, в башке желток
+Мечтали о яйцах — вот они, блять, тут
+Красавчик такой, что куры орут
+
+Валера проснулся — в башке только яйца
+Валера оделся — нахуй эту скорлупу, блять
+Валера на встречу принёс вместо кейса
+Десяток отборных — красавчик, мечта
+
+И да, охотник за желтком с пелёнок
+Курица в панике, желток со стоном
+Они нагоняют в интернете хуйню
+Валера в ответ — идите в пизду, не сплю
+
+Рано взрослел, холодильник был пуст
+Какого хуя вообще жить — такой был вопрос
+Эти суки говорили — не выживешь, стой
+Валера ответил — иди нахуй, я свой
+
+Матрица троит, скорлупа на щеке
+Послал всех нахуй, омлет на душе
+Следующий тост — за яйцо, за кайф
+Яйца в башке — это Валеры лайф
+
+Красавчик стоит, завидует только себе
+Послал всех нахуй, скорлупа на щеке
+Прямо сейчас завидую только себе
+Валера ты реально существо, иди нахуй
+У тебя только яйца в голове`,
+        credits:'made by: hadash'
+      },
+      {
+        title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & valera', dur:'—',
+        url:'https://music.youtube.com/watch?v=PiHA04UK92o&desc_update=1&si=ZTIxY-BwQKaGVq5c',
+        cover:COVERS['ШИМПАВОЗ'],
+        lyrics:`[Интро]
 Шимпавоз...
 SHIMPAMOTORS...
 Шимпавозия...
 
-**[Хук]**
+[Хук]
 Шимпавоз едет по шимпавозии (вроооум)
 Макс нитро за рулём в кабине (едееем)
 Мишабан рядом смотрит в окошко (смотриит)
 Шимпавоз — лучшая тачка в мире (факт-факт)
 
-**[Куплет 1]**
+[Куплет 1]
 Выехали утром — Макс нитро за рулём
 Мишабан в пассажирском жуёт бананом
 Первая остановка — город Эрдр
@@ -853,13 +945,13 @@ SHIMPAMOTORS...
 Макс нитро гудит им — привет бобры
 Бобры в ответ — приезжайте до норы
 
-**[Припев]**
+[Припев]
 Шимпавоз гудит по трассе гудит
 Гудит гудит в шимпавозии гудит
 Шимпавоз гудит по трассе гудит
 Гудит гудит — впереди Бобрянск стоит
 
-**[Куплет 2]**
+[Куплет 2]
 Въехали в Бобрянск — кругом одни бобры
 Мишабан говорит: «Макс, купи пироги»
 Макс нитро говорит: «Некогда, брат, едем»
@@ -869,13 +961,13 @@ SHIMPAMOTORS...
 Надел на обочине прямо у дороги
 Макс нитро сигналит: «Едем дорогой»
 
-**[Припев]**
+[Припев]
 Шимпавоз гудит по трассе гудит
 Гудит гудит в шимпавозии гудит
 Шимпавоз гудит по трассе гудит
 Гудит гудит — впереди Кислодрищинск стоит
 
-**[Куплет 3]**
+[Куплет 3]
 Кислодрищинск встречает запахом странным
 Мишабан зажал нос — «это нехорошо нам»
 Макс нитро держит руль — «терпи, брат, терпи»
@@ -885,7 +977,7 @@ SHIMPAMOTORS...
 И тут на обочине — стоит одинокий
 Валера с пакетом — голодный немного
 
-**[Бридж]**
+[Бридж]
 Макс нитро тормозит — «Валера, садись!»
 Валера запрыгнул: «Спасибо, держись»
 Достали из бардачка — Шимповники жареные
@@ -895,21 +987,21 @@ SHIMPAMOTORS...
 Шимповники хрустят на весь шимпавоз
 Валера доволен — вот это вопрос
 
-**[Припев]**
+[Припев]
 Шимпавоз гудит по трассе гудит
 Гудит гудит в шимпавозии гудит
 Шимпавоз гудит по трассе гудит
 Гудит гудит — едем вместе, всё горит
 
-**[Аутро]**
+[Аутро]
 Эрдр... Бобрито... Бобрянск...
 Бобрито снова... Кислодрищинск...
 Валера на борту — Шимповники жареные...
 SHIMPAMOTORS — тачки легендарные...
 Врум-врум-врум-врум...
 Шимпавоз...`,
-  credits:'made by: hadash & MAX-NITRO & valera'
-},
+        credits:'made by: hadash & MAX-NITRO & valera'
+      },
       {
         title:'ГАРБАЗБРОС', album:'новинка · 24.02.2026', type:'hadash', dur:'—',
         url:'https://music.youtube.com/watch?v=nhRGMVH6nVU',
@@ -1038,87 +1130,15 @@ Prettу и not sour - забыто всё!`,
     url:'https://www.youtube.com/@KHRESHYATIKOV',
     tracks:[
       {
-  title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & valera', dur:'—',
-  url:'https://music.youtube.com/watch?v=PiHA04UK92o&desc_update=1&si=ZTIxY-BwQKaGVq5c',
-  cover:COVERS['ШИМПАВОЗ'],
-  lyrics:`**[Интро]**
+        title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & valera', dur:'—',
+        url:'https://music.youtube.com/watch?v=PiHA04UK92o&desc_update=1&si=ZTIxY-BwQKaGVq5c',
+        cover:COVERS['ШИМПАВОЗ'],
+        lyrics:`[Интро]
 Шимпавоз...
 SHIMPAMOTORS...
-Шимпавозия...
-
-**[Хук]**
-Шимпавоз едет по шимпавозии (вроооум)
-Макс нитро за рулём в кабине (едееем)
-Мишабан рядом смотрит в окошко (смотриит)
-Шимпавоз — лучшая тачка в мире (факт-факт)
-
-**[Куплет 1]**
-Выехали утром — Макс нитро за рулём
-Мишабан в пассажирском жуёт бананом
-Первая остановка — город Эрдр
-Мишабан вышел — купил себе кефир
-Едем дальше — впереди Бобрито
-Бобры на обочине машут нам копыто
-Макс нитро гудит им — привет бобры
-Бобры в ответ — приезжайте до норы
-
-**[Припев]**
-Шимпавоз гудит по трассе гудит
-Гудит гудит в шимпавозии гудит
-Шимпавоз гудит по трассе гудит
-Гудит гудит — впереди Бобрянск стоит
-
-**[Куплет 2]**
-Въехали в Бобрянск — кругом одни бобры
-Мишабан говорит: «Макс, купи пироги»
-Макс нитро говорит: «Некогда, брат, едем»
-Выехали снова — скоро Бобрито видим
-Второй раз Бобрито — там другие бобры
-Мишабан купил себе бобровые штаны
-Надел на обочине прямо у дороги
-Макс нитро сигналит: «Едем дорогой»
-
-**[Припев]**
-Шимпавоз гудит по трассе гудит
-Гудит гудит в шимпавозии гудит
-Шимпавоз гудит по трассе гудит
-Гудит гудит — впереди Кислодрищинск стоит
-
-**[Куплет 3]**
-Кислодрищинск встречает запахом странным
-Мишабан зажал нос — «это нехорошо нам»
-Макс нитро держит руль — «терпи, брат, терпи»
-Въехали в центр — там вывеска «Кисли»
-Выехали быстро — не понравился запах
-Мишабан выдохнул: «Фух, едем без страха»
-И тут на обочине — стоит одинокий
-Валера с пакетом — голодный немного
-
-**[Бридж]**
-Макс нитро тормозит — «Валера, садись!»
-Валера запрыгнул: «Спасибо, держись»
-Достали из бардачка — Шимповники жареные
-Три пачки хрустящих — горячие, пряные
-Едят втроём прямо на трассе
-Мишабан, Валера, Макс нитро в кассе
-Шимповники хрустят на весь шимпавоз
-Валера доволен — вот это вопрос
-
-**[Припев]**
-Шимпавоз гудит по трассе гудит
-Гудит гудит в шимпавозии гудит
-Шимпавоз гудит по трассе гудит
-Гудит гудит — едем вместе, всё горит
-
-**[Аутро]**
-Эрдр... Бобрито... Бобрянск...
-Бобрито снова... Кислодрищинск...
-Валера на борту — Шимповники жареные...
-SHIMPAMOTORS — тачки легендарные...
-Врум-врум-врум-врум...
-Шимпавоз...`,
-  credits:'made by: hadash & MAX-NITRO & valera'
-},
+Шимпавозия...`,
+        credits:'made by: hadash & MAX-NITRO & valera'
+      },
       {
         title:'Абсурд', album:'сингл · 25.12.2025', type:'valera', dur:'—',
         url:'https://music.youtube.com/watch?v=RnBmoL8ohGY&desc_update=1&si=wYVUwqc-gTdH37QZ',
@@ -1130,25 +1150,7 @@ SHIMPAMOTORS — тачки легендарные...
 Валера в дагестане он кушает хинкали
 Я рыганул на его тарелку он в шоке застыл
 Я перданул так громко что горы затряслись
-Мишабан проснулся и снова огрёб
-
-[Verse 2]
-Я взлетел ещё выше пробил облака насквозь
-Вертолёт обдрыщеный летит за мной по пятам
-Я развернулся резко и рыгнул ему в винты
-Он закрутился быстрее полетел к чертям
-
-[Bridge]
-Валера звонит мне кричит где мой обед
-Я ему отвечаю твой обед у меня внутри
-Мишабан бежит за мной но я слишком быстрый
-Я перданул ему в глаза он упал раз два три
-
-[Outro]
-Брейнрот зашкалил мои мозги кипят
-Оперативка дымится но я не замедляюсь
-Ботинки переполнены но я продолжаю полёт
-Самолётом по небу абсурдом наслаждаюсь`,
+Мишабан проснулся и снова огрёб`,
         credits:'made by: valera'
       },
     ]
@@ -1164,70 +1166,9 @@ SHIMPAMOTORS — тачки легендарные...
         cover:COVERS['Тыныш Cash'],
         lyrics:`[Intro]
 Ақша — энергия, түсіндің бе, досым?
-Тыныш сөйлеймін, бірақ қалтам толсын.
-Біз арыстандай, бізге мало просто,
-Money керек көп — и это серьёзно.
-
-[Chorus]
-Маған керек money, көп-көп money (Йе)
-Қалта толы болса — болмайды проблем
-Маған керек money, тек real money
-Range емес керек, керек cash system
-Маған керек money, көп-көп money
-Бір күні есептеймін емес, counting daily
-Маған керек money — тыныш, спокойно
-Бірақ банк картам күйіп тұр daily
-
-[Verse 1]
-Мен асықпаймын, бірақ тез ойлаймын
-Бәрі ұйықтап жатқанда — план құрамын
-Сен тек армандайсың, мен іске асырдым
-Тыныш жүріп, quietly level ап қылдым
-
-Kaspi дыбыс — плюс тағы кіріс
-Санаймын цифрды, басымда бизнес
-Маған Rolex керек емес, керек баланс
-Ақша сөйлейді — silence
-
-Кеше нөл едім, бүгін плюс
-Ертең тағы өсемін, это буст
-Қала суық, бірақ менде fire
-Ақша магнит — мен attract қылам
-
-[Chorus]
-Маған керек money, көп-көп money (Йе)
-Қалта толы болса — болмайды проблем
-Маған керек money, тек real money
-Range емес керек, керек cash system
-Маған керек money, көп-көп money
-Бір күні есептеймін емес, counting daily
-Маған керек money — тыныш, спокойно
-Бірақ банк картам күйіп тұр daily
-
-
-[Verse 2]
-Мен hype қуаламаймын — стабиль
-Басым суық, бірақ флоу мобиль
-Баяу сөйлеу, бірақ тез оқимын
-Бір мүмкіндікті — сразу ловлю, досым
-
-Сен айтасың "кейін", мен айттым "қазір"
-Қолымда план, жоқ бос сөз әзір
-Кім сенбеді — енді watch me
-Қалтам ауыр — heavy 808
-
-Ақша — спорт, мен марафондам
-Short емес, мен long-term зонам
-Баяу старт, бірақ turbo финал
-Бүгін студент, ертең капитал
-
-[Outro]
-Ақша келеді тыныш қадаммен
-Біз арыстандай жүріп барам
-Money үстінде, mindset таза
-Көп болса да — басымда база`,
-  credits:'made by: max-nitro'
- },
+Тыныш сөйлеймін, бірақ қалтам толсын.`,
+        credits:'made by: max-nitro'
+      },
       {
         title:'SHIMPIKI MODE', album:'новинка · 24.02.2026', type:'max-nitro', dur:'—',
         url:'https://music.youtube.com/watch?v=MUEe2D2y5qU&desc_update=1&si=sOlPsQZO02jHwJor',
@@ -1235,201 +1176,23 @@ Money үстінде, mindset таза
         lyrics:`[Интро]
 Ты думал кто тут правит джунглями?
 Не люди, братан
-Шимпики зашли в чат
-[Куплет 1]
-Вылез из леса — сразу в делах
-Банан в левой, палка в руках
-Альфа самец, смотрю свысока
-Ты Homo Sapiens? Мне не близко пока
-ДНК на 98 — почти как ты
-Но я умнее, братан, извини
-Ты в офисе сидишь, страдаешь в пиджаке
-Я качаюсь на лианах — кто счастливее, хе
-Шимпик не платит ипотеку — факт
-Шимпик не ходит на работу — факт
-Шимпик съел банан, поспал, повис
-Объясни мне кто из нас эволюционировал вниз
-[Хук]
-Шимпики, шимпики — мы тут главные
-Шимпики, шимпики — люди жалкие
-Орём на весь лес — уух уух УУХ 🦍
-Кто не шимпик — тот петух
-[Куплет 2]
-Зоопарк построили — думали закрыли
-Мы там сидим и людей изучили
-Вы приходите смотреть на нас каждый день
-Братан, это мы вас изучаем, не лень
-Тот мужик в кепке приходит каждую субботу
-Жена не отпускает — он говорит "на работу"
-Мы всё видим, мы всё знаем, мы молчим
-Шимпик умный — шимпик просто так кричим
-Турниры по доминированию каждый день
-Никаких судей, никаких правил, никаких измен
-Кто сильнее — тот и прав, всё честно тут
-У людей так же, просто в костюмах идут
-[Бридж]
-Учёные дали нам планшет — мы освоили за час
-Учёные были в шоке — мы не были, у нас
-Уже была политика, иерархия, война
-Шимпики придумали это раньше, чем вы, да
-Мы инструменты делаем из палок и камней
-Вы делаете айфоны и всё равно тупей
-Потому что айфон выбросить не можете никак
-А шимпик сломал палку — взял другую, вот так 💅
-[Хук 2]
-Шимпики, шимпики — эволюция наша
-Шимпики, шимпики — ваша жизнь — промашка
-Орём на весь лес — уух уух УУХ 🦍
-Гарбазброс приехал — мы съели его мусор
-[Аутро]
-агрессивное уханье
-швыряет банановую кожуру
-уходит обратно в джунгли с достоинством
-Шимпики.
-Всегда были первыми.
-Просто молчали.`,
-  credits:'made by: max-nitro'
- },
-     {
-       title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & valera', dur:'—',
-       url:'https://music.youtube.com/watch?v=PiHA04UK92o&desc_update=1&si=ZTIxY-BwQKaGVq5c',
-       cover:COVERS['ШИМПАВОЗ'],
-       lyrics:`**[Интро]**
-Шимпавоз...
-SHIMPAMOTORS...
-Шимпавозия...
-
-**[Хук]**
-Шимпавоз едет по шимпавозии (вроооум)
-Макс нитро за рулём в кабине (едееем)
-Мишабан рядом смотрит в окошко (смотриит)
-Шимпавоз — лучшая тачка в мире (факт-факт)
-
-**[Куплет 1]**
-Выехали утром — Макс нитро за рулём
-Мишабан в пассажирском жуёт бананом
-Первая остановка — город Эрдр
-Мишабан вышел — купил себе кефир
-Едем дальше — впереди Бобрито
-Бобры на обочине машут нам копыто
-Макс нитро гудит им — привет бобры
-Бобры в ответ — приезжайте до норы
-
-**[Припев]**
-Шимпавоз гудит по трассе гудит
-Гудит гудит в шимпавозии гудит
-Шимпавоз гудит по трассе гудит
-Гудит гудит — впереди Бобрянск стоит
-
-**[Куплет 2]**
-Въехали в Бобрянск — кругом одни бобры
-Мишабан говорит: «Макс, купи пироги»
-Макс нитро говорит: «Некогда, брат, едем»
-Выехали снова — скоро Бобрито видим
-Второй раз Бобрито — там другие бобры
-Мишабан купил себе бобровые штаны
-Надел на обочине прямо у дороги
-Макс нитро сигналит: «Едем дорогой»
-
-**[Припев]**
-Шимпавоз гудит по трассе гудит
-Гудит гудит в шимпавозии гудит
-Шимпавоз гудит по трассе гудит
-Гудит гудит — впереди Кислодрищинск стоит
-
-**[Куплет 3]**
-Кислодрищинск встречает запахом странным
-Мишабан зажал нос — «это нехорошо нам»
-Макс нитро держит руль — «терпи, брат, терпи»
-Въехали в центр — там вывеска «Кисли»
-Выехали быстро — не понравился запах
-Мишабан выдохнул: «Фух, едем без страха»
-И тут на обочине — стоит одинокий
-Валера с пакетом — голодный немного
-
-**[Бридж]**
-Макс нитро тормозит — «Валера, садись!»
-Валера запрыгнул: «Спасибо, держись»
-Достали из бардачка — Шимповники жареные
-Три пачки хрустящих — горячие, пряные
-Едят втроём прямо на трассе
-Мишабан, Валера, Макс нитро в кассе
-Шимповники хрустят на весь шимпавоз
-Валера доволен — вот это вопрос
-
-**[Припев]**
-Шимпавоз гудит по трассе гудит
-Гудит гудит в шимпавозии гудит
-Шимпавоз гудит по трассе гудит
-Гудит гудит — едем вместе, всё горит
-
-**[Аутро]**
-Эрдр... Бобрито... Бобрянск...
-Бобрито снова... Кислодрищинск...
-Валера на борту — Шимповники жареные...
-SHIMPAMOTORS — тачки легендарные...
-Врум-врум-врум-врум...
+Шимпики зашли в чат`,
+        credits:'made by: max-nitro'
+      },
+      {
+        title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & valera', dur:'—',
+        url:'https://music.youtube.com/watch?v=PiHA04UK92o&desc_update=1&si=ZTIxY-BwQKaGVq5c',
+        cover:COVERS['ШИМПАВОЗ'],
+        lyrics:`[Интро]
 Шимпавоз...`,
-  credits:'made by: hadash & MAX-NITRO & valera'
-},
+        credits:'made by: hadash & MAX-NITRO & valera'
+      },
       {
         title:'Капуцин', album:'новинка · 22.02.2026', type:'hadash & MAX-NITRO', dur:'—',
         url:'https://music.youtube.com/watch?v=wU7yTtbyT3c&desc_update=1&si=Cmo2N5pIWNozWaCK',
         cover:COVERS['Капуцин'],
         lyrics:`[Припев]
-Это может чика-чика или это капуцин?
-На вид как плюшка или это капуцин?
-Может быть бананчик или это капуцин?
-Это что ль мимимишка — это капуцин
-
-[Постприпев]
-Ка-пу-цин
-Ка-пу-цин
-Ка-пу-цин
-Это (это) капуцин
-
-[Куплет 1]
-Чувствуй, это чувство
-Да, почувствуй обезьян-флоу
-Делаем сумасбродство
-Банан улетает в небеса
-Выглядим мило
-Но вроде как дико
-Хвост — это стиль
-Абсурд — мой трип
-
-[Предприпев]
-Да-а-а
-Это навсегда-а-а
-Я твой симпа-зверь
-Джунгли, небеса
-Улечу как дрон
-На ветку, как в стрим
-Мой вайб — банан
-
-[Припев]
-Ха-ха-ха — это же кофейня или это капуцин?
-На вид как монашка или это капуцин?
-Может быть эспрессо или это капуцин?
-Это что ль обезьяна — это капуцин
-
-[Постприпев]
-Ка-пу-цин
-Ка-пу-цин
-Ка-пу-цин
-Это (это) капуцин
-
-[Куплет 2]
-Это-это туса, это-это вайб
-Это-это банан, это-это драйв
-Это-это джунгли, это-это рынок
-Это-это маринад, это-это капуцин
-
-[Аутро]
-Ка-пу-цин-цин-цин-цин
-Капуцин, ка-капуцин
-Ка-пу-цин-цин-цин-цин
-Капуцин, ка-капуцин`,
+Это может чика-чика или это капуцин?`,
         credits:'made by: hadash & MAX-NITRO'
       },
     ]
@@ -1445,31 +1208,7 @@ SHIMPAMOTORS — тачки легендарные...
         cover:COVERS['FUCK THE LOADING'],
         lyrics:`[Verse 1]
 Оп-оп-оп-оп-еративка
-Где подевался мишабан-бан-бан
-Нука поднимайся вверх-полёт
-Без тормозов-шум-балаган-перепал
-Нравится небо
-Дать вам взрыв ботинок-бом-бом-бом
-В горах этикет-спам
-От рыгани некуда девать
-Самолёт-высот-взлетал-сколь
-Вертолёт-обдрыш-летел-сколь
-Брейнрот купил меня несправст
-Будь уверен сам на пьедестале
-За облаками до небес-матч
-Я не сдам за come on, come on
-Я не сдам за come on, come on
-Come on, come on, come on, come on
-[Chorus]
-I'm ready rhythm of this tongue
-Fuck the lag, fuck the loading, fuck the loading
-Some people waiting for my sound
-Let me proud, let me proud, let me proud
-[Verse 2]
-Валера-хинкал-кушал-кушал
-Тарелка-пуста-там-пук-пук-пук
-Горы затряслись от звука моего
-Мишабан-проснулся-опять-огрёб`,
+Где подевался мишабан-бан-бан`,
         credits:'made by: puker'
       },
     ]
@@ -1481,7 +1220,6 @@ const TRACKS = buildTracks(ARTISTS);
 let playlists = JSON.parse(localStorage.getItem('kh2_pls')||'[]');
 let liked = JSON.parse(localStorage.getItem('kh2_liked')||'[]');
 let nowPlaying=null, pendingTrackId=null, currentPlId=null, currentArtistId=null;
-
 let currentTrackUrl = '';
 const THEMES=['dark','midnight','light','custom'];
 
@@ -1501,7 +1239,7 @@ function buildTracks(artists) {
       const item = map.get(key);
       item.artists.add(a.id);
       if(!item.cover && t.cover) item.cover = t.cover;
-      if(!item.lyrics && t.lyrics) item.lyrics = t.lyrics;
+      if(t.lyrics && t.lyrics.length > (item.lyrics||'').length) item.lyrics = t.lyrics;
       if(!item.credits && t.credits) item.credits = t.credits;
     }
   }
@@ -1509,14 +1247,16 @@ function buildTracks(artists) {
 }
 
 function artistById(id){return ARTISTS.find(a=>a.id===id);}
-function subsKey(id){return`kh2_subs_${id}`;}
-function getSubs(id){try{return JSON.parse(localStorage.getItem(subsKey(id))||'[]');}catch{return[];}}
-function setSubs(id,arr){localStorage.setItem(subsKey(id),JSON.stringify(arr));}
 function saveLiked(){localStorage.setItem('kh2_liked',JSON.stringify(liked));}
 function isLiked(id){return liked.includes(id);}
 function uniq(arr){return Array.from(new Set(arr.filter(Boolean)));}
 function tracksByArtist(aId){return TRACKS.filter(t=>t.artists.includes(aId));}
 function escapeHTML(s){if(!s)return'';return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+
+function playByTitle(title) {
+  const t = TRACKS.find(x => x.title === title);
+  if(t) play(t.id);
+}
 
 function play(id) {
   nowPlaying=id;
@@ -1527,9 +1267,7 @@ function play(id) {
 
 function openTrackModal(t){
   if(!t) return;
-
   currentTrackUrl = t.url || '';
-
   document.getElementById('track-title').textContent = t.title || 'трек';
   document.getElementById('track-meta').textContent = t.album ? t.album : (t.type||'');
   document.getElementById('track-lyrics').value = t.lyrics || 'текст пока не добавлен 👀';
@@ -1548,7 +1286,6 @@ function openTrackModal(t){
 
   const wrap = document.getElementById('track-artists');
   const artists = (t.artists||[]).map(artistById).filter(Boolean);
-
   wrap.innerHTML = artists.map(a => `
     <button class="a-chip" onclick="openArtist('${a.id}'); closeModals();">
       <img src="${a.avatar}" alt="" onerror="this.style.display='none'">
@@ -1558,7 +1295,6 @@ function openTrackModal(t){
 
   const btn = document.getElementById('btn-ytmusic');
   btn.style.display = t.url ? 'inline-flex' : 'none';
-
   openModal('modal-track');
 }
 
@@ -1652,56 +1388,62 @@ function renderArtistsSidebar() {
     </div>`).join('');
 }
 
-function openArtist(id) {
+async function openArtist(id) {
   currentArtistId=id; currentPlId=null;
   const a=artistById(id); if(!a) return;
   document.getElementById('artist-avatar').src=a.avatar;
   document.getElementById('artist-name').textContent=a.name;
   document.getElementById('tracks-count').textContent=tracksByArtist(id).length;
-  document.getElementById('subs-count').textContent=getSubs(id).length;
-  renderSubscribeUI(); renderListeners(); renderArtistTracks(id); goPage('artist');
+  renderArtistTracks(id);
+  goPage('artist');
+  await renderSubscribeUI();
 }
+
 function renderArtistTracks(id) {
   const tr=tracksByArtist(id);
   const tbody=document.getElementById('tbody-artist');
   if(!tr.length){tbody.innerHTML=`<tr><td colspan="7"><div class="empty-state"><span class="e-icon">♫</span>пока пусто</div></td></tr>`;return;}
   tbody.innerHTML=tr.map((t,i)=>rowHTML(t,i,null)).join('');
 }
-function renderSubscribeUI() {
-  const btn=document.getElementById('sub-btn');
-  const subs=getSubs(currentArtistId);
-  const me=(localStorage.getItem('kh2_nick')||'').trim();
-  const isOn=me&&subs.includes(me);
-  btn.classList.toggle('is-on',!!isOn);
-  btn.textContent=isOn?'✓ подписан(а)':'подписаться';
-  document.getElementById('subs-count').textContent=subs.length;
+
+async function renderSubscribeUI() {
+  const subs = await getSharedSubs(currentArtistId);
+  const count = subs.length;
+  const me = (localStorage.getItem('kh2_nick')||'').trim();
+  const isOn = me && subs.includes(me);
+
+  const btn = document.getElementById('sub-btn');
+  btn.classList.toggle('is-on', !!isOn);
+  btn.textContent = isOn ? '✓ подписан(а)' : 'подписаться';
+
+  document.getElementById('subs-count').textContent = count;
+  document.getElementById('subs-count-num').textContent = count;
 }
-function renderListeners() {
-  const subs=getSubs(currentArtistId);
-  const wrap=document.getElementById('listeners');
-  if(!subs.length){wrap.innerHTML=`<span class="listener-chip" style="color:var(--soft-text);">пока тишина — будь первым 🎧</span>`;return;}
-  wrap.innerHTML=subs.map(n=>`<span class="listener-chip">🎧 ${escapeHTML(n)}</span>`).join('');
-}
-function toggleSubscribe() {
+
+async function toggleSubscribe() {
   if(!currentArtistId) return;
   const me=(localStorage.getItem('kh2_nick')||'').trim();
   if(!me){openModal('modal-sub');return;}
-  const subs=getSubs(currentArtistId);
-  const idx=subs.indexOf(me);
+  const subs = await getSharedSubs(currentArtistId);
+  const idx = subs.indexOf(me);
   if(idx>=0) subs.splice(idx,1); else subs.push(me);
-  setSubs(currentArtistId,uniq(subs));
-  renderSubscribeUI(); renderListeners(); renderArtistsSidebar();
+  await setSharedSubs(currentArtistId, uniq(subs));
+  await renderSubscribeUI();
+  renderArtistsSidebar();
   showToast(idx>=0?'подписка снята':`подписка: ${me}`);
 }
-function confirmSubscribe() {
+
+async function confirmSubscribe() {
   if(!currentArtistId) return;
   const nick=(document.getElementById('inp-nick').value||'').trim();
   if(!nick){showToast('ник пустой :(');return;}
   localStorage.setItem('kh2_nick',nick);
-  const subs=getSubs(currentArtistId);
+  const subs = await getSharedSubs(currentArtistId);
   if(!subs.includes(nick)) subs.push(nick);
-  setSubs(currentArtistId,uniq(subs));
-  closeModals(); renderSubscribeUI(); renderListeners(); renderArtistsSidebar();
+  await setSharedSubs(currentArtistId, uniq(subs));
+  closeModals();
+  await renderSubscribeUI();
+  renderArtistsSidebar();
   showToast(`подписка: ${nick}`);
 }
 
@@ -1913,7 +1655,6 @@ function rgbToHex(r,g,b){
   document.documentElement.setAttribute('data-theme', safe);
   syncPresetUI(safe);
   if(safe==='custom') applyCustomVarsFromStorage(true);
-
   renderAll(); renderArtistsSidebar(); renderSidebar(); updateLikedCount();
 })();
 </script>
