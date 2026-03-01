@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>grinda songers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800;900&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -20,83 +20,62 @@
   --radius: 20px;
   --radius-sm: 14px;
   --radius-xs: 10px;
+  --font-display: 'Unbounded', sans-serif;
 }
-/* blood — красно-чёрная (дефолт) */
 html[data-theme="blood"] {
   --bg:#0a0000;--card:#130000;--border:#2a0000;
   --accent:#ff2222;--text:#ffcccc;--muted:#5a1a1a;--muted2:#aa4444;
-  --shadow:rgba(0,0,0,0.5);--soft-text:rgba(255,204,204,0.58);
-  --text2:#ff8888;
+  --shadow:rgba(0,0,0,0.5);--soft-text:rgba(255,204,204,0.58);--text2:#ff8888;
 }
-/* dark — тёмно-фиолетовая */
 html[data-theme="dark"] {
   --bg:#07060b;--card:#0e0b16;--border:#1b1627;
   --accent:#b68cff;--text:#f2edff;--muted:#4b4460;--muted2:#7d7494;
-  --shadow:rgba(0,0,0,0.4);--soft-text:rgba(242,237,255,0.58);
-  --text2:#cbbcff;
+  --shadow:rgba(0,0,0,0.4);--soft-text:rgba(242,237,255,0.58);--text2:#cbbcff;
 }
-/* midnight — синяя ночь */
 html[data-theme="midnight"] {
   --bg:#05060f;--card:#0a0c1a;--border:#1a1f3a;
   --accent:#9aa6ff;--text:#eef1ff;--muted:#454a67;--muted2:#787fa8;
-  --shadow:rgba(0,0,0,0.45);--soft-text:rgba(238,241,255,0.55);
-  --text2:#c9d0ff;
+  --shadow:rgba(0,0,0,0.45);--soft-text:rgba(238,241,255,0.55);--text2:#c9d0ff;
 }
-/* light — светлая */
 html[data-theme="light"] {
   --bg:#f4f1fb;--card:#ffffff;--border:#e7e0ff;
   --accent:#6f4dff;--text:#1a112f;--muted:#7b6aa8;--muted2:#6a5e8a;
-  --shadow:rgba(20,10,40,0.10);--soft-text:rgba(26,17,47,0.55);
-  --text2:#3a2a6a;
+  --shadow:rgba(20,10,40,0.10);--soft-text:rgba(26,17,47,0.55);--text2:#3a2a6a;
 }
-/* forest — зелёная */
 html[data-theme="forest"] {
   --bg:#020d05;--card:#071408;--border:#0e2a12;
   --accent:#4ade80;--text:#d1fae5;--muted:#1a4d24;--muted2:#3d8c4f;
-  --shadow:rgba(0,0,0,0.45);--soft-text:rgba(209,250,229,0.55);
-  --text2:#86efac;
+  --shadow:rgba(0,0,0,0.45);--soft-text:rgba(209,250,229,0.55);--text2:#86efac;
 }
-/* ocean — синий океан */
 html[data-theme="ocean"] {
   --bg:#020a12;--card:#041624;--border:#082a44;
   --accent:#38bdf8;--text:#e0f2fe;--muted:#0d3a5c;--muted2:#2a7aaa;
-  --shadow:rgba(0,0,0,0.5);--soft-text:rgba(224,242,254,0.55);
-  --text2:#7dd3fc;
+  --shadow:rgba(0,0,0,0.5);--soft-text:rgba(224,242,254,0.55);--text2:#7dd3fc;
 }
-/* amber — янтарная */
 html[data-theme="amber"] {
   --bg:#0c0800;--card:#180e00;--border:#2e1c00;
   --accent:#fbbf24;--text:#fef3c7;--muted:#4d3000;--muted2:#a06a00;
-  --shadow:rgba(0,0,0,0.5);--soft-text:rgba(254,243,199,0.55);
-  --text2:#fcd34d;
+  --shadow:rgba(0,0,0,0.5);--soft-text:rgba(254,243,199,0.55);--text2:#fcd34d;
 }
-/* rose — розовая */
 html[data-theme="rose"] {
   --bg:#0d0208;--card:#180510;--border:#2e0820;
   --accent:#f472b6;--text:#fce7f3;--muted:#4d0a2a;--muted2:#a03060;
-  --shadow:rgba(0,0,0,0.5);--soft-text:rgba(252,231,243,0.55);
-  --text2:#f9a8d4;
+  --shadow:rgba(0,0,0,0.5);--soft-text:rgba(252,231,243,0.55);--text2:#f9a8d4;
 }
-/* cyber — неон на чёрном */
 html[data-theme="cyber"] {
   --bg:#000000;--card:#0a0a0a;--border:#1a1a1a;
   --accent:#00ff88;--text:#ccffee;--muted:#1a3a2a;--muted2:#448866;
-  --shadow:rgba(0,0,0,0.6);--soft-text:rgba(204,255,238,0.55);
-  --text2:#66ffbb;
+  --shadow:rgba(0,0,0,0.6);--soft-text:rgba(204,255,238,0.55);--text2:#66ffbb;
 }
-/* slate — серо-синяя */
 html[data-theme="slate"] {
   --bg:#0f1117;--card:#161b27;--border:#232d40;
   --accent:#64748b;--text:#e2e8f0;--muted:#2d3a4a;--muted2:#556070;
-  --shadow:rgba(0,0,0,0.4);--soft-text:rgba(226,232,240,0.55);
-  --text2:#94a3b8;
+  --shadow:rgba(0,0,0,0.4);--soft-text:rgba(226,232,240,0.55);--text2:#94a3b8;
 }
-/* cream — кремовая светлая */
 html[data-theme="cream"] {
   --bg:#fdf8f0;--card:#fff9f0;--border:#e8dcc8;
   --accent:#c2540a;--text:#2d1a08;--muted:#a08060;--muted2:#7a5a38;
-  --shadow:rgba(80,40,10,0.12);--soft-text:rgba(45,26,8,0.55);
-  --text2:#8b4513;
+  --shadow:rgba(80,40,10,0.12);--soft-text:rgba(45,26,8,0.55);--text2:#8b4513;
 }
 
 html { scroll-behavior: smooth; }
@@ -104,200 +83,84 @@ body { background:var(--bg); color:var(--text); font-family:'Nunito',sans-serif;
 body::before {
   content:''; position:fixed; inset:0; pointer-events:none; z-index:999;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  opacity:0.018;
+  opacity:0.022;
 }
 
-/* FEATURED */
-.featured-release {
-  position: relative;
-  margin: -36px -44px 32px;
-  min-height: 360px;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  border-radius: 0 0 36px 36px;
-}
-.featured-bg-blob {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, #1a0830 0%, #0d0518 50%, var(--bg) 100%);
-  z-index: 0;
-}
-.featured-bg-covers {
-  position: absolute; inset: 0;
-  display: flex;
-  z-index: 1;
-}
-.featured-bg-covers img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  opacity: 0.28;
-  display: block;
-}
-.featured-bg-overlay {
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(to bottom, rgba(7,6,11,0.45) 0%, rgba(7,6,11,0.75) 100%),
-    linear-gradient(135deg, color-mix(in srgb,var(--accent) 30%,transparent) 0%, transparent 60%);
-  z-index: 2;
-}
-.featured-info {
-  position: relative;
-  z-index: 3;
-  padding: 44px 44px 40px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-.featured-main-title {
-  font-size: clamp(42px, 6vw, 86px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 0.95;
-  color: #fff;
-  text-shadow: 0 4px 40px rgba(182,140,255,0.35);
-}
-.featured-section {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.featured-section-label {
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.5);
-  text-transform: lowercase;
-  font-weight: 600;
-}
-.featured-hits-row {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.featured-hit-card {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(182,140,255,0.25);
-  border-radius: 24px;
-  padding: 14px 18px 14px 14px;
-  cursor: pointer;
-  transition: all 0.18s;
-  min-width: 280px;
-  backdrop-filter: blur(10px);
-}
-.featured-hit-card:hover {
-  background: rgba(182,140,255,0.15);
-  border-color: var(--accent);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 36px rgba(182,140,255,0.2);
-}
-.featured-hit-card img {
-  width: 64px; height: 64px;
-  border-radius: 18px;
-  object-fit: cover;
-  flex-shrink: 0;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-}
-.featured-hit-info { flex: 1; min-width: 0; }
-.featured-hit-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: #fff;
-}
-.featured-hit-sub {
-  font-size: 12px;
-  color: var(--soft-text);
-  margin-top: 4px;
-  font-weight: 400;
-}
-.featured-hit-btn {
-  width: 38px; height: 38px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #000;
-  border: none;
-  cursor: pointer;
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: all 0.15s;
-  box-shadow: 0 4px 16px rgba(182,140,255,0.4);
-}
-.featured-hit-card:hover .featured-hit-btn { transform: scale(1.12); }
-@media (max-width: 720px) {
-  .featured-release { margin: -20px -18px 24px; min-height: 280px; border-radius: 0 0 28px 28px; }
-  .featured-info { padding: 28px 18px 24px; gap: 18px; }
-  .featured-main-title { font-size: 38px; }
-  .featured-hit-card { min-width: 100%; }
-}
-
+/* ── HEADER ── */
 header {
   padding: 22px 44px 18px;
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(12px);
+  position: sticky; top: 0; z-index: 100;
 }
-.logo-main { font-size: clamp(18px, 2.2vw, 24px); font-weight: 800; letter-spacing: -0.01em; }
+.logo-main {
+  font-family: var(--font-display);
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
 .logo-main span { color: var(--accent); }
-.logo-sub { font-size: 11px; letter-spacing: 0.08em; color: var(--muted2); margin-top: 3px; font-weight: 400; }
+.logo-sub { font-size: 10px; letter-spacing: 0.12em; color: var(--muted2); margin-top: 4px; font-weight: 400; text-transform: lowercase; }
 .header-actions { display: flex; gap: 8px; align-items: center; }
 
 .yt-btn {
   display: inline-flex; align-items: center; gap: 9px;
-  padding: 10px 18px; background: var(--accent); color: #000;
-  text-decoration: none; font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 10px 20px; background: var(--accent); color: #000;
+  text-decoration: none; font-size: 11px; font-weight: 800;
+  letter-spacing: 0.06em; text-transform: uppercase;
   border-radius: 999px; transition: all 0.2s; white-space: nowrap;
-  position: relative; overflow: hidden; box-shadow: 0 5px 18px var(--shadow);
+  position: relative; overflow: hidden; box-shadow: 0 5px 24px color-mix(in srgb,var(--accent) 35%,transparent);
+  font-family: var(--font-display);
 }
 .yt-btn::before { content:''; position:absolute; inset:0; background:#000; transform:translateX(-100%); transition:transform 0.3s ease; }
 .yt-btn:hover::before { transform:translateX(0); }
-.yt-btn:hover { color: var(--accent); }
+.yt-btn:hover { color: var(--accent); box-shadow: 0 8px 32px color-mix(in srgb,var(--accent) 50%,transparent); }
 .yt-btn svg, .yt-btn span { position: relative; z-index: 1; }
-.yt-icon { width: 15px; height: 15px; flex-shrink: 0; }
+.yt-icon { width: 14px; height: 14px; flex-shrink: 0; }
 
 .settings-btn {
   display: inline-flex; align-items: center; gap: 7px;
   padding: 10px 16px; background: transparent; color: var(--soft-text);
   border: 1.5px solid var(--border); border-radius: 999px; cursor: pointer;
-  transition: all 0.15s; font-size: 11px; font-weight: 600; font-family: 'Nunito', sans-serif;
+  transition: all 0.15s; font-size: 11px; font-weight: 700; font-family: var(--font-display);
+  letter-spacing: -0.01em;
 }
 .settings-btn:hover { border-color: var(--accent); color: var(--accent); }
-.settings-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.settings-gear { width: 14px; height: 14px; display: inline-block; }
+.settings-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink:0; }
 
-.layout { display: grid; grid-template-columns: 240px 1fr; min-height: calc(100vh - 104px); }
+/* ── LAYOUT ── */
+.layout { display: grid; grid-template-columns: 250px 1fr; min-height: calc(100vh - 70px); }
 
 aside {
-  border-right: 1px solid var(--border); padding: 22px 12px;
-  position: sticky; top: 0; height: calc(100vh - 104px); overflow-y: auto;
+  border-right: 1px solid var(--border); padding: 24px 10px;
+  position: sticky; top: 70px; height: calc(100vh - 70px); overflow-y: auto;
   display: flex; flex-direction: column; gap: 2px;
 }
 .aside-label {
-  font-size: 10px; letter-spacing: 0.15em; color: var(--muted);
-  text-transform: lowercase; padding: 0 12px; margin-bottom: 3px; margin-top: 10px; font-weight: 700;
+  font-size: 9px; letter-spacing: 0.18em; color: var(--muted);
+  text-transform: uppercase; padding: 0 14px; margin-bottom: 4px; margin-top: 12px;
+  font-weight: 800; font-family: var(--font-display);
 }
 .nav-item {
-  padding: 10px 14px; font-size: 13px; font-weight: 600; color: var(--muted2);
+  padding: 9px 14px; font-size: 12px; font-weight: 700; color: var(--muted2);
   cursor: pointer; transition: all 0.12s; border-radius: var(--radius-sm);
   display: flex; align-items: center; justify-content: space-between; gap: 8px;
 }
 .nav-item:hover { color: var(--text); background: color-mix(in srgb,var(--card) 80%,transparent); }
-.nav-item.active { color: var(--accent); background: color-mix(in srgb,var(--card) 80%,transparent); outline: 1.5px solid color-mix(in srgb,var(--accent) 30%,transparent); }
+.nav-item.active { color: var(--accent); background: color-mix(in srgb,var(--accent) 8%,transparent); outline: 1.5px solid color-mix(in srgb,var(--accent) 25%,transparent); }
 .nav-item .count {
-  font-size: 10px; color: var(--muted);
+  font-size: 9px; color: var(--muted);
   background: color-mix(in srgb,var(--border) 80%,transparent);
-  padding: 2px 8px; border-radius: 999px; flex-shrink: 0; font-weight: 700;
+  padding: 2px 8px; border-radius: 999px; flex-shrink: 0; font-weight: 800; font-family: var(--font-display);
 }
-.nav-item.active .count { background: color-mix(in srgb,var(--accent) 12%,transparent); color: var(--accent); }
+.nav-item.active .count { background: color-mix(in srgb,var(--accent) 14%,transparent); color: var(--accent); }
 
 .nav-artist { display: flex; align-items: center; gap: 10px; width: 100%; }
-.nav-avatar { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
-.nav-artist-name { font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+.nav-avatar { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 1.5px solid var(--border); }
+.nav-artist-name { font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
 .nav-verified { width: 11px; height: 11px; flex-shrink: 0; }
-
 .nav-liked { display: flex; align-items: center; gap: 10px; }
 .liked-icon-sm {
   width: 28px; height: 28px; border-radius: 8px;
@@ -305,132 +168,310 @@ aside {
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; font-size: 13px; color: #fff;
 }
-
 .add-pl-btn {
-  margin: 12px 4px 0; padding: 10px;
+  margin: 14px 4px 0; padding: 10px;
   border: 1.5px dashed var(--muted); background: none; color: var(--muted2);
   font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 700;
   cursor: pointer; transition: all 0.2s; border-radius: var(--radius-sm);
 }
 .add-pl-btn:hover { border-color: var(--accent); color: var(--accent); }
 
+/* ── CONTENT ── */
 .content { padding: 36px 44px 120px; }
 .page { display: none; }
-.page.active { display: block; animation: fadeIn 0.2s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.page.active { display: block; animation: fadeIn 0.25s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-.page-head { margin-bottom: 22px; }
-.page-head h2 { font-size: 26px; font-weight: 800; letter-spacing: -0.01em; }
-.page-head p { font-size: 13px; color: var(--soft-text); margin-top: 4px; font-weight: 400; }
+/* ── FEATURED BANNER ── */
+.featured-release {
+  position: relative;
+  margin: -36px -44px 38px;
+  min-height: 380px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border-radius: 0 0 40px 40px;
+}
+.featured-bg-blob {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #1a0830 0%, #0d0518 50%, var(--bg) 100%);
+  z-index: 0;
+}
+.featured-bg-covers {
+  position: absolute; inset: 0; display: flex; z-index: 1;
+}
+.featured-bg-covers img {
+  width: 100%; height: 100%; object-fit: cover; opacity: 0.25; display: block;
+  filter: saturate(1.4);
+}
+.featured-bg-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(7,6,11,0.3) 0%, rgba(7,6,11,0.88) 100%),
+    linear-gradient(135deg, color-mix(in srgb,var(--accent) 22%,transparent) 0%, transparent 55%);
+  z-index: 2;
+}
+.featured-info {
+  position: relative; z-index: 3;
+  padding: 50px 44px 44px;
+  width: 100%; display: flex; flex-direction: column; gap: 26px;
+}
+.featured-main-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.5vw, 76px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  color: #fff;
+  text-shadow: 0 4px 60px color-mix(in srgb,var(--accent) 40%,transparent);
+}
+.featured-main-title span { color: var(--accent); }
+.featured-section-label {
+  font-size: 10px; letter-spacing: 0.14em; color: rgba(255,255,255,0.45);
+  text-transform: uppercase; font-weight: 700; font-family: var(--font-display);
+  margin-bottom: 12px;
+}
+.featured-hits-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.featured-hit-card {
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 26px; padding: 14px 18px 14px 14px;
+  cursor: pointer; transition: all 0.2s; min-width: 290px;
+  backdrop-filter: blur(16px);
+}
+.featured-hit-card:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: var(--accent);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 16px 48px color-mix(in srgb,var(--accent) 25%,transparent);
+}
+.featured-hit-card img { width: 62px; height: 62px; border-radius: 18px; object-fit: cover; flex-shrink: 0; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+.featured-hit-info { flex: 1; min-width: 0; }
+.featured-hit-title { font-size: 14px; font-weight: 800; color: #fff; font-family: var(--font-display); letter-spacing: -0.02em; }
+.featured-hit-sub { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 5px; font-weight: 500; }
+.featured-hit-btn {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: #000;
+  border: none; cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.15s; box-shadow: 0 4px 16px color-mix(in srgb,var(--accent) 45%,transparent);
+}
+.featured-hit-card:hover .featured-hit-btn { transform: scale(1.15); }
 
+/* ── PAGE HEAD ── */
+.page-head { margin-bottom: 26px; }
+.page-head h2 {
+  font-size: 28px; font-weight: 900; letter-spacing: -0.03em;
+  font-family: var(--font-display);
+}
+.page-head p { font-size: 12px; color: var(--soft-text); margin-top: 6px; font-weight: 500; letter-spacing: 0.02em; }
+
+/* ── ARTIST HERO ── */
 .artist-hero {
-  position: relative; margin: -36px -44px 30px; padding: 52px 44px 34px; overflow: hidden;
-  background: linear-gradient(180deg, color-mix(in srgb,var(--accent) 14%,#000) 0%, var(--bg) 100%);
-  border-radius: 0 0 36px 36px;
+  position: relative; margin: -36px -44px 32px; padding: 60px 44px 38px; overflow: hidden;
+}
+.artist-hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    color-mix(in srgb,var(--accent) 18%,#000) 0%,
+    color-mix(in srgb,var(--card) 60%,#000) 60%,
+    var(--bg) 100%);
+}
+.artist-hero-bg-img {
+  position: absolute; inset: 0; z-index: 0;
+}
+.artist-hero-bg-img img {
+  width: 100%; height: 100%; object-fit: cover; opacity: 0.08;
+  filter: blur(4px) saturate(0.5);
 }
 .artist-hero-blob {
-  position: absolute; top: -80px; left: -80px; width: 500px; height: 500px; border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in srgb,var(--accent) 18%,transparent) 0%, transparent 65%);
-  filter: blur(80px); pointer-events: none;
+  position: absolute; top: -120px; left: -100px; width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb,var(--accent) 22%,transparent) 0%, transparent 65%);
+  filter: blur(100px); pointer-events: none; z-index: 1;
 }
-.artist-hero-inner { position: relative; z-index: 1; display: flex; align-items: flex-end; gap: 28px; }
+.artist-hero-inner { position: relative; z-index: 2; display: flex; align-items: flex-end; gap: 32px; }
 .avatar-big {
-  width: 168px; height: 168px; border-radius: 32px;
+  width: 180px; height: 180px; border-radius: 32px;
   object-fit: cover; flex-shrink: 0; display: block;
-  box-shadow: 0 22px 60px rgba(0,0,0,0.65);
+  box-shadow: 0 28px 70px rgba(0,0,0,0.7);
+  border: 2px solid color-mix(in srgb,var(--accent) 30%,transparent);
 }
 .artist-hero-info { flex: 1; min-width: 0; padding-bottom: 6px; }
-.artist-verified-row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
-.verified-label { font-size: 11px; letter-spacing: 0.08em; color: rgba(255,255,255,0.72); font-weight: 600; }
+.artist-verified-row { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.verified-label { font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.6); font-weight: 700; font-family: var(--font-display); text-transform: uppercase; }
 .verified-icon-inline { width: 14px; height: 14px; }
 .artist-hero-name {
-  font-size: clamp(38px,6vw,76px); font-weight: 800;
-  letter-spacing: -0.02em; line-height: 1; color: #fff; margin-bottom: 14px;
+  font-family: var(--font-display);
+  font-size: clamp(32px,5.5vw,72px); font-weight: 900;
+  letter-spacing: -0.03em; line-height: 1; color: #fff; margin-bottom: 16px;
+  text-shadow: 0 4px 40px rgba(0,0,0,0.5);
 }
-.artist-hero-stats { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; flex-wrap: wrap; }
-.stat-chip { font-size: 13px; color: rgba(255,255,255,0.58); font-weight: 600; }
-.stat-chip b { color: rgba(255,255,255,0.82); font-weight: 800; }
-.stat-sep { color: rgba(255,255,255,0.22); }
+.artist-hero-stats { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+.stat-chip { font-size: 12px; color: rgba(255,255,255,0.55); font-weight: 700; font-family: var(--font-display); }
+.stat-chip b { color: rgba(255,255,255,0.85); }
+.stat-sep { color: rgba(255,255,255,0.2); }
 .artist-hero-actions { display: flex; align-items: center; gap: 14px; }
 .play-big-btn {
-  width: 52px; height: 52px; border-radius: 50%;
-  background: var(--accent); color: #000; border: none; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; transition: all 0.18s;
-  box-shadow: 0 8px 24px color-mix(in srgb,var(--accent) 38%,transparent);
+  width: 54px; height: 54px; border-radius: 50%; background: var(--accent); color: #000;
+  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 20px; transition: all 0.18s;
+  box-shadow: 0 10px 28px color-mix(in srgb,var(--accent) 45%,transparent);
 }
-.play-big-btn:hover { transform: scale(1.07); filter: brightness(1.1); }
+.play-big-btn:hover { transform: scale(1.08); filter: brightness(1.12); }
 .sub-btn {
-  padding: 11px 24px; border-radius: 999px;
-  border: 2px solid rgba(255,255,255,0.32);
-  background: transparent; color: #fff;
-  cursor: pointer; transition: all 0.18s;
-  font-size: 13px; font-weight: 700; font-family: 'Nunito', sans-serif;
+  padding: 13px 28px; border-radius: 999px; border: 2px solid rgba(255,255,255,0.3);
+  background: transparent; color: #fff; cursor: pointer; transition: all 0.18s;
+  font-size: 11px; font-weight: 800; font-family: var(--font-display); letter-spacing: 0.04em; text-transform: uppercase;
 }
-.sub-btn:hover { border-color: #fff; }
-.sub-btn.is-on { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.55); }
+.sub-btn:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+.sub-btn.is-on { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
 
-.section-label { font-size: 19px; font-weight: 800; color: var(--text); margin-bottom: 14px; margin-top: 26px; }
-
-.subs-count-display { font-size: 13px; color: var(--soft-text); margin-bottom: 20px; font-weight: 400; }
-.subs-count-display b { color: var(--text2); font-weight: 700; }
-
-.liked-hero {
-  background: linear-gradient(135deg,#450af5 0%,#8833ff 50%,#c4efd9 100%);
-  border-radius: 24px; padding: 30px 26px; margin-bottom: 26px;
-  display: flex; align-items: center; gap: 20px;
+/* ── SECTION LABELS ── */
+.section-label {
+  font-family: var(--font-display);
+  font-size: 16px; font-weight: 900; color: var(--text);
+  margin-bottom: 16px; margin-top: 32px;
+  letter-spacing: -0.02em;
 }
-.liked-hero-icon { width: 76px; height: 76px; display: flex; align-items: center; justify-content: center; font-size: 34px; flex-shrink: 0; }
-.liked-hero-text h2 { font-size: 28px; font-weight: 800; color: #fff; }
-.liked-hero-text p { font-size: 13px; color: rgba(255,255,255,0.68); margin-top: 5px; font-weight: 400; }
+.subs-count-display { font-size: 12px; color: var(--soft-text); margin-bottom: 22px; font-weight: 600; }
+.subs-count-display b { color: var(--text2); font-weight: 800; }
 
-.track-table { width: 100%; border-collapse: separate; border-spacing: 0 4px; }
-.track-table thead tr { }
+/* ── DISCOGRAPHY ── */
+.discography-section {
+  margin-top: 44px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.discography-title {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 900; letter-spacing: -0.03em;
+  color: var(--text); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 12px;
+}
+.discography-title::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(to right, var(--border), transparent);
+}
+.discography-subtitle {
+  font-size: 11px; color: var(--soft-text); margin-bottom: 28px; font-weight: 600; letter-spacing: 0.04em;
+}
+.albums-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 18px;
+}
+.album-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.22s;
+  position: relative;
+  group: true;
+}
+.album-card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb,var(--accent) 50%,transparent);
+  box-shadow: 0 20px 50px color-mix(in srgb,var(--accent) 18%,transparent), 0 8px 20px rgba(0,0,0,0.4);
+}
+.album-cover-wrap {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+.album-cover-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  display: block;
+}
+.album-card:hover .album-cover-wrap img {
+  transform: scale(1.06);
+  filter: brightness(0.7);
+}
+.album-play-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.22s;
+}
+.album-card:hover .album-play-overlay { opacity: 1; }
+.album-play-btn {
+  width: 54px; height: 54px; border-radius: 50%;
+  background: var(--accent); color: #000; border: none;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; cursor: pointer;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+  transform: scale(0.8); transition: transform 0.2s;
+}
+.album-card:hover .album-play-btn { transform: scale(1); }
+.album-type-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--accent); color: #000;
+  font-size: 8px; font-weight: 900; font-family: var(--font-display);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 999px;
+}
+.album-info {
+  padding: 16px;
+}
+.album-name {
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: 800; letter-spacing: -0.02em;
+  color: var(--text); margin-bottom: 5px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.album-meta {
+  font-size: 11px; color: var(--soft-text); font-weight: 500;
+}
+.album-tracks-count {
+  margin-top: 8px;
+  font-size: 10px; font-weight: 800; font-family: var(--font-display);
+  color: var(--muted2); letter-spacing: 0.06em; text-transform: uppercase;
+}
+
+/* ── TRACK TABLE ── */
+.track-table { width: 100%; border-collapse: separate; border-spacing: 0 3px; }
 .track-table th {
-  font-size: 11px; letter-spacing: 0.1em; color: var(--muted);
-  text-transform: lowercase; padding: 0 14px 12px; text-align: left; font-weight: 700;
+  font-size: 9px; letter-spacing: 0.14em; color: var(--muted);
+  text-transform: uppercase; padding: 0 14px 12px; text-align: left; font-weight: 800;
+  font-family: var(--font-display);
 }
 .track-table th:first-child { padding-left: 0; width: 36px; text-align: center; }
 .th-cover { width: 48px; }
 .th-like { width: 36px; text-align: center; }
 .track-table th:last-child { width: 60px; text-align: right; }
 
-.track-row {
-  cursor: pointer; transition: all 0.12s;
-}
-.track-row td { padding: 10px 14px; font-size: 14px; font-weight: 600; vertical-align: middle; }
+.track-row { cursor: pointer; transition: all 0.12s; }
+.track-row td { padding: 9px 14px; font-size: 13px; font-weight: 600; vertical-align: middle; }
 .track-row td:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); padding-left: 10px; text-align: center; }
-.track-row td:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; text-align: right; color: var(--muted2); font-size: 12px; }
+.track-row td:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; text-align: right; color: var(--muted2); font-size: 11px; }
 .td-like { text-align: center; }
-.track-row:hover td { background: color-mix(in srgb,var(--card) 88%,transparent); }
-.track-row:hover td:first-child { background: color-mix(in srgb,var(--card) 88%,transparent); }
+.track-row:hover td { background: color-mix(in srgb,var(--card) 90%,transparent); }
+.track-row:hover td:first-child { background: color-mix(in srgb,var(--card) 90%,transparent); }
 .track-row:hover .tr-num { display: none; }
 .track-row:hover .tr-play { display: flex !important; }
-.track-row.is-playing td { background: color-mix(in srgb,var(--card) 88%,transparent); }
+.track-row.is-playing td { background: color-mix(in srgb,var(--accent) 7%,transparent); }
 .track-row.is-playing .tr-title { color: var(--accent); }
 .is-playing .tr-num { display: none; }
 .is-playing .tr-play { display: flex !important; }
 
-.tr-num { color: var(--muted2); font-size: 13px; font-weight: 700; }
+.tr-num { color: var(--muted2); font-size: 12px; font-weight: 800; font-family: var(--font-display); }
 .tr-play { display: none !important; align-items: center; justify-content: center; color: var(--accent); font-size: 14px; }
-
 .tr-cover {
-  width: 38px; height: 38px;
-  border-radius: var(--radius-xs);
-  object-fit: cover;
+  width: 38px; height: 38px; border-radius: var(--radius-xs); object-fit: cover;
   border: 1px solid color-mix(in srgb,var(--border) 75%,transparent);
   background: color-mix(in srgb,var(--card) 80%,transparent);
-  box-shadow: 0 6px 18px var(--shadow);
-  display: block;
+  box-shadow: 0 4px 14px var(--shadow); display: block;
 }
-.tr-cover.fallback {
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px; color: var(--soft-text);
-}
+.tr-cover.fallback { display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--soft-text); }
+.tr-title { font-weight: 800; font-size: 13px; letter-spacing: -0.01em; }
+.tr-album { font-size: 10px; color: var(--soft-text); margin-top: 3px; font-weight: 500; }
+.tr-type { font-size: 11px; color: var(--soft-text); font-weight: 600; }
 
-.tr-title { font-weight: 700; font-size: 14px; }
-.tr-album { font-size: 11px; color: var(--soft-text); margin-top: 2px; font-weight: 400; }
-.tr-type { font-size: 12px; color: var(--soft-text); font-weight: 600; }
+.new-badge {
+  font-size: 8px; background: var(--accent); color: #000; padding: 2px 7px;
+  border-radius: 999px; letter-spacing: 0.08em; margin-left: 8px;
+  vertical-align: middle; font-weight: 900; font-family: var(--font-display); text-transform: uppercase;
+}
 
 .like-btn {
   background: none; border: none; cursor: pointer;
@@ -440,13 +481,12 @@ aside {
 }
 .track-row:hover .like-btn { opacity: 1; }
 .like-btn.liked { opacity: 1 !important; color: var(--like); }
-.like-btn:hover { transform: scale(1.25); }
-
+.like-btn:hover { transform: scale(1.3); }
 .add-btn {
   background: none; border: none; cursor: pointer;
   width: 30px; height: 30px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 16px; transition: all 0.15s; color: var(--muted2); opacity: 0; font-weight: 700;
+  font-size: 17px; transition: all 0.15s; color: var(--muted2); opacity: 0; font-weight: 700;
 }
 .track-row:hover .add-btn { opacity: 1; }
 .add-btn:hover { color: var(--accent); transform: scale(1.2); }
@@ -454,91 +494,96 @@ aside {
   background: none; border: none; cursor: pointer;
   width: 30px; height: 30px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 14px; color: var(--muted2); opacity: 0; transition: all 0.15s;
+  font-size: 13px; color: var(--muted2); opacity: 0; transition: all 0.15s;
 }
 .track-row:hover .remove-btn { opacity: 1; }
 .remove-btn:hover { color: var(--like); }
 
 .playing-bars { display: flex; align-items: flex-end; gap: 2px; height: 14px; justify-content: center; }
 .bar { width: 3px; background: var(--accent); border-radius: 2px; animation: bar-bounce 0.5s ease-in-out infinite alternate; }
-.bar:nth-child(2) { animation-delay: 0.15s; }
-.bar:nth-child(3) { animation-delay: 0.3s; }
+.bar:nth-child(2) { animation-delay: 0.16s; }
+.bar:nth-child(3) { animation-delay: 0.32s; }
 @keyframes bar-bounce { from { height: 3px; } to { height: 13px; } }
 
-.empty-state { padding: 54px 0; text-align: center; color: var(--soft-text); font-size: 13px; font-weight: 600; }
-.empty-state .e-icon { font-size: 30px; display: block; margin-bottom: 10px; opacity: 0.15; }
+/* ── LIKED HERO ── */
+.liked-hero {
+  background: linear-gradient(135deg,#450af5 0%,#8833ff 55%,#c4efd9 100%);
+  border-radius: 26px; padding: 32px 28px; margin-bottom: 28px;
+  display: flex; align-items: center; gap: 22px;
+  box-shadow: 0 20px 60px rgba(69,10,245,0.3);
+}
+.liked-hero-icon { width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 36px; flex-shrink: 0; }
+.liked-hero-text h2 { font-size: 26px; font-weight: 900; color: #fff; font-family: var(--font-display); letter-spacing: -0.02em; }
+.liked-hero-text p { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 6px; font-weight: 600; }
 
+.empty-state { padding: 60px 0; text-align: center; color: var(--soft-text); font-size: 12px; font-weight: 700; font-family: var(--font-display); }
+.empty-state .e-icon { font-size: 32px; display: block; margin-bottom: 12px; opacity: 0.12; }
+
+/* ── MODALS ── */
 .overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.72);
-  z-index: 400; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px);
+  position: fixed; inset: 0; background: rgba(0,0,0,0.75);
+  z-index: 400; display: none; align-items: center; justify-content: center; backdrop-filter: blur(14px);
 }
 .overlay.open { display: flex; }
 .modal {
   background: var(--card); border: 1.5px solid var(--border); padding: 30px;
-  width: 440px; max-width: calc(100vw - 28px); border-radius: 28px;
-  box-shadow: 0 20px 60px var(--shadow);
+  width: 460px; max-width: calc(100vw - 28px); border-radius: 30px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
 }
-.modal h3 { font-size: 20px; font-weight: 800; margin-bottom: 18px; }
+.modal h3 { font-size: 18px; font-weight: 900; margin-bottom: 20px; font-family: var(--font-display); letter-spacing: -0.02em; }
 .modal input,.modal select,.modal textarea {
   width: 100%; background: var(--bg); border: 1.5px solid var(--border); color: var(--text);
   font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 600; padding: 12px 16px; border-radius: var(--radius-sm);
   outline: none; margin-bottom: 12px; transition: border-color 0.15s;
 }
-.modal textarea { min-height: 140px; resize: vertical; line-height: 1.6; }
+.modal textarea { min-height: 150px; resize: vertical; line-height: 1.65; }
 .modal input:focus,.modal select:focus,.modal textarea:focus { border-color: var(--accent); }
-
 .modal-btns { display: flex; gap: 10px; justify-content: flex-end; margin-top: 4px; flex-wrap: wrap; }
-.btn { padding: 10px 18px; font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; border: none; border-radius: var(--radius-xs); cursor: pointer; transition: all 0.15s; }
+.btn { padding: 10px 20px; font-family: var(--font-display); font-size: 11px; font-weight: 800; border: none; border-radius: var(--radius-xs); cursor: pointer; transition: all 0.15s; letter-spacing: 0.02em; text-transform: uppercase; }
 .btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--muted2); }
 .btn-outline:hover { border-color: var(--text); color: var(--text); }
-.btn-accent { background: var(--accent); color: #000; font-weight: 800; }
-.btn-accent:hover { filter: brightness(0.93); }
-
+.btn-accent { background: var(--accent); color: #000; font-weight: 900; }
+.btn-accent:hover { filter: brightness(0.92); }
 .btn-ytmusic {
-  background: #ff0033; color: #fff; font-weight: 700;
+  background: #ff0033; color: #fff; font-weight: 800;
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 16px; border-radius: var(--radius-xs); border: 1px solid rgba(255,0,51,0.35);
+  padding: 10px 18px; border-radius: var(--radius-xs);
 }
-.btn-ytmusic:hover { filter: brightness(0.93); }
-.btn-ytmusic svg { width: 16px; height: 16px; flex-shrink: 0; }
-
-.small-note { color: var(--soft-text); font-size: 12px; line-height: 1.55; font-weight: 400; margin-top: 10px; }
-
-.hr { height: 1px; background: color-mix(in srgb,var(--border) 70%,transparent); margin: 14px 0; }
-
+.btn-ytmusic:hover { filter: brightness(0.92); }
+.btn-ytmusic svg { width: 15px; height: 15px; flex-shrink: 0; }
+.small-note { color: var(--soft-text); font-size: 11px; line-height: 1.6; font-weight: 500; margin-top: 10px; }
+.hr { height: 1px; background: var(--border); margin: 16px 0; }
 .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .a-chip {
   display: inline-flex; align-items: center; gap: 8px;
-  border: 1.5px solid var(--border);
-  background: color-mix(in srgb,var(--card) 85%,transparent);
-  color: var(--text);
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-size: 12px; font-weight: 700;
-  cursor: pointer;
-  transition: all .15s;
+  border: 1.5px solid var(--border); background: color-mix(in srgb,var(--card) 85%,transparent);
+  color: var(--text); padding: 8px 14px; border-radius: 999px;
+  font-size: 11px; font-weight: 800; cursor: pointer; transition: all .15s; font-family: var(--font-display);
 }
 .a-chip:hover { border-color: var(--accent); color: var(--accent); }
-.a-chip img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; }
+.a-chip img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; }
 
-.settings-grid { display: grid; gap: 10px; }
-.color-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.color-row label { font-size: 11px; letter-spacing: .08em; color: var(--muted2); text-transform: lowercase; font-weight: 700; display: block; margin: 4px 0 6px; }
+/* ── SETTINGS ── */
 .preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
 .preset {
-  padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 700;
+  padding: 7px 13px; border-radius: 999px; font-size: 10px; font-weight: 800;
   border: 1.5px solid var(--border); background: transparent; color: var(--muted2);
-  cursor: pointer; transition: all .15s; font-family: 'Nunito', sans-serif;
+  cursor: pointer; transition: all .15s; font-family: var(--font-display);
 }
 .preset:hover { border-color: var(--accent); color: var(--accent); }
 .preset.active { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb,var(--accent) 10%,transparent); }
+.settings-grid { display: grid; gap: 10px; }
+.color-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.color-row label { font-size: 10px; letter-spacing: .08em; color: var(--muted2); text-transform: uppercase; font-weight: 800; display: block; margin: 4px 0 6px; font-family: var(--font-display); }
 
+/* ── TOAST ── */
 .toast {
-  position: fixed; bottom: 22px; right: 22px; padding: 12px 18px;
+  position: fixed; bottom: 24px; right: 24px; padding: 12px 20px;
   background: var(--card); border: 1.5px solid var(--accent); color: var(--accent);
-  font-size: 13px; font-weight: 700; border-radius: var(--radius-sm); z-index: 600;
-  opacity: 0; transform: translateY(8px); transition: all 0.22s; pointer-events: none;
-  box-shadow: 0 12px 38px var(--shadow);
+  font-size: 12px; font-weight: 800; border-radius: var(--radius-sm); z-index: 600;
+  opacity: 0; transform: translateY(10px); transition: all 0.24s; pointer-events: none;
+  box-shadow: 0 16px 48px var(--shadow); font-family: var(--font-display);
+  letter-spacing: 0.02em;
 }
 .toast.show { opacity: 1; transform: translateY(0); }
 
@@ -550,9 +595,12 @@ aside {
   .layout { grid-template-columns: 1fr; }
   aside { display: none; }
   .content { padding: 20px 18px 100px; }
-  .artist-hero { margin: -20px -18px 22px; padding: 40px 18px 26px; border-radius: 0 0 28px 28px; }
+  .artist-hero { margin: -20px -18px 22px; padding: 44px 18px 28px; }
   .artist-hero-inner { flex-direction: column; align-items: flex-start; }
-  .avatar-big { width: 120px; height: 120px; }
+  .avatar-big { width: 130px; height: 130px; }
+  .featured-release { margin: -20px -18px 24px; min-height: 300px; }
+  .featured-info { padding: 28px 18px 24px; }
+  .featured-hit-card { min-width: 100%; }
 }
 </style>
 </head>
@@ -566,12 +614,11 @@ aside {
   <div class="header-actions">
     <button class="settings-btn" onclick="openModal('modal-settings')">
       <span class="settings-dot"></span>
-      <svg class="settings-gear" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0">
         <path d="M19.14,12.94a7.43,7.43,0,0,0,.05-.94,7.43,7.43,0,0,0-.05-.94l2.11-1.65a.5.5,0,0,0,.12-.63l-2-3.46a.5.5,0,0,0-.6-.22l-2.49,1a7.28,7.28,0,0,0-1.63-.94l-.38-2.65A.5.5,0,0,0,12.75,1H9.25a.5.5,0,0,0-.49.42L8.38,4.07a7.28,7.28,0,0,0-1.63.94l-2.49-1a.5.5,0,0,0-.6.22l-2,3.46a.5.5,0,0,0,.12.63L3.89,11.06a7.43,7.43,0,0,0-.05.94,7.43,7.43,0,0,0,.05.94L1.78,14.59a.5.5,0,0,0-.12.63l2,3.46a.5.5,0,0,0,.6.22l2.49-1a7.28,7.28,0,0,0,1.63.94l.38,2.65a.5.5,0,0,0,.49.42h3.5a.5.5,0,0,0,.49-.42l.38-2.65a7.28,7.28,0,0,0,1.63-.94l2.49,1a.5.5,0,0,0,.6-.22l2-3.46a.5.5,0,0,0-.12-.63ZM11,15.5A3.5,3.5,0,1,1,14.5,12,3.5,3.5,0,0,1,11,15.5Z"/>
       </svg>
-      <span>настройки</span>
+      настройки
     </button>
-
     <a class="yt-btn" href="https://www.youtube.com/@KHRESHYATIKOV" target="_blank" rel="noopener">
       <svg class="yt-icon" viewBox="0 0 24 24" fill="currentColor">
         <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/>
@@ -595,71 +642,62 @@ aside {
       </div>
       <span class="count" id="liked-count">0</span>
     </div>
-
     <div class="aside-label" style="margin-top:14px;">артисты</div>
     <div id="sidebar-artists"></div>
-
     <div class="aside-label" style="margin-top:14px;">плейлисты</div>
     <div id="sidebar-lists"></div>
-
     <button class="add-pl-btn" onclick="openModal('modal-create')">+ новый плейлист</button>
   </aside>
 
   <div class="content">
 
+    <!-- PAGE: ALL -->
     <div class="page active" id="page-all">
-<!-- FEATURED BANNER -->
-<div class="featured-release">
-  <div class="featured-bg-blob"></div>
-  <div class="featured-bg-covers">
-    <img src="https://i.ibb.co/sJQpGvsg/Chat-GPT-Image-1-2026-20-57-01.png" alt="">
-  </div>
-  <div class="featured-bg-overlay"></div>
-  <div class="featured-info">
-    <div class="featured-main-title">новинки</div>
-
-    <div class="featured-section">
-      <div class="featured-section-label">1 марта 2026</div>
-      <div class="featured-hits-row">
-        <div class="featured-hit-card" onclick="playByTitle('перевёрнутые молотки')">
+      <div class="featured-release">
+        <div class="featured-bg-blob"></div>
+        <div class="featured-bg-covers">
           <img src="https://i.ibb.co/sJQpGvsg/Chat-GPT-Image-1-2026-20-57-01.png" alt="">
-          <div class="featured-hit-info">
-            <div class="featured-hit-title">перевёрнутые молотки</div>
-            <div class="featured-hit-sub">puker</div>
-          </div>
-          <button class="featured-hit-btn">▶</button>
         </div>
-        <div class="featured-hit-card" onclick="playByTitle('ВАЛЕРИНЫ ЯЙЦА')">
-          <img src="https://i.ibb.co/Q3bdnKTy/Chat-GPT-Image-1-2026-00-32-05.png" alt="">
-          <div class="featured-hit-info">
-            <div class="featured-hit-title">ВАЛЕРИНЫ ЯЙЦА</div>
-            <div class="featured-hit-sub">hadash</div>
+        <div class="featured-bg-overlay"></div>
+        <div class="featured-info">
+          <div class="featured-main-title">новинки<span>.</span></div>
+          <div>
+            <div class="featured-section-label">1 марта 2026</div>
+            <div class="featured-hits-row">
+              <div class="featured-hit-card" onclick="playByTitle('перевёрнутые молотки')">
+                <img src="https://i.ibb.co/sJQpGvsg/Chat-GPT-Image-1-2026-20-57-01.png" alt="">
+                <div class="featured-hit-info">
+                  <div class="featured-hit-title">перевёрнутые молотки</div>
+                  <div class="featured-hit-sub">puker</div>
+                </div>
+                <button class="featured-hit-btn">▶</button>
+              </div>
+              <div class="featured-hit-card" onclick="playByTitle('ВАЛЕРИНЫ ЯЙЦА')">
+                <img src="https://i.ibb.co/Q3bdnKTy/Chat-GPT-Image-1-2026-00-32-05.png" alt="">
+                <div class="featured-hit-info">
+                  <div class="featured-hit-title">ВАЛЕРИНЫ ЯЙЦА</div>
+                  <div class="featured-hit-sub">hadash</div>
+                </div>
+                <button class="featured-hit-btn">▶</button>
+              </div>
+            </div>
           </div>
-          <button class="featured-hit-btn">▶</button>
         </div>
       </div>
-    </div>
-
-  </div>
-</div>
       <div class="page-head">
         <h2>список музыки</h2>
         <p>полная дискография · grinda songers</p>
       </div>
       <table class="track-table">
         <thead><tr>
-          <th>#</th>
-          <th class="th-cover"></th>
-          <th>название</th>
-          <th>артист / тип</th>
-          <th class="th-like"></th>
-          <th style="width:36px;"></th>
-          <th>длина</th>
+          <th>#</th><th class="th-cover"></th><th>название</th>
+          <th>артист / тип</th><th class="th-like"></th><th style="width:36px;"></th><th>длина</th>
         </tr></thead>
         <tbody id="tbody-all"></tbody>
       </table>
     </div>
 
+    <!-- PAGE: LIKED -->
     <div class="page" id="page-liked">
       <div class="liked-hero">
         <div class="liked-hero-icon">♥</div>
@@ -670,20 +708,18 @@ aside {
       </div>
       <table class="track-table">
         <thead><tr>
-          <th>#</th>
-          <th class="th-cover"></th>
-          <th>название</th>
-          <th>артист / тип</th>
-          <th class="th-like"></th>
-          <th style="width:36px;"></th>
-          <th>длина</th>
+          <th>#</th><th class="th-cover"></th><th>название</th>
+          <th>артист / тип</th><th class="th-like"></th><th style="width:36px;"></th><th>длина</th>
         </tr></thead>
         <tbody id="tbody-liked"></tbody>
       </table>
     </div>
 
+    <!-- PAGE: ARTIST -->
     <div class="page" id="page-artist">
       <div class="artist-hero">
+        <div class="artist-hero-bg"></div>
+        <div class="artist-hero-bg-img"><img id="artist-bg-img" src="" alt=""></div>
         <div class="artist-hero-blob"></div>
         <div class="artist-hero-inner">
           <img class="avatar-big" id="artist-avatar" src="" alt="">
@@ -691,7 +727,7 @@ aside {
             <div class="artist-verified-row">
               <svg class="verified-icon-inline" viewBox="0 0 20 20" fill="none">
                 <circle cx="10" cy="10" r="10" fill="#1877f2"/>
-                <path d="M5.5 10.5l3 3 6-6" stroke="white" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5.5 10.5l3 3 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               <span class="verified-label">верифицированный артист</span>
             </div>
@@ -716,18 +752,21 @@ aside {
       <div class="section-label">треки</div>
       <table class="track-table">
         <thead><tr>
-          <th>#</th>
-          <th class="th-cover"></th>
-          <th>название</th>
-          <th>артист / тип</th>
-          <th class="th-like"></th>
-          <th style="width:36px;"></th>
-          <th>длина</th>
+          <th>#</th><th class="th-cover"></th><th>название</th>
+          <th>артист / тип</th><th class="th-like"></th><th style="width:36px;"></th><th>длина</th>
         </tr></thead>
         <tbody id="tbody-artist"></tbody>
       </table>
+
+      <!-- DISCOGRAPHY (shown only for диджей валера) -->
+      <div class="discography-section" id="artist-discography" style="display:none;">
+        <div class="discography-title">DISCOGRAPHY</div>
+        <div class="discography-subtitle">Albums & Releases</div>
+        <div class="albums-grid" id="albums-grid"></div>
+      </div>
     </div>
 
+    <!-- PAGE: PLAYLIST -->
     <div class="page" id="page-playlist">
       <div class="page-head">
         <h2 id="pl-title">плейлист</h2>
@@ -735,13 +774,8 @@ aside {
       </div>
       <table class="track-table">
         <thead><tr>
-          <th>#</th>
-          <th class="th-cover"></th>
-          <th>название</th>
-          <th>артист / тип</th>
-          <th class="th-like"></th>
-          <th style="width:36px;"></th>
-          <th>длина</th>
+          <th>#</th><th class="th-cover"></th><th>название</th>
+          <th>артист / тип</th><th class="th-like"></th><th style="width:36px;"></th><th>длина</th>
         </tr></thead>
         <tbody id="tbody-pl"></tbody>
       </table>
@@ -750,7 +784,7 @@ aside {
   </div>
 </div>
 
-<!-- модалка: создание плейлиста -->
+<!-- MODALS -->
 <div class="overlay" id="modal-create" onclick="overlayClick(event,this)">
   <div class="modal">
     <h3>новый плейлист</h3>
@@ -762,7 +796,6 @@ aside {
   </div>
 </div>
 
-<!-- модалка: добавить в плейлист -->
 <div class="overlay" id="modal-add" onclick="overlayClick(event,this)">
   <div class="modal">
     <h3>добавить в плейлист</h3>
@@ -774,7 +807,6 @@ aside {
   </div>
 </div>
 
-<!-- модалка: подписка -->
 <div class="overlay" id="modal-sub" onclick="overlayClick(event,this)">
   <div class="modal">
     <h3>подписка</h3>
@@ -787,11 +819,9 @@ aside {
   </div>
 </div>
 
-<!-- модалка: настройки -->
 <div class="overlay" id="modal-settings" onclick="overlayClick(event,this)">
   <div class="modal">
     <h3>настройки</h3>
-
     <div class="preset-row">
       <button class="preset" id="preset-blood" onclick="applyPreset('blood')">🩸 blood</button>
       <button class="preset" id="preset-dark" onclick="applyPreset('dark')">🌑 dark</button>
@@ -806,80 +836,47 @@ aside {
       <button class="preset" id="preset-cream" onclick="applyPreset('cream')">🍞 cream</button>
       <button class="preset" id="preset-custom" onclick="applyPreset('custom')">🎨 custom</button>
     </div>
-
     <div class="settings-grid" id="custom-settings" style="display:none;">
-      <div class="small-note" style="margin-top:0;">
-        3 цвета: <b style="color:var(--text2)">текст</b> / <b>фон</b> / <b style="color:var(--soft-text)">текст2</b>
+      <div class="small-note" style="margin-top:0;">3 цвета: <b style="color:var(--text2)">текст</b> / <b>фон</b> / <b style="color:var(--soft-text)">текст2</b></div>
+      <div class="color-row">
+        <div><label>1 — текст</label><input id="c_text" type="color" value="#f2edff" oninput="previewCustom()"></div>
+        <div><label>2 — фон</label><input id="c_bg" type="color" value="#07060b" oninput="previewCustom()"></div>
       </div>
       <div class="color-row">
-        <div>
-          <label>1 — текст</label>
-          <input id="c_text" type="color" value="#f2edff" oninput="previewCustom()">
-        </div>
-        <div>
-          <label>2 — фон</label>
-          <input id="c_bg" type="color" value="#07060b" oninput="previewCustom()">
-        </div>
-      </div>
-      <div class="color-row">
-        <div>
-          <label>3 — текст2</label>
-          <input id="c_text2" type="color" value="#cbbcff" oninput="previewCustom()">
-        </div>
-        <div>
-          <label>карточка</label>
-          <input id="c_card" type="color" value="#0e0b16" oninput="previewCustom()">
-        </div>
+        <div><label>3 — текст2</label><input id="c_text2" type="color" value="#cbbcff" oninput="previewCustom()"></div>
+        <div><label>карточка</label><input id="c_card" type="color" value="#0e0b16" oninput="previewCustom()"></div>
       </div>
       <div class="modal-btns" style="justify-content:space-between;">
         <button class="btn btn-outline" onclick="resetCustom()">сброс</button>
-        <button class="btn btn-accent" onclick="saveCustom()">сохранить custom</button>
+        <button class="btn btn-accent" onclick="saveCustom()">сохранить</button>
       </div>
     </div>
-
     <div class="hr"></div>
-    <div class="small-note">
-      все права защищены<br>
-      <b>ИП Хлусов Михаил Романович</b>
-    </div>
-    <div class="modal-btns">
-      <button class="btn btn-outline" onclick="closeModals()">закрыть</button>
-    </div>
+    <div class="small-note">все права защищены<br><b>ИП Хлусов Михаил Романович</b></div>
+    <div class="modal-btns"><button class="btn btn-outline" onclick="closeModals()">закрыть</button></div>
   </div>
 </div>
 
-<!-- модалка: трек -->
 <div class="overlay" id="modal-track" onclick="overlayClick(event,this)">
   <div class="modal">
-    <div style="display:flex; gap:16px; align-items:center; margin-bottom:12px;">
-      <img id="track-cover" src="" alt="" style="width:68px;height:68px;border-radius:18px;object-fit:cover;border:1px solid var(--border);box-shadow:0 16px 40px var(--shadow);background:color-mix(in srgb,var(--card) 80%,transparent);" onerror="this.style.display='none'">
+    <div style="display:flex;gap:18px;align-items:center;margin-bottom:14px;">
+      <img id="track-cover" src="" alt="" style="width:72px;height:72px;border-radius:20px;object-fit:cover;border:1px solid var(--border);box-shadow:0 16px 48px var(--shadow);flex-shrink:0;" onerror="this.style.display='none'">
       <div style="min-width:0;">
-        <h3 id="track-title" style="margin-bottom:6px;font-size:18px;">трек</h3>
-        <div style="font-size:12px;color:var(--soft-text);font-weight:400;margin-top:-4px;">
-          <span id="track-meta">—</span>
-        </div>
+        <h3 id="track-title" style="margin-bottom:6px;">трек</h3>
+        <div style="font-size:11px;color:var(--soft-text);font-weight:500;margin-top:-2px;"><span id="track-meta">—</span></div>
       </div>
     </div>
-
     <div class="chip-row" id="track-artists"></div>
-
     <div class="hr"></div>
-
-    <div style="font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:lowercase;font-weight:700;margin-bottom:8px;">
-      текст трека
-    </div>
+    <div style="font-size:9px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;font-weight:800;margin-bottom:8px;font-family:var(--font-display);">текст трека</div>
     <textarea id="track-lyrics" readonly></textarea>
-
     <div class="modal-btns">
       <button class="btn btn-outline" onclick="closeModals()">закрыть</button>
       <button class="btn btn-ytmusic" id="btn-ytmusic" onclick="openYTMusic()">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M10 15V9l6 3-6 3Zm2-13a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8Z"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 15V9l6 3-6 3Zm2-13a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8Z"/></svg>
         youtube music
       </button>
     </div>
-
     <div class="small-note" id="track-credit"></div>
   </div>
 </div>
@@ -887,7 +884,6 @@ aside {
 <div class="toast" id="toast"></div>
 
 <script>
-// ===== SHARED SUBS via storage API =====
 const STORAGE_PREFIX = 'subs:';
 
 async function getSharedSubs(artistId) {
@@ -897,11 +893,8 @@ async function getSharedSubs(artistId) {
     return JSON.parse(result.value) || [];
   } catch(e) { return []; }
 }
-
 async function setSharedSubs(artistId, arr) {
-  try {
-    await window.storage.set(STORAGE_PREFIX + artistId, JSON.stringify(arr), true);
-  } catch(e) {}
+  try { await window.storage.set(STORAGE_PREFIX + artistId, JSON.stringify(arr), true); } catch(e) {}
 }
 
 const COVERS = {
@@ -918,70 +911,27 @@ const COVERS = {
   'перевёрнутые молотки': 'https://i.ibb.co/sJQpGvsg/Chat-GPT-Image-1-2026-20-57-01.png',
 };
 
+// DISCOGRAPHY data for диджей валера
+const DISCOGRAPHY = {
+  'диджей валера': [
+    {
+      name: 'Валера Хаб',
+      cover: 'https://i.ibb.co/BHtF8Dqf/Blur-Valera.png',
+      type: 'Album',
+      year: '2026',
+      trackTitles: ['Абсурд', 'ШИМПАВОЗ'],
+    }
+  ]
+};
+
 const ARTISTS = [
   {
     id:'puker', name:'Puker',
     avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQAW8P4xeiyRl0Vb0lQ5tWuI8NPzJZlvXF7w&s',
     url:'https://www.youtube.com/@KHRESHYATIKOV',
     tracks:[
-      {
-        title:'перевёрнутые молотки', album:'новинка · 01.03.2026', type:'puker', dur:'—',
-        url:'https://music.youtube.com/watch?v=oF7uzsH1ufA&si=E6tO9LslWkkkHq-6',
-        cover:COVERS['перевёрнутые молотки'],
-        lyrics:`[куплет]
-Салат огурец помидор на обед
-Перевёрнутые Молотки дают тебе ответ
-Твой трек — говно, наш трек — нет
-П.М. жгут, а ты идёшь в туалет
-Твой стиль — хуйня, наш стиль — огонь
-Перевёрнутые Молотки, сука, держи ладонь
-Доллар упал, П.М. встал
-Блять, ты в Майнкрафт наш знак не видал
-Напротив твоего дома стоит знак П.М.
-Перевёрнутые Молотки написали всем
-Из алмазных блоков, блять, огромный знак
-Нахуй твой дом — П.М. вот так
-Ложка говнёшка, вилка — дрочилка
-Перевёрнутые Молотки — мощная дубинка
-Твой трек с окна, наш трек — броня
-П.М. в Майнкрафт — это не фигня
-Гречка и понты — кто там орёт
-Перевёрнутые Молотки вперёд
-Борщ и свёкла — П.М. живёт
-Нахуй твой дом — П.М. жжёт
-Лаваш говядина — твой стиль гнилой
-Перевёрнутые Молотки стоят за стеной
-Багет круассан — ты просто пустой
-П.М. в Майнкрафт — мы всегда с тобой
-Яблоки манго киви лимон
-Перевёрнутые Молотки — это не сон
-Напротив твоего дома блять огромный знак
-П.М. написали — вот это размах
-
-[припев]
-Дай дай дай — П.М. прёт вперёд
-Дай дай дай — Перевёрнутые Молотки жжёт
-Напротив твоего дома в Майнкрафт стоим
-Перевёрнутые Молотки — мы никогда не спим
-П.М. в Майнкрафт из алмазных блоков
-Нахуй твои понты — без лишних намёков
-Напротив твоего дома буквы горят
-Перевёрнутые Молотки — все про нас говорят
-П.М. сука П.М. блять П.М. огонь
-Перевёрнутые Молотки — держи ладонь
-Напротив твоего дома знак стоит
-Перевёрнутые Молотки — никто не забыт`,
-        credits:'made by: puker'
-      },
-      {
-        title:'FUCK THE LOADING', album:'новинка · 12.10.2026', type:'puker', dur:'—',
-        url:'https://music.youtube.com/watch?v=g4oN2x8piEU&desc_update=1&si=1Q2TA9aDnvwRI8vl',
-        cover:COVERS['FUCK THE LOADING'],
-        lyrics:`[Verse 1]
-Оп-оп-оп-оп-еративка
-Где подевался мишабан-бан-бан`,
-        credits:'made by: puker'
-      },
+      { title:'перевёрнутые молотки', album:'новинка · 01.03.2026', type:'puker', dur:'—', url:'https://music.youtube.com/watch?v=oF7uzsH1ufA&si=E6tO9LslWkkkHq-6', cover:COVERS['перевёрнутые молотки'], lyrics:`[куплет]\nСалат огурец помидор на обед\nПеревёрнутые Молотки дают тебе ответ\nТвой трек — говно, наш трек — нет\nП.М. жгут, а ты идёшь в туалет\nТвой стиль — хуйня, наш стиль — огонь\nПеревёрнутые Молотки, сука, держи ладонь\nДоллар упал, П.М. встал\nБлять, ты в Майнкрафт наш знак не видал\nНапротив твоего дома стоит знак П.М.\nПеревёрнутые Молотки написали всем\nИз алмазных блоков, блять, огромный знак\nНахуй твой дом — П.М. вот так\n\n[припев]\nДай дай дай — П.М. прёт вперёд\nДай дай дай — Перевёрнутые Молотки жжёт\nНапротив твоего дома в Майнкрафт стоим\nПеревёрнутые Молотки — мы никогда не спим`, credits:'made by: puker' },
+      { title:'FUCK THE LOADING', album:'новинка · 12.10.2026', type:'puker', dur:'—', url:'https://music.youtube.com/watch?v=g4oN2x8piEU', cover:COVERS['FUCK THE LOADING'], lyrics:`[Verse 1]\nОп-оп-оп-оп-еративка\nГде подевался мишабан-бан-бан`, credits:'made by: puker' },
     ]
   },
   {
@@ -989,196 +939,21 @@ const ARTISTS = [
     avatar:'https://i.ibb.co/3yKMzsBj/Screenshot-2025-11-19-11-51-42-54-dba69a5e82e939c3ddef13f99a115ca3.jpg',
     url:'https://www.youtube.com/@KHRESHYATIKOV',
     tracks:[
-      {
-        title:'ВАЛЕРИНЫ ЯЙЦА', album:'новинка · 01.03.2026', type:'hadash', dur:'—',
-        url:'https://music.youtube.com/watch?v=uSkUYq1afsk&si=WRnrVHedna8aletY',
-        cover:COVERS['ВАЛЕРИНЫ ЯЙЦА'],
-        lyrics:`Валера нахуй отсюда, ёбаное существо
-Так, эй
-Под черепом V2, два яйца за полночь (М-м-м)
-Валера не спит — катает их в одиночку (М-м-м)
-Цвет как желток, ж-ж-ж, цвет родной — прям так, со стока (М-м-м)
-Яйцо мчит за сотку, яйца в дорогих колготках (М-м-м)
-Небоскрёбы в smoke, smoke ice kush, но яйца не smoky (М-м-м)
-Эти яйца на нём — теперь они стоят в два раза дороже (М-м-м)
-В башке пара яиц, вау, да ты способен на подвиг (М-м-м)
-Большие яйца отправят на бойню — яйцам всегда было похуй
-
-Эй, вроде скатился давно, всё так же пугаюсь когда вижу Валеру (Эй)
-Серые яйца, варёные яйца — всё катится прямо по полу (Yes)
-Быстрое яйцо, быстрая скорлупа — Валера благородного помёта (Да)
-Нет ничего дороже желтка — но Валера не знает об этом
-Яйца на завтрак, день начинается с яиц по-валерински (М-м-м)
-Моя кровать king size, но яйца меняются быстро и низко (Switch)
-Надеюсь последнее что Валера услышит — хруст своей башки
-Быстрая смерть, чтобы не думать о том, где его желтки
-
-Валера у тебя только яйца в голове — это факт, не вопрос (М-м-м)
-Я уже видел таких — ты не первый яичный прохвост (М-м-м)
-Валера ты реально существо — это точный диагноз (М-м-м)
-Рубль оставил в прошлом — теперь только яйца всерьёз (М-м-м)
-Новое яйцо — приятно, ещё приятней — новый желток (Е)
-Private jet, Дубай, Испания — яйцо катится на восток (Эй)
-Как хорошо, что братишка рос не рядом с Валерой — повезло, паренёк
-Валере сегодня яйца (Валере сегодня снова желток)
-
-Под черепом V2, два яйца за полночь (М-м-м)
-Валера не спит — катает их в одиночку (М-м-м)
-Цвет как желток, ж-ж-ж, цвет родной — прям так, со стока (М-м-м)
-Яйцо мчит за сотку, яйца в дорогих колготках (М-м-м)
-Небоскрёбы в smoke, smoke ice kush, но яйца не smoky (М-м-м)
-Эти яйца на нём — теперь они стоят в два раза дороже (М-м-м)
-В башке пара яиц, вау, да ты способен на подвиг (М-м-м)
-Большие яйца отправят на бойню — яйцам всегда было похуй
-
-Валера нахуй отсюда, ёбаное существо, так
-И пусть с Валерой яйца — он забудет обо всём когда подойдёт мрак
-Хуй с ней со скорлупой, но я совру если скажу что яйца — не смак
-И пусть с Валерой яйца — он забудет обо всём когда подойдёт мрак
-Хуй с ней со скорлупой, но я совру если скажу что яйца — не смак
-
-Валера, ну котик, не волнуйся — яйца на месте, всё в масть
-Мы думали съехать от Валеры — но вернулись, такая напасть
-В погребе укрылись от яиц — но Валера пролез, вот напасть
-Так что котик не волнуйся — от Валеры никак не пропасть`,
-        credits:'made by: hadash'
-      },
-      {
-        title:'ЯЙЦА ВАЛЕРЫ', album:'новинка · 26.02.2026', type:'hadash', dur:'—',
-        url:'https://music.youtube.com/watch?v=pfXDscRAiCU&si=VCYqh56_9iQv7TT8',
-        cover:COVERS['ЯЙЦА ВАЛЕРЫ'],
-        lyrics:`[Intro]
-Валера ты реально существо, блять, хм
-У тебя только яйца в голове, ого
-Просыпаешься утром — в башке желток
-Красавчик, но вместо мозга — лоток
-
-[Chorus]
-Валера ты реально существо
-У тебя только яйца в голове
-Валера идёт в яйцемагазин за яйцом
-Валера приходит яйцедомой с яйцом
-Валера ложится яйцеспать с яйцом
-Валера блять ты реально яйцо
-
-[Verse]
-Доктор спросил — где яйцеболит, покажи
-Валера достал яйцо — на, яйцедержи
-Доктор упал, медсестра яйцебежала
-Скорлупа на полу, курица яйцерыдала
-Пранк не пранк — Валера серьёзен
-Яйца в башке — диагноз поставлен
-В школе спросили — два плюс яйцо
-Валера сказал — яйцо блять, яйцо
-Учитель в шоке — это пранк или нет
-Валера в ответ достал яйцепакет
-Директор кричит — это пранк, стоп снимай
-Валера спокойно — яйценет, это лайф, понимай`,
-        credits:'made by: hadash'
-      },
-      {
-        title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & диджей валера', dur:'—',
-        url:'https://music.youtube.com/watch?v=PiHA04UK92o&desc_update=1&si=ZTIxY-BwQKaGVq5c',
-        cover:COVERS['ШИМПАВОЗ'],
-        lyrics:`[Интро]
-Шимпавоз...
-SHIMPAMOTORS...
-Шимпавозия...
-
-[Хук]
-Шимпавоз едет по шимпавозии (вроооум)
-Макс нитро за рулём в кабине (едееем)
-Мишабан рядом смотрит в окошко (смотриит)
-Шимпавоз — лучшая тачка в мире (факт-факт)`,
-        credits:'made by: hadash & MAX-NITRO & диджей валера'
-      },
-      {
-        title:'ГАРБАЗБРОС', album:'новинка · 24.02.2026', type:'hadash', dur:'—',
-        url:'https://music.youtube.com/watch?v=nhRGMVH6nVU',
-        cover:COVERS['ГАРБАЗБРОС'],
-        lyrics:`[Интро]
-Гарба-зброс...
-Шимпавоз...
-
-[Хук]
-Сходил в туалет — зробил гарба-зброс (зброс-зброс)
-Вышел из клозета — сел в Шимпавоз (Шимпавоз)
-Сходил в туалет — зробил гарба-зброс (зброс-зброс)
-Вышел из клозета — сел в Шимпавоз (эй-эй)
-
-[Куплет]
-Кепка LA, цепь на шее, шампань в лапе (yeah)
-Сижу на троне — это не на диване (few)
-Кряк за кряком, зброс за зброс (зброс)
-Спасибо за подписку на Хадаша (Спасибо!)
-Вышел из клозета — свежий как матрас
-Шимпавоз уже заводит газ
-Мне лень, мне лень, мне лень, мне лень
-Сходить ещё раз — ну а чё, могу себе позволить
-
-[Аутро]
-Валера, что ты сделал?`,
-        credits:'made by: hadash'
-      },
-      {
-        title:'Капуцин', album:'новинка · 22.02.2026', type:'hadash & MAX-NITRO', dur:'—',
-        url:'https://music.youtube.com/watch?v=wU7yTtbyT3c&desc_update=1&si=Cmo2N5pIWNozWaCK',
-        cover:COVERS['Капуцин'],
-        lyrics:`[Припев]
-Это может чика-чика или это капуцин?
-На вид как плюшка или это капуцин?
-Может быть бананчик или это капуцин?
-Это что ль мимимишка — это капуцин
-
-[Постприпев]
-Ка-пу-цин
-Ка-пу-цин
-Это (это) капуцин`,
-        credits:'made by: hadash & MAX-NITRO'
-      },
-      {
-        title:'Белые мишабаны', album:'сингл · 15.01.2026', type:'hadash', dur:'—',
-        url:'https://music.youtube.com/watch?v=aPApq1M2384&desc_update=1&si=wZIkSN9NqyfIyEad',
-        cover:COVERS['Белые мишабаны'],
-        lyrics:`(khv)
-Белые мишабаны, белые мишабаны
-Беззащитны шимпы под пуканьем моим
-Белые мишабаны, странные бараны
-Люди рыгают, что ж вы натворили с ним?
-
-Я их пук-пук-пукнул средь зимы морозной
-И сказал им: "Тун-тун, это всё фанк"
-Мишабано плачет, это так серьёзно
-Но рыгаю prettу - это мой талант`,
-        credits:'made by: hadash'
-      },
+      { title:'ВАЛЕРИНЫ ЯЙЦА', album:'новинка · 01.03.2026', type:'hadash', dur:'—', url:'https://music.youtube.com/watch?v=uSkUYq1afsk', cover:COVERS['ВАЛЕРИНЫ ЯЙЦА'], lyrics:`Валера нахуй отсюда, ёбаное существо\nТак, эй\nПод черепом V2, два яйца за полночь`, credits:'made by: hadash' },
+      { title:'ЯЙЦА ВАЛЕРЫ', album:'новинка · 26.02.2026', type:'hadash', dur:'—', url:'https://music.youtube.com/watch?v=pfXDscRAiCU', cover:COVERS['ЯЙЦА ВАЛЕРЫ'], lyrics:`[Chorus]\nВалера ты реально существо\nУ тебя только яйца в голове`, credits:'made by: hadash' },
+      { title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & диджей валера', dur:'—', url:'https://music.youtube.com/watch?v=PiHA04UK92o', cover:COVERS['ШИМПАВОЗ'], lyrics:`[Интро]\nШимпавоз...`, credits:'made by: hadash & MAX-NITRO & диджей валера' },
+      { title:'ГАРБАЗБРОС', album:'новинка · 24.02.2026', type:'hadash', dur:'—', url:'https://music.youtube.com/watch?v=nhRGMVH6nVU', cover:COVERS['ГАРБАЗБРОС'], lyrics:`[Хук]\nСходил в туалет — зробил гарба-зброс`, credits:'made by: hadash' },
+      { title:'Капуцин', album:'новинка · 22.02.2026', type:'hadash & MAX-NITRO', dur:'—', url:'https://music.youtube.com/watch?v=wU7yTtbyT3c', cover:COVERS['Капуцин'], lyrics:`[Припев]\nЭто может чика-чика или это капуцин?`, credits:'made by: hadash & MAX-NITRO' },
+      { title:'Белые мишабаны', album:'сингл · 15.01.2026', type:'hadash', dur:'—', url:'https://music.youtube.com/watch?v=aPApq1M2384', cover:COVERS['Белые мишабаны'], lyrics:`Белые мишабаны, белые мишабаны`, credits:'made by: hadash' },
     ]
   },
   {
     id:'диджей валера', name:'диджей валера',
-    avatar:'https://iili.io/qqMgWg4.jpg',
+    avatar:'https://i.ibb.co/BHtF8Dqf/Blur-Valera.png',
     url:'https://www.youtube.com/@KHRESHYATIKOV',
     tracks:[
-      {
-        title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & диджей валера', dur:'—',
-        url:'https://music.youtube.com/watch?v=PiHA04UK92o&desc_update=1&si=ZTIxY-BwQKaGVq5c',
-        cover:COVERS['ШИМПАВОЗ'],
-        lyrics:`[Интро]
-Шимпавоз...`,
-        credits:'made by: hadash & MAX-NITRO & диджей валера'
-      },
-      {
-        title:'Абсурд', album:'сингл · 25.12.2025', type:'диджей валера', dur:'—',
-        url:'https://music.youtube.com/watch?v=RnBmoL8ohGY&desc_update=1&si=wYVUwqc-gTdH37QZ',
-        cover:COVERS['Абсурд'],
-        lyrics:`[Verse]
-У тебя мало оперативки я рыганул в ботинки там мишабан
-Я перданул ему в рот там я пнул брейнрот
-Я летаю будто самолёт и вижу обдрыщеный вертолёт
-Валера в дагестане он кушает хинкали
-Я рыганул на его тарелку он в шоке застыл`,
-        credits:'made by: диджей валера'
-      },
+      { title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & диджей валера', dur:'—', url:'https://music.youtube.com/watch?v=PiHA04UK92o', cover:COVERS['ШИМПАВОЗ'], lyrics:`[Интро]\nШимпавоз...`, credits:'made by: hadash & MAX-NITRO & диджей валера' },
+      { title:'Абсурд', album:'сингл · 25.12.2025', type:'диджей валера', dur:'—', url:'https://music.youtube.com/watch?v=RnBmoL8ohGY', cover:COVERS['Абсурд'], lyrics:`[Verse]\nУ тебя мало оперативки я рыганул в ботинки там мишабан`, credits:'made by: диджей валера' },
     ]
   },
   {
@@ -1186,41 +961,10 @@ SHIMPAMOTORS...
     avatar:'https://iili.io/qKvmadx.png',
     url:'https://www.youtube.com/@KHRESHYATIKOV',
     tracks:[
-      {
-        title:'Тыныш Cash', album:'новинка · 24.02.2026', type:'max-nitro', dur:'—',
-        url:'https://music.youtube.com/watch?v=janSZfCWlBc&desc_update=1&si=WOoAIVF6F7VZ9crF',
-        cover:COVERS['Тыныш Cash'],
-        lyrics:`[Intro]
-Ақша — энергия, түсіндің бе, досым?
-Тыныш сөйлеймін, бірақ қалтам толсын.`,
-        credits:'made by: max-nitro'
-      },
-      {
-        title:'SHIMPIKI MODE', album:'новинка · 24.02.2026', type:'max-nitro', dur:'—',
-        url:'https://music.youtube.com/watch?v=MUEe2D2y5qU&desc_update=1&si=sOlPsQZO02jHwJor',
-        cover:COVERS['SHIMPIKI MODE'],
-        lyrics:`[Интро]
-Ты думал кто тут правит джунглями?
-Не люди, братан
-Шимпики зашли в чат`,
-        credits:'made by: max-nitro'
-      },
-      {
-        title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & диджей валера', dur:'—',
-        url:'https://music.youtube.com/watch?v=PiHA04UK92o&desc_update=1&si=ZTIxY-BwQKaGVq5c',
-        cover:COVERS['ШИМПАВОЗ'],
-        lyrics:`[Интро]
-Шимпавоз...`,
-        credits:'made by: hadash & MAX-NITRO & диджей валера'
-      },
-      {
-        title:'Капуцин', album:'новинка · 22.02.2026', type:'hadash & MAX-NITRO', dur:'—',
-        url:'https://music.youtube.com/watch?v=wU7yTtbyT3c&desc_update=1&si=Cmo2N5pIWNozWaCK',
-        cover:COVERS['Капуцин'],
-        lyrics:`[Припев]
-Это может чика-чика или это капуцин?`,
-        credits:'made by: hadash & MAX-NITRO'
-      },
+      { title:'Тыныш Cash', album:'новинка · 24.02.2026', type:'max-nitro', dur:'—', url:'https://music.youtube.com/watch?v=janSZfCWlBc', cover:COVERS['Тыныш Cash'], lyrics:`[Intro]\nАқша — энергия, түсіндің бе, досым?`, credits:'made by: max-nitro' },
+      { title:'SHIMPIKI MODE', album:'новинка · 24.02.2026', type:'max-nitro', dur:'—', url:'https://music.youtube.com/watch?v=MUEe2D2y5qU', cover:COVERS['SHIMPIKI MODE'], lyrics:`[Интро]\nТы думал кто тут правит джунглями?`, credits:'made by: max-nitro' },
+      { title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & диджей валера', dur:'—', url:'https://music.youtube.com/watch?v=PiHA04UK92o', cover:COVERS['ШИМПАВОЗ'], lyrics:`[Интро]\nШимпавоз...`, credits:'made by: hadash & MAX-NITRO & диджей валера' },
+      { title:'Капуцин', album:'новинка · 22.02.2026', type:'hadash & MAX-NITRO', dur:'—', url:'https://music.youtube.com/watch?v=wU7yTtbyT3c', cover:COVERS['Капуцин'], lyrics:`[Припев]\nЭто может чика-чика или это капуцин?`, credits:'made by: hadash & MAX-NITRO' },
     ]
   },
 ];
@@ -1238,19 +982,15 @@ function buildTracks(artists) {
   for(const a of artists) for(const t of a.tracks) {
     const key=(t.title+'|'+(t.url||'')).toLowerCase();
     if(!map.has(key)) map.set(key,{
-      id:id++,
-      title:t.title, album:t.album, type:t.type, dur:t.dur, url:t.url,
-      cover:t.cover || '',
-      lyrics:t.lyrics||'',
-      credits:t.credits||'',
-      artists:new Set([a.id])
+      id:id++, title:t.title, album:t.album, type:t.type, dur:t.dur, url:t.url,
+      cover:t.cover||'', lyrics:t.lyrics||'', credits:t.credits||'', artists:new Set([a.id])
     });
     else {
-      const item = map.get(key);
+      const item=map.get(key);
       item.artists.add(a.id);
-      if(!item.cover && t.cover) item.cover = t.cover;
-      if(t.lyrics && t.lyrics.length > (item.lyrics||'').length) item.lyrics = t.lyrics;
-      if(!item.credits && t.credits) item.credits = t.credits;
+      if(!item.cover&&t.cover) item.cover=t.cover;
+      if(t.lyrics&&t.lyrics.length>(item.lyrics||'').length) item.lyrics=t.lyrics;
+      if(!item.credits&&t.credits) item.credits=t.credits;
     }
   }
   return Array.from(map.values()).map(x=>({...x,artists:Array.from(x.artists)}));
@@ -1264,63 +1004,45 @@ function tracksByArtist(aId){return TRACKS.filter(t=>t.artists.includes(aId));}
 function escapeHTML(s){if(!s)return'';return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 
 function playByTitle(title) {
-  const t = TRACKS.find(x => x.title.toLowerCase() === title.toLowerCase());
+  const t=TRACKS.find(x=>x.title.toLowerCase()===title.toLowerCase());
   if(t) play(t.id);
 }
-
 function play(id) {
-  nowPlaying=id;
-  const t=TRACKS.find(x=>x.id===id);
-  rerenderAll();
-  openTrackModal(t);
+  nowPlaying=id; rerenderAll(); openTrackModal(TRACKS.find(x=>x.id===id));
 }
-
 function openTrackModal(t){
   if(!t) return;
-  currentTrackUrl = t.url || '';
-  document.getElementById('track-title').textContent = t.title || 'трек';
-  document.getElementById('track-meta').textContent = t.album ? t.album : (t.type||'');
-  document.getElementById('track-lyrics').value = t.lyrics || 'текст пока не добавлен 👀';
-  document.getElementById('track-credit').innerHTML = t.credits
-    ? `кто делал: <b>${escapeHTML(t.credits.replace(/^made by:\s*/i,''))}</b>`
-    : `кто делал: <b>${escapeHTML(t.type||'—')}</b>`;
-
-  const coverEl = document.getElementById('track-cover');
-  if(t.cover){
-    coverEl.style.display = 'block';
-    coverEl.src = t.cover;
-  }else{
-    coverEl.style.display = 'none';
-    coverEl.src = '';
-  }
-
-  const wrap = document.getElementById('track-artists');
-  const artists = (t.artists||[]).map(artistById).filter(Boolean);
-  wrap.innerHTML = artists.map(a => `
-    <button class="a-chip" onclick="openArtist('${a.id}'); closeModals();">
+  currentTrackUrl=t.url||'';
+  document.getElementById('track-title').textContent=t.title||'трек';
+  document.getElementById('track-meta').textContent=t.album?(t.album):(t.type||'');
+  document.getElementById('track-lyrics').value=t.lyrics||'текст пока не добавлен 👀';
+  document.getElementById('track-credit').innerHTML=t.credits
+    ?`кто делал: <b>${escapeHTML(t.credits.replace(/^made by:\s*/i,''))}</b>`
+    :`кто делал: <b>${escapeHTML(t.type||'—')}</b>`;
+  const coverEl=document.getElementById('track-cover');
+  if(t.cover){coverEl.style.display='block';coverEl.src=t.cover;}
+  else{coverEl.style.display='none';coverEl.src='';}
+  const wrap=document.getElementById('track-artists');
+  const artists=(t.artists||[]).map(artistById).filter(Boolean);
+  wrap.innerHTML=artists.map(a=>`
+    <button class="a-chip" onclick="openArtist('${a.id}');closeModals();">
       <img src="${a.avatar}" alt="" onerror="this.style.display='none'">
       <span>${escapeHTML(a.name)}</span>
-    </button>
-  `).join('');
-
-  const btn = document.getElementById('btn-ytmusic');
-  btn.style.display = t.url ? 'inline-flex' : 'none';
+    </button>`).join('');
+  const btn=document.getElementById('btn-ytmusic');
+  btn.style.display=t.url?'inline-flex':'none';
   openModal('modal-track');
 }
-
 function openYTMusic(){
-  if(!currentTrackUrl){ showToast('ссылки на трек нет :('); return; }
-  window.open(currentTrackUrl, '_blank', 'noopener');
+  if(!currentTrackUrl){showToast('ссылки на трек нет :(');return;}
+  window.open(currentTrackUrl,'_blank','noopener');
 }
 
 function coverCellHTML(t){
-  if(t.cover){
-    return `<img class="tr-cover" src="${t.cover}" alt="" onerror="this.outerHTML='<div class=&quot;tr-cover fallback&quot;>—</div>'">`;
-  }
+  if(t.cover) return `<img class="tr-cover" src="${t.cover}" alt="" onerror="this.outerHTML='<div class=&quot;tr-cover fallback&quot;>—</div>'">`;
   return `<div class="tr-cover fallback">—</div>`;
 }
-
-function rowHTML(t, i, plId) {
+function rowHTML(t,i,plId){
   const playing=nowPlaying===t.id;
   const lk=isLiked(t.id);
   const isNew=(t.album||'').toLowerCase().includes('новинка');
@@ -1331,7 +1053,7 @@ function rowHTML(t, i, plId) {
     </td>
     <td>${coverCellHTML(t)}</td>
     <td>
-      <div class="tr-title">${escapeHTML(t.title)}${isNew?`<span style="font-size:9px;background:var(--accent);color:#000;padding:2px 8px;border-radius:999px;letter-spacing:.06em;margin-left:8px;vertical-align:middle;font-weight:800;">new</span>`:''}</div>
+      <div class="tr-title">${escapeHTML(t.title)}${isNew?`<span class="new-badge">new</span>`:''}</div>
       <div class="tr-album">${escapeHTML(t.album||'')}</div>
     </td>
     <td class="tr-type">${escapeHTML(t.type||'')}</td>
@@ -1341,48 +1063,72 @@ function rowHTML(t, i, plId) {
     <td onclick="event.stopPropagation()">
       ${plId!==null
         ?`<button class="remove-btn" onclick="removeFromPl(${plId},${t.id})">✕</button>`
-        :`<button class="add-btn" onclick="openAdd(${t.id})">+</button>`
-      }
+        :`<button class="add-btn" onclick="openAdd(${t.id})">+</button>`}
     </td>
     <td>${t.dur||'—'}</td>
   </tr>`;
 }
 
-function toggleLike(id) {
+function toggleLike(id){
   const idx=liked.indexOf(id);
   if(idx>=0) liked.splice(idx,1); else liked.push(id);
   saveLiked(); updateLikedCount(); rerenderAll();
   const t=TRACKS.find(x=>x.id===id);
   showToast(liked.includes(id)?`♥ ${t.title}`:'убрано из понравившегося');
 }
-function updateLikedCount() {
+function updateLikedCount(){
   document.getElementById('liked-count').textContent=liked.length;
   document.getElementById('liked-hero-sub').textContent=`${liked.length} треков`;
 }
-
-function renderAll() {
+function renderAll(){
   document.getElementById('all-count').textContent=TRACKS.length;
   document.getElementById('tbody-all').innerHTML=TRACKS.map((t,i)=>rowHTML(t,i,null)).join('');
 }
-function renderLiked() {
+function renderLiked(){
   const lTracks=TRACKS.filter(t=>liked.includes(t.id));
   const tbody=document.getElementById('tbody-liked');
   if(!lTracks.length){tbody.innerHTML=`<tr><td colspan="7"><div class="empty-state"><span class="e-icon">♡</span>пока пусто — лайкай треки через ♡</div></td></tr>`;return;}
   tbody.innerHTML=lTracks.map((t,i)=>rowHTML(t,i,null)).join('');
 }
-function rerenderAll() {
+function rerenderAll(){
   renderAll(); renderLiked();
   if(currentPlId!==null) renderPlTracks(currentPlId);
   if(currentArtistId!==null) renderArtistTracks(currentArtistId);
 }
-
-function playFirstArtistTrack() {
+function playFirstArtistTrack(){
   if(!currentArtistId) return;
   const tr=tracksByArtist(currentArtistId);
   if(tr.length) play(tr[0].id);
 }
 
-function renderArtistsSidebar() {
+function renderDiscography(artistId) {
+  const disc = DISCOGRAPHY[artistId];
+  const section = document.getElementById('artist-discography');
+  const grid = document.getElementById('albums-grid');
+  if(!disc || !disc.length){ section.style.display='none'; return; }
+  section.style.display='block';
+  grid.innerHTML = disc.map(album => {
+    const trackCount = album.trackTitles ? album.trackTitles.length : 0;
+    const firstTrack = album.trackTitles && album.trackTitles.length
+      ? TRACKS.find(t => t.title === album.trackTitles[0]) : null;
+    return `<div class="album-card" onclick="${firstTrack?`play(${firstTrack.id})`:''}">
+      <div class="album-cover-wrap">
+        <img src="${album.cover}" alt="${escapeHTML(album.name)}" onerror="this.style.background='var(--card)'">
+        <div class="album-play-overlay">
+          <button class="album-play-btn">▶</button>
+        </div>
+        <span class="album-type-badge">${escapeHTML(album.type)}</span>
+      </div>
+      <div class="album-info">
+        <div class="album-name">${escapeHTML(album.name)}</div>
+        <div class="album-meta">${escapeHTML(album.year)}</div>
+        <div class="album-tracks-count">${trackCount} треков</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderArtistsSidebar(){
   document.getElementById('sidebar-artists').innerHTML=ARTISTS.map(a=>`
     <div class="nav-item" onclick="openArtist('${a.id}');activateNav(this)">
       <div class="nav-artist">
@@ -1390,7 +1136,7 @@ function renderArtistsSidebar() {
         <span class="nav-artist-name">${escapeHTML(a.name)}
           <svg class="nav-verified" viewBox="0 0 20 20" fill="none">
             <circle cx="10" cy="10" r="10" fill="#1877f2"/>
-            <path d="M5.5 10.5l3 3 6-6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5.5 10.5l3 3 6-6" stroke="white" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </span>
       </div>
@@ -1398,115 +1144,110 @@ function renderArtistsSidebar() {
     </div>`).join('');
 }
 
-async function openArtist(id) {
+async function openArtist(id){
   currentArtistId=id; currentPlId=null;
   const a=artistById(id); if(!a) return;
   document.getElementById('artist-avatar').src=a.avatar;
+  document.getElementById('artist-bg-img').src=a.avatar;
   document.getElementById('artist-name').textContent=a.name;
   document.getElementById('tracks-count').textContent=tracksByArtist(id).length;
   renderArtistTracks(id);
+  renderDiscography(id);
   goPage('artist');
   await renderSubscribeUI();
 }
-
-function renderArtistTracks(id) {
+function renderArtistTracks(id){
   const tr=tracksByArtist(id);
   const tbody=document.getElementById('tbody-artist');
   if(!tr.length){tbody.innerHTML=`<tr><td colspan="7"><div class="empty-state"><span class="e-icon">♫</span>пока пусто</div></td></tr>`;return;}
   tbody.innerHTML=tr.map((t,i)=>rowHTML(t,i,null)).join('');
 }
-
-async function renderSubscribeUI() {
-  const subs = await getSharedSubs(currentArtistId);
-  const count = subs.length;
-  const me = (localStorage.getItem('kh2_nick')||'').trim();
-  const isOn = me && subs.includes(me);
-  const btn = document.getElementById('sub-btn');
-  btn.classList.toggle('is-on', !!isOn);
-  btn.textContent = isOn ? '✓ подписан(а)' : 'подписаться';
-  document.getElementById('subs-count').textContent = count;
-  document.getElementById('subs-count-num').textContent = count;
+async function renderSubscribeUI(){
+  const subs=await getSharedSubs(currentArtistId);
+  const count=subs.length;
+  const me=(localStorage.getItem('kh2_nick')||'').trim();
+  const isOn=me&&subs.includes(me);
+  const btn=document.getElementById('sub-btn');
+  btn.classList.toggle('is-on',!!isOn);
+  btn.textContent=isOn?'✓ подписан(а)':'подписаться';
+  document.getElementById('subs-count').textContent=count;
+  document.getElementById('subs-count-num').textContent=count;
 }
-
-async function toggleSubscribe() {
+async function toggleSubscribe(){
   if(!currentArtistId) return;
   const me=(localStorage.getItem('kh2_nick')||'').trim();
   if(!me){openModal('modal-sub');return;}
-  const subs = await getSharedSubs(currentArtistId);
-  const idx = subs.indexOf(me);
+  const subs=await getSharedSubs(currentArtistId);
+  const idx=subs.indexOf(me);
   if(idx>=0) subs.splice(idx,1); else subs.push(me);
-  await setSharedSubs(currentArtistId, uniq(subs));
+  await setSharedSubs(currentArtistId,uniq(subs));
   await renderSubscribeUI();
   renderArtistsSidebar();
   showToast(idx>=0?'подписка снята':`подписка: ${me}`);
 }
-
-async function confirmSubscribe() {
+async function confirmSubscribe(){
   if(!currentArtistId) return;
   const nick=(document.getElementById('inp-nick').value||'').trim();
   if(!nick){showToast('ник пустой :(');return;}
   localStorage.setItem('kh2_nick',nick);
-  const subs = await getSharedSubs(currentArtistId);
+  const subs=await getSharedSubs(currentArtistId);
   if(!subs.includes(nick)) subs.push(nick);
-  await setSharedSubs(currentArtistId, uniq(subs));
-  closeModals();
-  await renderSubscribeUI();
-  renderArtistsSidebar();
+  await setSharedSubs(currentArtistId,uniq(subs));
+  closeModals(); await renderSubscribeUI(); renderArtistsSidebar();
   showToast(`подписка: ${nick}`);
 }
 
-function renderSidebar() {
+function renderSidebar(){
   document.getElementById('sidebar-lists').innerHTML=playlists.map(pl=>`
     <div class="nav-item" onclick="openPlaylist(${pl.id});activateNav(this)">
       <span>${escapeHTML(pl.name)}</span>
       <span class="count">${pl.trackIds.length}</span>
     </div>`).join('');
 }
-function activateNav(el) {
+function activateNav(el){
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   el.classList.add('active');
 }
-function goPage(name) {
+function goPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   const pg=document.getElementById('page-'+name);
   if(pg) pg.classList.add('active');
   if(name==='liked') renderLiked();
 }
-function openPlaylist(id) {
+function openPlaylist(id){
   currentPlId=id; currentArtistId=null;
   const pl=playlists.find(p=>p.id===id);
   document.getElementById('pl-title').textContent=pl.name;
   document.getElementById('pl-meta').textContent=`${pl.trackIds.length} треков`;
   renderPlTracks(id); goPage('playlist');
 }
-function renderPlTracks(id) {
+function renderPlTracks(id){
   const pl=playlists.find(p=>p.id===id);
   const plTracks=TRACKS.filter(t=>pl.trackIds.includes(t.id));
   const tbody=document.getElementById('tbody-pl');
-  if(!plTracks.length){tbody.innerHTML=`<tr><td colspan="7"><div class="empty-state"><span class="e-icon">♫</span>плейлист пуст — добавь треки</div></td></tr>`;return;}
+  if(!plTracks.length){tbody.innerHTML=`<tr><td colspan="7"><div class="empty-state"><span class="e-icon">♫</span>плейлист пуст</div></td></tr>`;return;}
   tbody.innerHTML=plTracks.map((t,i)=>rowHTML(t,i,id)).join('');
 }
-
-function createPlaylist() {
+function createPlaylist(){
   const name=document.getElementById('inp-name').value.trim();
   if(!name) return;
   playlists.push({id:Date.now(),name,trackIds:[]});
   save(); renderSidebar(); closeModals(); showToast(`плейлист «${name}» создан`);
 }
-function openAdd(trackId) {
+function openAdd(trackId){
   if(!playlists.length){showToast('сначала создай плейлист');return;}
   pendingTrackId=trackId;
   document.getElementById('sel-playlist').innerHTML=playlists.map(pl=>`<option value="${pl.id}">${escapeHTML(pl.name)}</option>`).join('');
   openModal('modal-add');
 }
-function confirmAdd() {
+function confirmAdd(){
   const plId=parseInt(document.getElementById('sel-playlist').value);
   const pl=playlists.find(p=>p.id===plId); if(!pl) return;
   if(pl.trackIds.includes(pendingTrackId)){showToast('уже в плейлисте');closeModals();return;}
   pl.trackIds.push(pendingTrackId); save(); renderSidebar(); closeModals();
   showToast(`«${TRACKS.find(x=>x.id===pendingTrackId).title}» добавлено`);
 }
-function removeFromPl(plId,trackId) {
+function removeFromPl(plId,trackId){
   const pl=playlists.find(p=>p.id===plId); if(!pl) return;
   pl.trackIds=pl.trackIds.filter(id=>id!==trackId);
   save(); renderSidebar(); renderPlTracks(plId);
@@ -1533,119 +1274,71 @@ function showToast(msg){
   clearTimeout(_tt); _tt=setTimeout(()=>el.classList.remove('show'),2600);
 }
 
-/* -------- настройки темы -------- */
+/* ── THEME ── */
 function setTheme(t){
   document.documentElement.setAttribute('data-theme',t);
   localStorage.setItem('kh2_theme',t);
   syncPresetUI(t);
 }
 function syncPresetUI(t){
-  ['dark','midnight','light','custom'].forEach(x=>{
+  THEMES.forEach(x=>{
     const b=document.getElementById('preset-'+x);
-    if(b) b.classList.toggle('active', x===t);
+    if(b) b.classList.toggle('active',x===t);
   });
-  document.getElementById('custom-settings').style.display = (t==='custom') ? 'grid' : 'none';
+  document.getElementById('custom-settings').style.display=(t==='custom')?'grid':'none';
 }
 function applyPreset(t){
-  if(t==='custom'){
-    loadCustomToInputs();
-    applyCustomVarsFromStorage(true);
-    setTheme('custom');
-    showToast('custom включён');
-    return;
-  }
-  clearCustomInline();
-  setTheme(t);
-  showToast(`тема: ${t}`);
+  if(t==='custom'){loadCustomToInputs();applyCustomVarsFromStorage(true);setTheme('custom');showToast('custom включён');return;}
+  clearCustomInline(); setTheme(t); showToast(`тема: ${t}`);
 }
-
 const CUSTOM_KEY='kh2_custom_theme';
-const DEFAULT_CUSTOM = { text:'#f2edff', bg:'#07060b', text2:'#cbbcff', card:'#0e0b16' };
-
+const DEFAULT_CUSTOM={text:'#f2edff',bg:'#07060b',text2:'#cbbcff',card:'#0e0b16'};
 function loadCustomToInputs(){
-  const data = getCustom();
-  document.getElementById('c_text').value  = data.text;
-  document.getElementById('c_bg').value    = data.bg;
-  document.getElementById('c_text2').value = data.text2;
-  document.getElementById('c_card').value  = data.card;
+  const d=getCustom();
+  document.getElementById('c_text').value=d.text;
+  document.getElementById('c_bg').value=d.bg;
+  document.getElementById('c_text2').value=d.text2;
+  document.getElementById('c_card').value=d.card;
 }
 function getCustom(){
-  try{
-    const raw = localStorage.getItem(CUSTOM_KEY);
-    if(!raw) return {...DEFAULT_CUSTOM};
-    const obj = JSON.parse(raw);
-    return { text:obj.text||DEFAULT_CUSTOM.text, bg:obj.bg||DEFAULT_CUSTOM.bg, text2:obj.text2||DEFAULT_CUSTOM.text2, card:obj.card||DEFAULT_CUSTOM.card };
-  }catch{ return {...DEFAULT_CUSTOM}; }
+  try{const raw=localStorage.getItem(CUSTOM_KEY);if(!raw)return{...DEFAULT_CUSTOM};const o=JSON.parse(raw);return{text:o.text||DEFAULT_CUSTOM.text,bg:o.bg||DEFAULT_CUSTOM.bg,text2:o.text2||DEFAULT_CUSTOM.text2,card:o.card||DEFAULT_CUSTOM.card};}catch{return{...DEFAULT_CUSTOM};}
 }
 function previewCustom(){
-  const data = { text:document.getElementById('c_text').value, bg:document.getElementById('c_bg').value, text2:document.getElementById('c_text2').value, card:document.getElementById('c_card').value };
-  applyCustomVars(data);
+  applyCustomVars({text:document.getElementById('c_text').value,bg:document.getElementById('c_bg').value,text2:document.getElementById('c_text2').value,card:document.getElementById('c_card').value});
 }
-function applyCustomVars(data){
-  const html = document.documentElement;
-  html.style.setProperty('--text', data.text);
-  html.style.setProperty('--bg', data.bg);
-  html.style.setProperty('--text2', data.text2);
-  html.style.setProperty('--card', data.card);
-  html.style.setProperty('--border', mix(data.card, data.bg, 0.55));
-  html.style.setProperty('--muted2', mix(data.text2, data.bg, 0.55));
-  html.style.setProperty('--muted', mix(data.text2, data.bg, 0.70));
-  html.style.setProperty('--soft-text', hexToRgba(data.text, 0.58));
-  html.style.setProperty('--shadow', 'rgba(0,0,0,0.4)');
+function applyCustomVars(d){
+  const h=document.documentElement;
+  h.style.setProperty('--text',d.text);h.style.setProperty('--bg',d.bg);
+  h.style.setProperty('--text2',d.text2);h.style.setProperty('--card',d.card);
+  h.style.setProperty('--border',mix(d.card,d.bg,0.55));
+  h.style.setProperty('--muted2',mix(d.text2,d.bg,0.55));
+  h.style.setProperty('--muted',mix(d.text2,d.bg,0.70));
+  h.style.setProperty('--soft-text',hexToRgba(d.text,0.58));
+  h.style.setProperty('--shadow','rgba(0,0,0,0.4)');
 }
 function saveCustom(){
-  const data = { text:document.getElementById('c_text').value, bg:document.getElementById('c_bg').value, text2:document.getElementById('c_text2').value, card:document.getElementById('c_card').value };
-  localStorage.setItem(CUSTOM_KEY, JSON.stringify(data));
-  setTheme('custom');
-  showToast('custom сохранён');
+  const d={text:document.getElementById('c_text').value,bg:document.getElementById('c_bg').value,text2:document.getElementById('c_text2').value,card:document.getElementById('c_card').value};
+  localStorage.setItem(CUSTOM_KEY,JSON.stringify(d));setTheme('custom');showToast('custom сохранён');
 }
 function resetCustom(){
-  localStorage.setItem(CUSTOM_KEY, JSON.stringify(DEFAULT_CUSTOM));
-  loadCustomToInputs();
-  applyCustomVars(DEFAULT_CUSTOM);
-  setTheme('custom');
-  showToast('custom сброшен');
+  localStorage.setItem(CUSTOM_KEY,JSON.stringify(DEFAULT_CUSTOM));loadCustomToInputs();applyCustomVars(DEFAULT_CUSTOM);setTheme('custom');showToast('custom сброшен');
 }
 function applyCustomVarsFromStorage(force=false){
-  const t = localStorage.getItem('kh2_theme') || 'dark';
-  if(t!=='custom' && !force) return;
-  const data = getCustom();
-  applyCustomVars(data);
+  const t=localStorage.getItem('kh2_theme')||'blood';
+  if(t!=='custom'&&!force) return;
+  applyCustomVars(getCustom());
 }
-function clearCustomInline(){
-  const html = document.documentElement;
-  html.removeAttribute('style');
-}
-function hexToRgba(hex, a){
-  const h = hex.replace('#','').trim();
-  const full = h.length===3 ? h.split('').map(x=>x+x).join('') : h;
-  const r=parseInt(full.slice(0,2),16);
-  const g=parseInt(full.slice(2,4),16);
-  const b=parseInt(full.slice(4,6),16);
-  return `rgba(${r},${g},${b},${a})`;
-}
-function mix(c1, c2, weight){
-  const a = hexToRgb(c1), b = hexToRgb(c2);
-  const w = Math.max(0, Math.min(1, weight));
-  const r = Math.round(a.r*w + b.r*(1-w));
-  const g = Math.round(a.g*w + b.g*(1-w));
-  const bb = Math.round(a.b*w + b.b*(1-w));
-  return rgbToHex(r,g,bb);
-}
-function hexToRgb(hex){
-  const h = hex.replace('#','').trim();
-  const full = h.length===3 ? h.split('').map(x=>x+x).join('') : h;
-  return { r:parseInt(full.slice(0,2),16), g:parseInt(full.slice(2,4),16), b:parseInt(full.slice(4,6),16) };
-}
-function rgbToHex(r,g,b){
-  return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
-}
+function clearCustomInline(){document.documentElement.removeAttribute('style');}
+function hexToRgba(hex,a){const h=hex.replace('#','').trim();const full=h.length===3?h.split('').map(x=>x+x).join(''):h;const r=parseInt(full.slice(0,2),16);const g=parseInt(full.slice(2,4),16);const b=parseInt(full.slice(4,6),16);return `rgba(${r},${g},${b},${a})`;}
+function mix(c1,c2,w){const a=hexToRgb(c1),b=hexToRgb(c2);const ww=Math.max(0,Math.min(1,w));return rgbToHex(Math.round(a.r*ww+b.r*(1-ww)),Math.round(a.g*ww+b.g*(1-ww)),Math.round(a.b*ww+b.b*(1-ww)));}
+function hexToRgb(hex){const h=hex.replace('#','').trim();const full=h.length===3?h.split('').map(x=>x+x).join(''):h;return{r:parseInt(full.slice(0,2),16),g:parseInt(full.slice(2,4),16),b:parseInt(full.slice(4,6),16)};}
+function rgbToHex(r,g,b){return'#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');}
 
 /* init */
 (function(){
   const t=localStorage.getItem('kh2_theme')||'blood';
-  const safe = THEMES.includes(t)?t:'blood';
-  document.documentElement.setAttribute('data-theme', safe);
+  const safe=THEMES.includes(t)?t:'blood';
+  document.documentElement.setAttribute('data-theme',safe);
   syncPresetUI(safe);
   if(safe==='custom') applyCustomVarsFromStorage(true);
   renderAll(); renderArtistsSidebar(); renderSidebar(); updateLikedCount();
