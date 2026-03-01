@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="dark">
+<html lang="ru" data-theme="blood">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,28 +10,93 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #07060b; --card: #0e0b16; --border: #1b1627;
-  --accent: #b68cff; --text: #f2edff;
-  --muted: #4b4460; --muted2: #7d7494;
-  --shadow: rgba(0,0,0,0.4);
-  --soft-text: rgba(242,237,255,0.58);
-  --like: #e8547a;
-  --text2: #cbbcff;
+  --bg: #0a0000; --card: #130000; --border: #2a0000;
+  --accent: #ff2222; --text: #ffcccc;
+  --muted: #5a1a1a; --muted2: #aa4444;
+  --shadow: rgba(0,0,0,0.5);
+  --soft-text: rgba(255,204,204,0.58);
+  --like: #ff4466;
+  --text2: #ff8888;
   --radius: 20px;
   --radius-sm: 14px;
   --radius-xs: 10px;
 }
+/* blood — красно-чёрная (дефолт) */
+html[data-theme="blood"] {
+  --bg:#0a0000;--card:#130000;--border:#2a0000;
+  --accent:#ff2222;--text:#ffcccc;--muted:#5a1a1a;--muted2:#aa4444;
+  --shadow:rgba(0,0,0,0.5);--soft-text:rgba(255,204,204,0.58);
+  --text2:#ff8888;
+}
+/* dark — тёмно-фиолетовая */
+html[data-theme="dark"] {
+  --bg:#07060b;--card:#0e0b16;--border:#1b1627;
+  --accent:#b68cff;--text:#f2edff;--muted:#4b4460;--muted2:#7d7494;
+  --shadow:rgba(0,0,0,0.4);--soft-text:rgba(242,237,255,0.58);
+  --text2:#cbbcff;
+}
+/* midnight — синяя ночь */
 html[data-theme="midnight"] {
   --bg:#05060f;--card:#0a0c1a;--border:#1a1f3a;
   --accent:#9aa6ff;--text:#eef1ff;--muted:#454a67;--muted2:#787fa8;
   --shadow:rgba(0,0,0,0.45);--soft-text:rgba(238,241,255,0.55);
   --text2:#c9d0ff;
 }
+/* light — светлая */
 html[data-theme="light"] {
   --bg:#f4f1fb;--card:#ffffff;--border:#e7e0ff;
   --accent:#6f4dff;--text:#1a112f;--muted:#7b6aa8;--muted2:#6a5e8a;
   --shadow:rgba(20,10,40,0.10);--soft-text:rgba(26,17,47,0.55);
   --text2:#3a2a6a;
+}
+/* forest — зелёная */
+html[data-theme="forest"] {
+  --bg:#020d05;--card:#071408;--border:#0e2a12;
+  --accent:#4ade80;--text:#d1fae5;--muted:#1a4d24;--muted2:#3d8c4f;
+  --shadow:rgba(0,0,0,0.45);--soft-text:rgba(209,250,229,0.55);
+  --text2:#86efac;
+}
+/* ocean — синий океан */
+html[data-theme="ocean"] {
+  --bg:#020a12;--card:#041624;--border:#082a44;
+  --accent:#38bdf8;--text:#e0f2fe;--muted:#0d3a5c;--muted2:#2a7aaa;
+  --shadow:rgba(0,0,0,0.5);--soft-text:rgba(224,242,254,0.55);
+  --text2:#7dd3fc;
+}
+/* amber — янтарная */
+html[data-theme="amber"] {
+  --bg:#0c0800;--card:#180e00;--border:#2e1c00;
+  --accent:#fbbf24;--text:#fef3c7;--muted:#4d3000;--muted2:#a06a00;
+  --shadow:rgba(0,0,0,0.5);--soft-text:rgba(254,243,199,0.55);
+  --text2:#fcd34d;
+}
+/* rose — розовая */
+html[data-theme="rose"] {
+  --bg:#0d0208;--card:#180510;--border:#2e0820;
+  --accent:#f472b6;--text:#fce7f3;--muted:#4d0a2a;--muted2:#a03060;
+  --shadow:rgba(0,0,0,0.5);--soft-text:rgba(252,231,243,0.55);
+  --text2:#f9a8d4;
+}
+/* cyber — неон на чёрном */
+html[data-theme="cyber"] {
+  --bg:#000000;--card:#0a0a0a;--border:#1a1a1a;
+  --accent:#00ff88;--text:#ccffee;--muted:#1a3a2a;--muted2:#448866;
+  --shadow:rgba(0,0,0,0.6);--soft-text:rgba(204,255,238,0.55);
+  --text2:#66ffbb;
+}
+/* slate — серо-синяя */
+html[data-theme="slate"] {
+  --bg:#0f1117;--card:#161b27;--border:#232d40;
+  --accent:#64748b;--text:#e2e8f0;--muted:#2d3a4a;--muted2:#556070;
+  --shadow:rgba(0,0,0,0.4);--soft-text:rgba(226,232,240,0.55);
+  --text2:#94a3b8;
+}
+/* cream — кремовая светлая */
+html[data-theme="cream"] {
+  --bg:#fdf8f0;--card:#fff9f0;--border:#e8dcc8;
+  --accent:#c2540a;--text:#2d1a08;--muted:#a08060;--muted2:#7a5a38;
+  --shadow:rgba(80,40,10,0.12);--soft-text:rgba(45,26,8,0.55);
+  --text2:#8b4513;
 }
 
 html { scroll-behavior: smooth; }
@@ -560,7 +625,7 @@ aside {
           <img src="https://i.ibb.co/sJQpGvsg/Chat-GPT-Image-1-2026-20-57-01.png" alt="">
           <div class="featured-hit-info">
             <div class="featured-hit-title">перевёрнутые молотки</div>
-            <div class="featured-hit-sub">перевёрнутые молотки</div>
+            <div class="featured-hit-sub">puker</div>
           </div>
           <button class="featured-hit-btn">▶</button>
         </div>
@@ -728,10 +793,18 @@ aside {
     <h3>настройки</h3>
 
     <div class="preset-row">
-      <button class="preset" id="preset-dark" onclick="applyPreset('dark')">dark</button>
-      <button class="preset" id="preset-midnight" onclick="applyPreset('midnight')">midnight</button>
-      <button class="preset" id="preset-light" onclick="applyPreset('light')">light</button>
-      <button class="preset" id="preset-custom" onclick="applyPreset('custom')">custom</button>
+      <button class="preset" id="preset-blood" onclick="applyPreset('blood')">🩸 blood</button>
+      <button class="preset" id="preset-dark" onclick="applyPreset('dark')">🌑 dark</button>
+      <button class="preset" id="preset-midnight" onclick="applyPreset('midnight')">🌙 midnight</button>
+      <button class="preset" id="preset-light" onclick="applyPreset('light')">☀️ light</button>
+      <button class="preset" id="preset-forest" onclick="applyPreset('forest')">🌿 forest</button>
+      <button class="preset" id="preset-ocean" onclick="applyPreset('ocean')">🌊 ocean</button>
+      <button class="preset" id="preset-amber" onclick="applyPreset('amber')">🔥 amber</button>
+      <button class="preset" id="preset-rose" onclick="applyPreset('rose')">🌸 rose</button>
+      <button class="preset" id="preset-cyber" onclick="applyPreset('cyber')">⚡ cyber</button>
+      <button class="preset" id="preset-slate" onclick="applyPreset('slate')">🪨 slate</button>
+      <button class="preset" id="preset-cream" onclick="applyPreset('cream')">🍞 cream</button>
+      <button class="preset" id="preset-custom" onclick="applyPreset('custom')">🎨 custom</button>
     </div>
 
     <div class="settings-grid" id="custom-settings" style="display:none;">
@@ -847,12 +920,12 @@ const COVERS = {
 
 const ARTISTS = [
   {
-    id:'pm', name:'Перевёрнутые Молотки',
-    avatar:'https://i.ibb.co/sJQpGvsg/Chat-GPT-Image-1-2026-20-57-01.png',
+    id:'puker', name:'Puker',
+    avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQAW8P4xeiyRl0Vb0lQ5tWuI8NPzJZlvXF7w&s',
     url:'https://www.youtube.com/@KHRESHYATIKOV',
     tracks:[
       {
-        title:'перевёрнутые молотки', album:'новинка · 01.03.2026', type:'перевёрнутые молотки', dur:'—',
+        title:'перевёрнутые молотки', album:'новинка · 01.03.2026', type:'puker', dur:'—',
         url:'https://music.youtube.com/watch?v=oF7uzsH1ufA&si=E6tO9LslWkkkHq-6',
         cover:COVERS['перевёрнутые молотки'],
         lyrics:`[куплет]
@@ -898,7 +971,16 @@ const ARTISTS = [
 Перевёрнутые Молотки — держи ладонь
 Напротив твоего дома знак стоит
 Перевёрнутые Молотки — никто не забыт`,
-        credits:'made by: перевёрнутые молотки'
+        credits:'made by: puker'
+      },
+      {
+        title:'FUCK THE LOADING', album:'новинка · 12.10.2026', type:'puker', dur:'—',
+        url:'https://music.youtube.com/watch?v=g4oN2x8piEU&desc_update=1&si=1Q2TA9aDnvwRI8vl',
+        cover:COVERS['FUCK THE LOADING'],
+        lyrics:`[Verse 1]
+Оп-оп-оп-оп-еративка
+Где подевался мишабан-бан-бан`,
+        credits:'made by: puker'
       },
     ]
   },
@@ -1141,22 +1223,6 @@ SHIMPAMOTORS...
       },
     ]
   },
-  {
-    id:'puker', name:'Puker',
-    avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQAW8P4xeiyRl0Vb0lQ5tWuI8NPzJZlvXF7w&s',
-    url:'https://www.youtube.com/@KHRESHYATIKOV',
-    tracks:[
-      {
-        title:'FUCK THE LOADING', album:'новинка · 12.10.2026', type:'puker', dur:'—',
-        url:'https://music.youtube.com/watch?v=g4oN2x8piEU&desc_update=1&si=1Q2TA9aDnvwRI8vl',
-        cover:COVERS['FUCK THE LOADING'],
-        lyrics:`[Verse 1]
-Оп-оп-оп-оп-еративка
-Где подевался мишабан-бан-бан`,
-        credits:'made by: puker'
-      },
-    ]
-  },
 ];
 
 const TRACKS = buildTracks(ARTISTS);
@@ -1165,7 +1231,7 @@ let playlists = JSON.parse(localStorage.getItem('kh2_pls')||'[]');
 let liked = JSON.parse(localStorage.getItem('kh2_liked')||'[]');
 let nowPlaying=null, pendingTrackId=null, currentPlId=null, currentArtistId=null;
 let currentTrackUrl = '';
-const THEMES=['dark','midnight','light','custom'];
+const THEMES=['blood','dark','midnight','light','forest','ocean','amber','rose','cyber','slate','cream','custom'];
 
 function buildTracks(artists) {
   const map=new Map(); let id=1;
@@ -1577,8 +1643,8 @@ function rgbToHex(r,g,b){
 
 /* init */
 (function(){
-  const t=localStorage.getItem('kh2_theme')||'dark';
-  const safe = THEMES.includes(t)?t:'dark';
+  const t=localStorage.getItem('kh2_theme')||'blood';
+  const safe = THEMES.includes(t)?t:'blood';
   document.documentElement.setAttribute('data-theme', safe);
   syncPresetUI(safe);
   if(safe==='custom') applyCustomVarsFromStorage(true);
