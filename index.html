@@ -1086,7 +1086,7 @@ const COVERS = {
   'ЯЙЦА ВАЛЕРЫ': 'https://i.ibb.co/Xf3cVgZr/Chat-GPT-Image-26-2026-01-48-12.png',
   'ВАЛЕРИНЫ ЯЙЦА': 'https://i.ibb.co/Q3bdnKTy/Chat-GPT-Image-1-2026-00-32-05.png',
   'перевёрнутые молотки': 'https://i.ibb.co/sJQpGvsg/Chat-GPT-Image-1-2026-20-57-01.png',
-  'Олд Феррари': 'https://i.ibb.co/cKNCLM92/Valera-ava-V2.png',
+  'Олд Феррари': 'https://i.ibb.co/CpDwZ54Z/Chat-GPT-Image-2-2026-02-31-15.png',
 };
 
 const VALERA_HUB_COVER = 'https://i.ibb.co/BHtF8Dqf/Blur-Valera.png';
@@ -1099,7 +1099,7 @@ const DISCOGRAPHY = {
       cover: VALERA_HUB_COVER,
       type: 'Album',
       year: '2026',
-      trackTitles: ['Абсурд', 'ШИМПАВОЗ', 'Олд Феррари'],
+      trackTitles: ['Олд Феррари'],
     }
   ]
 };
@@ -1248,7 +1248,10 @@ function playByTitle(title) {
   if(t) play(t.id);
 }
 function play(id) {
-  nowPlaying=id; rerenderAll(); openTrackModal(TRACKS.find(x=>x.id===id));
+  nowPlaying=id; rerenderAll();
+  // Close album popup before opening track modal
+  document.getElementById('album-popup-overlay').classList.remove('open');
+  openTrackModal(TRACKS.find(x=>x.id===id));
 }
 function openTrackModal(t){
   if(!t) return;
