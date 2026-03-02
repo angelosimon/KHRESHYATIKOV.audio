@@ -904,7 +904,7 @@ aside {
         <tbody id="tbody-artist"></tbody>
       </table>
 
-      <!-- DISCOGRAPHY (shown only for диджей валера) -->
+      <!-- DISCOGRAPHY -->
       <div class="discography-section" id="artist-discography" style="display:none;">
         <div class="discography-title">DISCOGRAPHY</div>
         <div class="discography-subtitle">Albums & Releases</div>
@@ -1447,29 +1447,73 @@ function confirmAddAlbum() {
   pendingAlbumTrackId = null;
 }
 
+// Album data store — avoids JSON-in-onclick issues
+const ALBUM_STORE = {};
+let _albumStoreId = 0;
+function storeAlbum(data) {
+  const key = 'alb_' + (_albumStoreId++);
+  ALBUM_STORE[key] = data;
+  return key;
+}
+function openAlbumPopupByKey(key) {
+  const data = ALBUM_STORE[key];
+  if(data) openAlbumPopup(data);
+}
+
+function extractDate(albumStr) {
+  if(!albumStr) return '—';
+  const m = albumStr.match(/(\d{2}\.\d{2}\.\d{4})/);
+  if(m) return m[1];
+  const parts = albumStr.split('·');
+  return parts.length > 1 ? parts[parts.length-1].trim() : albumStr.trim();
+}
+function extractType(albumStr) {
+  if(!albumStr) return 'сингл';
+  const low = albumStr.toLowerCase();
+  if(low.includes('новинка')) return 'новинка';
+  if(low.includes('сингл')) return 'сингл';
+  if(low.includes('ep')) return 'EP';
+  return 'сингл';
+}
+
 function renderDiscography(artistId) {
-  const disc = DISCOGRAPHY[artistId];
   const section = document.getElementById('artist-discography');
   const grid = document.getElementById('albums-grid');
-  if(!disc || !disc.length){ section.style.display='none'; return; }
+
+  const manualAlbums = DISCOGRAPHY[artistId] || [];
+  const manualTrackTitles = new Set(manualAlbums.flatMap(a => a.trackTitles || []));
+
+  const artistAllTracks = TRACKS.filter(t => t.artists.includes(artistId));
+  const singles = artistAllTracks
+    .filter(t => !manualTrackTitles.has(t.title))
+    .map(t => ({
+      name: t.title,
+      cover: t.cover || '',
+      type: extractType(t.album),
+      year: extractDate(t.album),
+      trackTitles: [t.title],
+      isSingle: true,
+    }));
+
+  const allEntries = [...manualAlbums, ...singles];
+  if(!allEntries.length) { section.style.display='none'; return; }
   section.style.display='block';
-  grid.innerHTML = disc.map(album => {
-    const albumTracks = (album.trackTitles||[])
-      .map(title => TRACKS.find(t => t.title === title))
-      .filter(Boolean);
-    const trackCount = albumTracks.length;
-    return `<div class="album-card" onclick="openAlbumPopup(${escapeHTML(JSON.stringify(album))})">
+
+  grid.innerHTML = allEntries.map(entry => {
+    const trackCount = (entry.trackTitles||[]).length;
+    const key = storeAlbum(entry);
+    return `<div class="album-card" onclick="openAlbumPopupByKey('${key}')">
       <div class="album-cover-wrap">
-        <img src="${album.cover}" alt="${escapeHTML(album.name)}" onerror="this.style.background='var(--card)'">
+        <img src="${entry.cover}" alt="${escapeHTML(entry.name)}" onerror="this.style.background='var(--card)'">
         <div class="album-play-overlay">
           <button class="album-play-btn">▶</button>
         </div>
-        <span class="album-type-badge">${escapeHTML(album.type)}</span>
+        <span class="album-type-badge">${escapeHTML(entry.type)}</span>
       </div>
       <div class="album-info">
-        <div class="album-name">${escapeHTML(album.name)}</div>
-        <div class="album-meta">${escapeHTML(album.year)}</div>
-        <div class="album-tracks-count">${trackCount} треков</div>
+        <div class="album-name">${escapeHTML(entry.name)}</div>
+        <div class="album-meta">${escapeHTML(entry.year)}</div>
+        <div class="album-tracks-count">${trackCount === 1 ? '1 трек' : trackCount + ' треков'}</div>
       </div>
     </div>`;
   }).join('');
