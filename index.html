@@ -367,7 +367,6 @@ aside {
   cursor: pointer;
   transition: all 0.22s;
   position: relative;
-  group: true;
 }
 .album-card:hover {
   transform: translateY(-6px);
@@ -587,6 +586,153 @@ aside {
 }
 .toast.show { opacity: 1; transform: translateY(0); }
 
+/* ── ALBUM POPUP ── */
+.album-popup-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.82);
+  z-index: 500; display: none; align-items: center; justify-content: center;
+  backdrop-filter: blur(20px);
+}
+.album-popup-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
+
+.album-popup {
+  background: var(--card);
+  border: 1.5px solid color-mix(in srgb,var(--accent) 30%,var(--border));
+  border-radius: 32px;
+  width: 540px;
+  max-width: calc(100vw - 32px);
+  max-height: 88vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 0 60px color-mix(in srgb,var(--accent) 12%,transparent);
+  animation: popupIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes popupIn {
+  from { transform: scale(0.88) translateY(20px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.album-popup-header {
+  display: flex; align-items: center; gap: 20px;
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  position: relative;
+}
+.album-popup-cover {
+  width: 88px; height: 88px; border-radius: 20px; object-fit: cover; flex-shrink: 0;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.6);
+  border: 1.5px solid color-mix(in srgb,var(--accent) 25%,transparent);
+}
+.album-popup-info { flex: 1; min-width: 0; }
+.album-popup-badge {
+  font-size: 8px; font-weight: 900; font-family: var(--font-display);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 6px; display: block;
+}
+.album-popup-name {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 900; letter-spacing: -0.03em;
+  color: var(--text); margin-bottom: 4px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.album-popup-meta {
+  font-size: 11px; color: var(--soft-text); font-weight: 600;
+}
+.album-popup-close {
+  position: absolute; top: 20px; right: 20px;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: color-mix(in srgb,var(--border) 60%,transparent);
+  border: 1px solid var(--border);
+  color: var(--muted2); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; transition: all 0.15s;
+}
+.album-popup-close:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+
+.album-popup-actions {
+  display: flex; gap: 10px; align-items: center;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.popup-play-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--accent); color: #000; border: none;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; cursor: pointer; transition: all 0.15s;
+  box-shadow: 0 6px 20px color-mix(in srgb,var(--accent) 40%,transparent);
+  flex-shrink: 0;
+}
+.popup-play-btn:hover { transform: scale(1.1); filter: brightness(1.1); }
+.popup-add-all-btn {
+  padding: 10px 18px; border-radius: 999px;
+  border: 1.5px solid var(--border); background: transparent;
+  color: var(--muted2); cursor: pointer; transition: all 0.15s;
+  font-size: 11px; font-weight: 800; font-family: var(--font-display);
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.popup-add-all-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.album-popup-tracks {
+  overflow-y: auto;
+  flex: 1;
+  padding: 12px 16px 16px;
+}
+.album-popup-tracks::-webkit-scrollbar { width: 4px; }
+.album-popup-tracks::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+
+.popup-track-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 12px; border-radius: var(--radius-sm);
+  cursor: pointer; transition: all 0.12s;
+  border: 1px solid transparent;
+}
+.popup-track-row:hover {
+  background: color-mix(in srgb,var(--accent) 6%,var(--card));
+  border-color: color-mix(in srgb,var(--accent) 20%,transparent);
+}
+.popup-track-row.is-playing {
+  background: color-mix(in srgb,var(--accent) 10%,var(--card));
+  border-color: color-mix(in srgb,var(--accent) 35%,transparent);
+}
+.popup-track-num {
+  width: 24px; text-align: center; font-size: 11px; font-weight: 800;
+  font-family: var(--font-display); color: var(--muted2); flex-shrink: 0;
+}
+.popup-track-row.is-playing .popup-track-num { color: var(--accent); }
+.popup-track-cover {
+  width: 42px; height: 42px; border-radius: 10px; object-fit: cover; flex-shrink: 0;
+  border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.popup-track-info { flex: 1; min-width: 0; }
+.popup-track-title {
+  font-size: 13px; font-weight: 800; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+.popup-track-row.is-playing .popup-track-title { color: var(--accent); }
+.popup-track-sub {
+  font-size: 10px; color: var(--soft-text); margin-top: 3px; font-weight: 500;
+}
+.popup-track-actions {
+  display: flex; gap: 4px; align-items: center; opacity: 0; transition: opacity 0.15s;
+}
+.popup-track-row:hover .popup-track-actions { opacity: 1; }
+.popup-track-like-btn, .popup-track-add-btn {
+  background: none; border: none; cursor: pointer;
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; transition: all 0.15s; color: var(--muted2);
+}
+.popup-track-like-btn.liked { color: var(--like); opacity: 1 !important; }
+.popup-track-like-btn:hover { transform: scale(1.3); color: var(--like); }
+.popup-track-add-btn:hover { color: var(--accent); transform: scale(1.2); }
+.popup-track-dur {
+  font-size: 11px; color: var(--muted2); font-weight: 600;
+  font-family: var(--font-display); flex-shrink: 0;
+}
+
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-thumb { background: color-mix(in srgb,var(--border) 80%,transparent); border-radius: 999px; }
 
@@ -784,6 +930,26 @@ aside {
   </div>
 </div>
 
+<!-- ALBUM POPUP -->
+<div class="album-popup-overlay" id="album-popup-overlay" onclick="closeAlbumPopup(event)">
+  <div class="album-popup" id="album-popup">
+    <div class="album-popup-header">
+      <img class="album-popup-cover" id="popup-cover" src="" alt="">
+      <div class="album-popup-info">
+        <span class="album-popup-badge" id="popup-badge">Album</span>
+        <div class="album-popup-name" id="popup-name">—</div>
+        <div class="album-popup-meta" id="popup-meta">—</div>
+      </div>
+      <button class="album-popup-close" onclick="document.getElementById('album-popup-overlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="album-popup-actions">
+      <button class="popup-play-btn" id="popup-play-btn">▶</button>
+      <button class="popup-add-all-btn" onclick="addAllAlbumToPlaylist()">+ добавить всё в плейлист</button>
+    </div>
+    <div class="album-popup-tracks" id="popup-tracks-list"></div>
+  </div>
+</div>
+
 <!-- MODALS -->
 <div class="overlay" id="modal-create" onclick="overlayClick(event,this)">
   <div class="modal">
@@ -881,6 +1047,17 @@ aside {
   </div>
 </div>
 
+<div class="overlay" id="modal-add-album" onclick="overlayClick(event,this)">
+  <div class="modal">
+    <h3>добавить в плейлист</h3>
+    <select id="sel-playlist-album"></select>
+    <div class="modal-btns">
+      <button class="btn btn-outline" onclick="closeModals()">отмена</button>
+      <button class="btn btn-accent" onclick="confirmAddAlbum()">добавить</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -909,20 +1086,76 @@ const COVERS = {
   'ЯЙЦА ВАЛЕРЫ': 'https://i.ibb.co/Xf3cVgZr/Chat-GPT-Image-26-2026-01-48-12.png',
   'ВАЛЕРИНЫ ЯЙЦА': 'https://i.ibb.co/Q3bdnKTy/Chat-GPT-Image-1-2026-00-32-05.png',
   'перевёрнутые молотки': 'https://i.ibb.co/sJQpGvsg/Chat-GPT-Image-1-2026-20-57-01.png',
+  'Олд Феррари': 'https://i.ibb.co/cKNCLM92/Valera-ava-V2.png',
 };
+
+const VALERA_HUB_COVER = 'https://i.ibb.co/BHtF8Dqf/Blur-Valera.png';
 
 // DISCOGRAPHY data for диджей валера
 const DISCOGRAPHY = {
   'диджей валера': [
     {
-      name: 'Валера Хаб',
-      cover: 'https://i.ibb.co/BHtF8Dqf/Blur-Valera.png',
+      name: 'ВалераХАБ',
+      cover: VALERA_HUB_COVER,
       type: 'Album',
       year: '2026',
-      trackTitles: ['Абсурд', 'ШИМПАВОЗ'],
+      trackTitles: ['Абсурд', 'ШИМПАВОЗ', 'Олд Феррари'],
     }
   ]
 };
+
+// Tracks marked as album-only (won't appear on artist page, only in "все треки" and album)
+const ALBUM_ONLY_TRACKS = new Set(['Олд Феррари']);
+
+const OLD_FERRARI_LYRICS = `[INTRO]
+Вы о ней не слышали, в противовес old money также есть new money. То есть это люди, которые заработали деньги относительно недавно, или их родители, или они сами. Что же отличает эти два стиля? Old money — он более сдержанный.
+
+[CHORUS]
+Красная Феррари, я жую в ней доширак
+New money стиль — я богатый дурак!
+Эти ценники по пальцам придумывали
+Я купил себе Луи, а вы все передумали!
+Малышка хочет Эмо, я купил ей бегемота
+Наклейка Spin-off, я выпрыгнул из самолета!
+Твоя носила мобилу, а я ношу кирпич
+Я слишком богат, ты — обычный бич!
+
+[VERSE]
+Есть любой бренд, как витрина
+С меня спадают штанины (падают!)
+Я выпишу очень стильно
+На мне сейчас пасты ботинок
+Так ужасно стухлись
+Говоришь, что на ноль
+Шмотки секонд-хенд
+Куртка с мехом, хочешь Эмо?
+Я не пойду с тобой вместе
+Сука, ты даже не думай
+Я видел сто подкатов
+Я в бизнесе под Маканом
+Я знаю, ты очень шаришь
+Код 10, винта, это хуйня
+Ты слетаешь с головы
+Таких, как ты, в рот ебал
+Перевернутые молотки строил перед твоим майнкрафт домом
+Но ты нищета, а у меня красный феррари в черном чехле!
+Я ем золотые пельмени, запиваю бензином
+Твоя мать думает, что я торгую резиной!
+Я купил Луну, чтобы жарить там шашлык
+Валера на руле, он издает громкий рык!
+
+[CHORUS]
+Красная Феррари, я жую в ней доширак
+New money стиль — я богатый дурак!
+Эти ценники по пальцам придумывали
+Я купил себе Луи, а вы все передумали!
+Малышка хочет Эмо, я купил ей бегемота
+Наклейка Spin-off, я выпрыгнул из самолета!
+Твоя носила мобилу, а я ношу кирпич
+Я слишком богат, ты — обычный бич!
+
+[OUTRO]
+Отсутствие логотипов, отсутствие лейблов. В то время как new money — люди только получили богатство. И они хотят показать и доказать всем, что у них получилось. Соответственно, это огромные логотипы, это тяжёлый люкс, это золотые Lamborghini.`;
 
 const ARTISTS = [
   {
@@ -954,6 +1187,8 @@ const ARTISTS = [
     tracks:[
       { title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & диджей валера', dur:'—', url:'https://music.youtube.com/watch?v=PiHA04UK92o', cover:COVERS['ШИМПАВОЗ'], lyrics:`[Интро]\nШимпавоз...`, credits:'made by: hadash & MAX-NITRO & диджей валера' },
       { title:'Абсурд', album:'сингл · 25.12.2025', type:'диджей валера', dur:'—', url:'https://music.youtube.com/watch?v=RnBmoL8ohGY', cover:COVERS['Абсурд'], lyrics:`[Verse]\nУ тебя мало оперативки я рыганул в ботинки там мишабан`, credits:'made by: диджей валера' },
+      // Олд Феррари is album-only, so we include it here for buildTracks but it won't show on artist page
+      { title:'Олд Феррари', album:'ВалераХАБ · 2026', type:'диджей валера', dur:'—', url:'https://music.youtube.com/watch?v=wh_274y30Rc&si=cKN91vP0t-XrZ_s7', cover:COVERS['Олд Феррари'], lyrics: OLD_FERRARI_LYRICS, credits:'made by: диджей валера' },
     ]
   },
   {
@@ -975,6 +1210,8 @@ let playlists = JSON.parse(localStorage.getItem('kh2_pls')||'[]');
 let liked = JSON.parse(localStorage.getItem('kh2_liked')||'[]');
 let nowPlaying=null, pendingTrackId=null, currentPlId=null, currentArtistId=null;
 let currentTrackUrl = '';
+let currentAlbumData = null; // for album popup
+let pendingAlbumTrackId = null; // for add-to-playlist from album popup
 const THEMES=['blood','dark','midnight','light','forest','ocean','amber','rose','cyber','slate','cream','custom'];
 
 function buildTracks(artists) {
@@ -1000,7 +1237,10 @@ function artistById(id){return ARTISTS.find(a=>a.id===id);}
 function saveLiked(){localStorage.setItem('kh2_liked',JSON.stringify(liked));}
 function isLiked(id){return liked.includes(id);}
 function uniq(arr){return Array.from(new Set(arr.filter(Boolean)));}
-function tracksByArtist(aId){return TRACKS.filter(t=>t.artists.includes(aId));}
+function tracksByArtist(aId){
+  // Returns tracks for artist page — excludes ALBUM_ONLY_TRACKS
+  return TRACKS.filter(t=>t.artists.includes(aId) && !ALBUM_ONLY_TRACKS.has(t.title));
+}
 function escapeHTML(s){if(!s)return'';return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 
 function playByTitle(title) {
@@ -1073,6 +1313,10 @@ function toggleLike(id){
   const idx=liked.indexOf(id);
   if(idx>=0) liked.splice(idx,1); else liked.push(id);
   saveLiked(); updateLikedCount(); rerenderAll();
+  // Also re-render album popup if open
+  if(currentAlbumData && document.getElementById('album-popup-overlay').classList.contains('open')) {
+    renderAlbumPopupTracks(currentAlbumData);
+  }
   const t=TRACKS.find(x=>x.id===id);
   showToast(liked.includes(id)?`♥ ${t.title}`:'убрано из понравившегося');
 }
@@ -1101,6 +1345,105 @@ function playFirstArtistTrack(){
   if(tr.length) play(tr[0].id);
 }
 
+/* ── ALBUM POPUP ── */
+function openAlbumPopup(albumData) {
+  currentAlbumData = albumData;
+  const albumTracks = albumData.trackTitles
+    .map(title => TRACKS.find(t => t.title === title))
+    .filter(Boolean);
+
+  document.getElementById('popup-cover').src = albumData.cover;
+  document.getElementById('popup-badge').textContent = albumData.type;
+  document.getElementById('popup-name').textContent = albumData.name;
+  document.getElementById('popup-meta').textContent = `${albumData.year} · ${albumTracks.length} треков`;
+
+  // Play button plays first track
+  const playBtn = document.getElementById('popup-play-btn');
+  if(albumTracks.length) {
+    playBtn.onclick = () => { play(albumTracks[0].id); };
+    playBtn.innerHTML = nowPlaying && albumTracks.some(t=>t.id===nowPlaying)
+      ? `<div class="playing-bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>`
+      : '▶';
+  }
+
+  renderAlbumPopupTracks(albumData);
+  document.getElementById('album-popup-overlay').classList.add('open');
+}
+
+function renderAlbumPopupTracks(albumData) {
+  const albumTracks = albumData.trackTitles
+    .map(title => TRACKS.find(t => t.title === title))
+    .filter(Boolean);
+
+  const list = document.getElementById('popup-tracks-list');
+  list.innerHTML = albumTracks.map((t, i) => {
+    const playing = nowPlaying === t.id;
+    const lk = isLiked(t.id);
+    return `<div class="popup-track-row ${playing?'is-playing':''}" onclick="play(${t.id}); renderAlbumPopupTracks(currentAlbumData);">
+      <div class="popup-track-num">${playing
+        ? `<div class="playing-bars" style="width:18px"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>`
+        : (i+1)}</div>
+      <img class="popup-track-cover" src="${t.cover||''}" alt="" onerror="this.style.display='none'">
+      <div class="popup-track-info">
+        <div class="popup-track-title">${escapeHTML(t.title)}</div>
+        <div class="popup-track-sub">${escapeHTML(t.type||'')}</div>
+      </div>
+      <div class="popup-track-actions" onclick="event.stopPropagation()">
+        <button class="popup-track-like-btn ${lk?'liked':''}" onclick="toggleLike(${t.id})">${lk?'♥':'♡'}</button>
+        <button class="popup-track-add-btn" onclick="openAddFromAlbum(${t.id})" title="добавить в плейлист">+</button>
+      </div>
+      <div class="popup-track-dur">${t.dur||'—'}</div>
+    </div>`;
+  }).join('');
+}
+
+function closeAlbumPopup(event) {
+  const popup = document.getElementById('album-popup');
+  if(event.target === document.getElementById('album-popup-overlay')) {
+    document.getElementById('album-popup-overlay').classList.remove('open');
+  }
+}
+
+function addAllAlbumToPlaylist() {
+  if(!playlists.length){showToast('сначала создай плейлист');return;}
+  if(!currentAlbumData) return;
+  const albumTracks = currentAlbumData.trackTitles
+    .map(title => TRACKS.find(t => t.title === title))
+    .filter(Boolean);
+  // Store all IDs, use sel-playlist-album
+  pendingAlbumTrackId = albumTracks.map(t=>t.id);
+  document.getElementById('sel-playlist-album').innerHTML=playlists.map(pl=>`<option value="${pl.id}">${escapeHTML(pl.name)}</option>`).join('');
+  openModal('modal-add-album');
+}
+
+function openAddFromAlbum(trackId) {
+  if(!playlists.length){showToast('сначала создай плейлист');return;}
+  pendingAlbumTrackId = trackId;
+  document.getElementById('sel-playlist-album').innerHTML=playlists.map(pl=>`<option value="${pl.id}">${escapeHTML(pl.name)}</option>`).join('');
+  openModal('modal-add-album');
+}
+
+function confirmAddAlbum() {
+  const plId=parseInt(document.getElementById('sel-playlist-album').value);
+  const pl=playlists.find(p=>p.id===plId); if(!pl) return;
+
+  if(Array.isArray(pendingAlbumTrackId)) {
+    // Add all
+    let added = 0;
+    for(const id of pendingAlbumTrackId) {
+      if(!pl.trackIds.includes(id)) { pl.trackIds.push(id); added++; }
+    }
+    save(); renderSidebar(); closeModals();
+    showToast(added>0 ? `добавлено ${added} треков в «${pl.name}»` : 'уже всё в плейлисте');
+  } else {
+    if(pl.trackIds.includes(pendingAlbumTrackId)){showToast('уже в плейлисте');closeModals();return;}
+    pl.trackIds.push(pendingAlbumTrackId); save(); renderSidebar(); closeModals();
+    const t=TRACKS.find(x=>x.id===pendingAlbumTrackId);
+    showToast(`«${t?t.title:'трек'}» добавлено в «${pl.name}»`);
+  }
+  pendingAlbumTrackId = null;
+}
+
 function renderDiscography(artistId) {
   const disc = DISCOGRAPHY[artistId];
   const section = document.getElementById('artist-discography');
@@ -1108,10 +1451,11 @@ function renderDiscography(artistId) {
   if(!disc || !disc.length){ section.style.display='none'; return; }
   section.style.display='block';
   grid.innerHTML = disc.map(album => {
-    const trackCount = album.trackTitles ? album.trackTitles.length : 0;
-    const firstTrack = album.trackTitles && album.trackTitles.length
-      ? TRACKS.find(t => t.title === album.trackTitles[0]) : null;
-    return `<div class="album-card" onclick="${firstTrack?`play(${firstTrack.id})`:''}">
+    const albumTracks = (album.trackTitles||[])
+      .map(title => TRACKS.find(t => t.title === title))
+      .filter(Boolean);
+    const trackCount = albumTracks.length;
+    return `<div class="album-card" onclick="openAlbumPopup(${escapeHTML(JSON.stringify(album))})">
       <div class="album-cover-wrap">
         <img src="${album.cover}" alt="${escapeHTML(album.name)}" onerror="this.style.background='var(--card)'">
         <div class="album-play-overlay">
@@ -1263,7 +1607,7 @@ function closeModals(){
   document.getElementById('inp-nick').value='';
 }
 function overlayClick(e,el){if(e.target===el)closeModals();}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModals();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModals();document.getElementById('album-popup-overlay').classList.remove('open');}});
 document.getElementById('inp-name').addEventListener('keydown',e=>{if(e.key==='Enter')createPlaylist();});
 document.getElementById('inp-nick').addEventListener('keydown',e=>{if(e.key==='Enter')confirmSubscribe();});
 
