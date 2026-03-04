@@ -369,6 +369,98 @@ aside {
   border-color: var(--accent); color: var(--accent);
   box-shadow: 0 2px 12px color-mix(in srgb,var(--accent) 20%,transparent);
 }
+
+/* ── SOON SECTION ── */
+.soon-section {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px dashed color-mix(in srgb,var(--border) 60%,transparent);
+}
+.soon-section-label {
+  font-family: var(--font-display);
+  font-size: 12px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted2); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+}
+.soon-section-label::before {
+  content: ''; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); opacity: 0.5;
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+.soon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; }
+.soon-card {
+  background: color-mix(in srgb,var(--card) 70%,transparent);
+  border: 1.5px dashed color-mix(in srgb,var(--border) 80%,transparent);
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.22s;
+}
+.soon-card:hover {
+  border-color: color-mix(in srgb,var(--accent) 35%,transparent);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px color-mix(in srgb,var(--accent) 10%,transparent);
+}
+.soon-cover-wrap {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+.soon-cover-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: blur(2px) brightness(0.5) saturate(0.4);
+  transition: all 0.3s ease;
+  display: block;
+}
+.soon-card:hover .soon-cover-wrap img { filter: blur(1px) brightness(0.6) saturate(0.6); }
+.soon-overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px;
+  background: linear-gradient(to bottom, transparent 20%, rgba(0,0,0,0.5) 100%);
+}
+.soon-badge {
+  font-family: var(--font-display);
+  font-size: 9px; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent);
+  background: color-mix(in srgb,var(--bg) 70%,transparent);
+  border: 1.5px solid color-mix(in srgb,var(--accent) 50%,transparent);
+  padding: 5px 12px; border-radius: 999px;
+  backdrop-filter: blur(8px);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.soon-lock { font-size: 24px; filter: grayscale(1); opacity: 0.5; }
+.soon-type-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: rgba(0,0,0,0.7);
+  border: 1px solid rgba(255,255,255,0.15);
+  font-size: 8px; font-weight: 900; font-family: var(--font-display);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 999px;
+  color: var(--soft-text);
+}
+.soon-info {
+  padding: 16px;
+}
+.soon-name {
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: 800; letter-spacing: -0.02em;
+  color: var(--text); margin-bottom: 5px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: lowercase;
+  opacity: 0.7;
+}
+.soon-meta {
+  font-size: 11px; color: var(--muted2); font-weight: 500;
+}
+.soon-coming-text {
+  margin-top: 8px;
+  font-size: 10px; font-weight: 800; font-family: var(--font-display);
+  color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.7;
+}
+
 .albums-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -481,6 +573,15 @@ aside {
 .tr-album { font-size: 10px; color: var(--soft-text); margin-top: 3px; font-weight: 500; }
 .tr-type { font-size: 11px; color: var(--soft-text); font-weight: 600; }
 
+/* plays count in track row */
+.tr-plays {
+  font-size: 10px; color: var(--muted2); font-weight: 700;
+  font-family: var(--font-display); letter-spacing: 0.04em;
+  display: flex; align-items: center; gap: 4px;
+  white-space: nowrap;
+}
+.tr-plays-icon { font-size: 9px; opacity: 0.6; }
+
 .new-badge {
   font-size: 8px; background: var(--accent); color: #000; padding: 2px 7px;
   border-radius: 999px; letter-spacing: 0.08em; margin-left: 8px;
@@ -577,18 +678,169 @@ aside {
 .a-chip:hover { border-color: var(--accent); color: var(--accent); }
 .a-chip img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; }
 
-/* ── SETTINGS ── */
+/* ── SETTINGS FULLSCREEN ── */
+.settings-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.92);
+  z-index: 500; display: none; backdrop-filter: blur(20px);
+  overflow-y: auto;
+}
+.settings-overlay.open { display: block; animation: fadeIn 0.2s ease; }
+.settings-panel {
+  max-width: 700px; margin: 0 auto;
+  padding: 40px 40px 80px;
+  min-height: 100vh;
+}
+.settings-top-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.settings-top-title {
+  font-family: var(--font-display); font-size: 22px; font-weight: 900;
+  letter-spacing: -0.03em;
+}
+.settings-close-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: color-mix(in srgb,var(--card) 80%,transparent);
+  border: 1.5px solid var(--border); color: var(--muted2);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 16px; transition: all 0.15s;
+}
+.settings-close-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+
+.settings-section {
+  margin-bottom: 36px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+.settings-section:last-child { border-bottom: none; }
+.settings-section-title {
+  font-family: var(--font-display); font-size: 11px; font-weight: 900;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted2);
+  margin-bottom: 16px;
+}
+
 .preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
 .preset {
-  padding: 7px 13px; border-radius: 999px; font-size: 10px; font-weight: 800;
+  padding: 8px 16px; border-radius: 999px; font-size: 10px; font-weight: 800;
   border: 1.5px solid var(--border); background: transparent; color: var(--muted2);
   cursor: pointer; transition: all .15s; font-family: var(--font-display);
 }
 .preset:hover { border-color: var(--accent); color: var(--accent); }
 .preset.active { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb,var(--accent) 10%,transparent); }
-.settings-grid { display: grid; gap: 10px; }
-.color-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.color-row label { font-size: 10px; letter-spacing: .08em; color: var(--muted2); text-transform: uppercase; font-weight: 800; display: block; margin: 4px 0 6px; font-family: var(--font-display); }
+
+.settings-toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px; border-radius: var(--radius-sm);
+  background: color-mix(in srgb,var(--card) 60%,transparent);
+  border: 1px solid var(--border);
+  margin-bottom: 10px; transition: all 0.15s;
+}
+.settings-toggle-row:hover { border-color: color-mix(in srgb,var(--accent) 30%,transparent); }
+.settings-toggle-label { font-size: 13px; font-weight: 700; }
+.settings-toggle-sub { font-size: 10px; color: var(--soft-text); margin-top: 2px; font-weight: 500; }
+.toggle-switch {
+  width: 44px; height: 24px; border-radius: 999px; background: var(--border);
+  position: relative; cursor: pointer; transition: background 0.2s; flex-shrink: 0;
+  border: none;
+}
+.toggle-switch.on { background: var(--accent); }
+.toggle-switch::after {
+  content: ''; position: absolute; top: 3px; left: 3px;
+  width: 18px; height: 18px; border-radius: 50%; background: #fff;
+  transition: transform 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+.toggle-switch.on::after { transform: translateX(20px); }
+
+.settings-slider-row {
+  padding: 14px 18px; border-radius: var(--radius-sm);
+  background: color-mix(in srgb,var(--card) 60%,transparent);
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+.settings-slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.settings-slider-header span { font-size: 13px; font-weight: 700; }
+.settings-slider-header .val { font-size: 11px; font-weight: 800; color: var(--accent); font-family: var(--font-display); }
+input[type="range"] {
+  width: 100%; -webkit-appearance: none; height: 4px;
+  border-radius: 999px; background: var(--border); outline: none; cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent); cursor: pointer;
+  box-shadow: 0 2px 8px color-mix(in srgb,var(--accent) 50%,transparent);
+}
+
+.settings-select-row {
+  padding: 14px 18px; border-radius: var(--radius-sm);
+  background: color-mix(in srgb,var(--card) 60%,transparent);
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+}
+.settings-select-row span { font-size: 13px; font-weight: 700; }
+.settings-select-row select {
+  background: var(--bg); border: 1.5px solid var(--border); color: var(--text);
+  font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 700;
+  padding: 6px 12px; border-radius: var(--radius-xs); outline: none;
+  cursor: pointer; transition: border-color 0.15s; margin: 0; width: auto;
+}
+.settings-select-row select:focus { border-color: var(--accent); }
+
+.color-settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.color-settings-item {
+  padding: 14px 16px; border-radius: var(--radius-sm);
+  background: color-mix(in srgb,var(--card) 60%,transparent);
+  border: 1px solid var(--border);
+}
+.color-settings-item label { font-size: 10px; letter-spacing: .08em; color: var(--muted2); text-transform: uppercase; font-weight: 800; display: block; margin-bottom: 10px; font-family: var(--font-display); }
+.color-settings-item input[type="color"] {
+  width: 100%; height: 40px; border: none; border-radius: var(--radius-xs);
+  cursor: pointer; background: none; padding: 0; margin: 0;
+}
+.color-swatch-preview {
+  width: 100%; height: 36px; border-radius: var(--radius-xs);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 800; font-family: var(--font-display);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin-top: 8px; border: 1px solid rgba(255,255,255,0.1);
+}
+
+.settings-account-info {
+  padding: 16px 18px; border-radius: var(--radius-sm);
+  background: color-mix(in srgb,var(--card) 60%,transparent);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; gap: 14px;
+}
+.settings-account-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg,var(--accent),var(--muted2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.settings-account-nick { font-size: 14px; font-weight: 800; }
+.settings-account-sub { font-size: 11px; color: var(--soft-text); margin-top: 3px; font-weight: 500; }
+.change-nick-btn {
+  margin-left: auto; padding: 8px 16px;
+  border: 1.5px solid var(--border); border-radius: 999px;
+  background: transparent; color: var(--muted2); cursor: pointer;
+  font-size: 10px; font-weight: 800; font-family: var(--font-display);
+  transition: all 0.15s;
+}
+.change-nick-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.settings-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.settings-stat-card {
+  padding: 16px; border-radius: var(--radius-sm);
+  background: color-mix(in srgb,var(--card) 60%,transparent);
+  border: 1px solid var(--border); text-align: center;
+}
+.settings-stat-num { font-family: var(--font-display); font-size: 24px; font-weight: 900; color: var(--accent); }
+.settings-stat-label { font-size: 10px; color: var(--soft-text); font-weight: 600; margin-top: 4px; }
+
+/* ── OLD MODAL KEEP SMALL ── */
+.modal-settings-old { display:none; }
 
 /* ── TOAST ── */
 .toast {
@@ -747,6 +999,11 @@ aside {
   font-size: 11px; color: var(--muted2); font-weight: 600;
   font-family: var(--font-display); flex-shrink: 0;
 }
+.popup-track-plays {
+  font-size: 10px; color: var(--muted2); font-weight: 700;
+  font-family: var(--font-display); flex-shrink: 0;
+  min-width: 36px; text-align: right;
+}
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-thumb { background: color-mix(in srgb,var(--border) 80%,transparent); border-radius: 999px; }
@@ -762,6 +1019,9 @@ aside {
   .featured-release { margin: -20px -18px 24px; min-height: 300px; }
   .featured-info { padding: 28px 18px 24px; }
   .featured-hit-card { min-width: 100%; }
+  .settings-panel { padding: 24px 20px 60px; }
+  .color-settings-grid { grid-template-columns: 1fr; }
+  .settings-stats-grid { grid-template-columns: repeat(2,1fr); }
 }
 </style>
 </head>
@@ -773,7 +1033,7 @@ aside {
     <div class="logo-sub">музыка · плейлисты · независимый проект</div>
   </div>
   <div class="header-actions">
-    <button class="settings-btn" onclick="openModal('modal-settings')">
+    <button class="settings-btn" onclick="openSettings()">
       <span class="settings-dot"></span>
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0">
         <path d="M19.14,12.94a7.43,7.43,0,0,0,.05-.94,7.43,7.43,0,0,0-.05-.94l2.11-1.65a.5.5,0,0,0,.12-.63l-2-3.46a.5.5,0,0,0-.6-.22l-2.49,1a7.28,7.28,0,0,0-1.63-.94l-.38-2.65A.5.5,0,0,0,12.75,1H9.25a.5.5,0,0,0-.49.42L8.38,4.07a7.28,7.28,0,0,0-1.63.94l-2.49-1a.5.5,0,0,0-.6.22l-2,3.46a.5.5,0,0,0,.12.63L3.89,11.06a7.43,7.43,0,0,0-.05.94,7.43,7.43,0,0,0,.05.94L1.78,14.59a.5.5,0,0,0-.12.63l2,3.46a.5.5,0,0,0,.6.22l2.49-1a7.28,7.28,0,0,0,1.63.94l.38,2.65a.5.5,0,0,0,.49.42h3.5a.5.5,0,0,0,.49-.42l.38-2.65a7.28,7.28,0,0,0,1.63-.94l2.49,1a.5.5,0,0,0,.6-.22l2-3.46a.5.5,0,0,0-.12-.63ZM11,15.5A3.5,3.5,0,1,1,14.5,12,3.5,3.5,0,0,1,11,15.5Z"/>
@@ -852,7 +1112,7 @@ aside {
       <table class="track-table">
         <thead><tr>
           <th>#</th><th class="th-cover"></th><th>название</th>
-          <th>артист / тип</th><th class="th-like"></th><th style="width:36px;"></th><th>длина</th>
+          <th>артист / тип</th><th class="th-like"></th><th style="width:36px;"></th><th>прослушивания</th>
         </tr></thead>
         <tbody id="tbody-all"></tbody>
       </table>
@@ -870,7 +1130,7 @@ aside {
       <table class="track-table">
         <thead><tr>
           <th>#</th><th class="th-cover"></th><th>название</th>
-          <th>артист / тип</th><th class="th-like"></th><th style="width:36px;"></th><th>длина</th>
+          <th>артист / тип</th><th class="th-like"></th><th style="width:36px;"></th><th>прослушивания</th>
         </tr></thead>
         <tbody id="tbody-liked"></tbody>
       </table>
@@ -914,16 +1174,26 @@ aside {
       <table class="track-table">
         <thead><tr>
           <th>#</th><th class="th-cover"></th><th>название</th>
-          <th>артист / тип</th><th class="th-like"></th><th style="width:36px;"></th><th>длина</th>
+          <th>артист / тип</th><th class="th-like"></th><th style="width:36px;"></th><th>прослушивания</th>
         </tr></thead>
         <tbody id="tbody-artist"></tbody>
       </table>
 
       <!-- DISCOGRAPHY -->
       <div class="discography-section" id="artist-discography" style="display:none;">
-        <div class="discography-title">DISCOGRAPHY</div>
-        <div class="discography-subtitle">Albums & Releases</div>
+        <div class="discography-title">ДИСКОГРАФИЯ</div>
+        <div class="discography-subtitle">Альбомы, синглы и релизы</div>
+        <div class="disc-filter-row">
+          <button class="disc-filter-btn active" id="disc-btn-all" onclick="filterDisc('all')">Все</button>
+          <button class="disc-filter-btn" id="disc-btn-album" onclick="filterDisc('album')">Альбомы</button>
+          <button class="disc-filter-btn" id="disc-btn-single" onclick="filterDisc('single')">Синглы</button>
+        </div>
         <div class="albums-grid" id="albums-grid"></div>
+        <!-- SOON section -->
+        <div class="soon-section" id="soon-section" style="display:none;">
+          <div class="soon-section-label">скоро выйдет</div>
+          <div class="soon-grid" id="soon-grid"></div>
+        </div>
       </div>
     </div>
 
@@ -936,7 +1206,7 @@ aside {
       <table class="track-table">
         <thead><tr>
           <th>#</th><th class="th-cover"></th><th>название</th>
-          <th>артист / тип</th><th class="th-like"></th><th style="width:36px;"></th><th>длина</th>
+          <th>артист / тип</th><th class="th-like"></th><th style="width:36px;"></th><th>прослушивания</th>
         </tr></thead>
         <tbody id="tbody-pl"></tbody>
       </table>
@@ -1000,44 +1270,6 @@ aside {
   </div>
 </div>
 
-<div class="overlay" id="modal-settings" onclick="overlayClick(event,this)">
-  <div class="modal">
-    <h3>настройки</h3>
-    <div class="preset-row">
-      <button class="preset" id="preset-blood" onclick="applyPreset('blood')">🩸 blood</button>
-      <button class="preset" id="preset-dark" onclick="applyPreset('dark')">🌑 dark</button>
-      <button class="preset" id="preset-midnight" onclick="applyPreset('midnight')">🌙 midnight</button>
-      <button class="preset" id="preset-light" onclick="applyPreset('light')">☀️ light</button>
-      <button class="preset" id="preset-forest" onclick="applyPreset('forest')">🌿 forest</button>
-      <button class="preset" id="preset-ocean" onclick="applyPreset('ocean')">🌊 ocean</button>
-      <button class="preset" id="preset-amber" onclick="applyPreset('amber')">🔥 amber</button>
-      <button class="preset" id="preset-rose" onclick="applyPreset('rose')">🌸 rose</button>
-      <button class="preset" id="preset-cyber" onclick="applyPreset('cyber')">⚡ cyber</button>
-      <button class="preset" id="preset-slate" onclick="applyPreset('slate')">🪨 slate</button>
-      <button class="preset" id="preset-cream" onclick="applyPreset('cream')">🍞 cream</button>
-      <button class="preset" id="preset-custom" onclick="applyPreset('custom')">🎨 custom</button>
-    </div>
-    <div class="settings-grid" id="custom-settings" style="display:none;">
-      <div class="small-note" style="margin-top:0;">3 цвета: <b style="color:var(--text2)">текст</b> / <b>фон</b> / <b style="color:var(--soft-text)">текст2</b></div>
-      <div class="color-row">
-        <div><label>1 — текст</label><input id="c_text" type="color" value="#f2edff" oninput="previewCustom()"></div>
-        <div><label>2 — фон</label><input id="c_bg" type="color" value="#07060b" oninput="previewCustom()"></div>
-      </div>
-      <div class="color-row">
-        <div><label>3 — текст2</label><input id="c_text2" type="color" value="#cbbcff" oninput="previewCustom()"></div>
-        <div><label>карточка</label><input id="c_card" type="color" value="#0e0b16" oninput="previewCustom()"></div>
-      </div>
-      <div class="modal-btns" style="justify-content:space-between;">
-        <button class="btn btn-outline" onclick="resetCustom()">сброс</button>
-        <button class="btn btn-accent" onclick="saveCustom()">сохранить</button>
-      </div>
-    </div>
-    <div class="hr"></div>
-    <div class="small-note">все права защищены<br><b>ИП Хлусов Михаил Романович</b></div>
-    <div class="modal-btns"><button class="btn btn-outline" onclick="closeModals()">закрыть</button></div>
-  </div>
-</div>
-
 <div class="overlay" id="modal-track" onclick="overlayClick(event,this)">
   <div class="modal">
     <div style="display:flex;gap:18px;align-items:center;margin-bottom:14px;">
@@ -1045,6 +1277,7 @@ aside {
       <div style="min-width:0;">
         <h3 id="track-title" style="margin-bottom:6px;">трек</h3>
         <div style="font-size:11px;color:var(--soft-text);font-weight:500;margin-top:-2px;"><span id="track-meta">—</span></div>
+        <div style="font-size:11px;color:var(--text2);font-weight:800;margin-top:4px;font-family:var(--font-display);" id="track-plays-display">▶ 0 прослушиваний</div>
       </div>
     </div>
     <div class="chip-row" id="track-artists"></div>
@@ -1073,11 +1306,181 @@ aside {
   </div>
 </div>
 
+<!-- SETTINGS FULLSCREEN -->
+<div class="settings-overlay" id="settings-overlay">
+  <div class="settings-panel">
+    <div class="settings-top-bar">
+      <div class="settings-top-title">⚙ настройки</div>
+      <button class="settings-close-btn" onclick="closeSettings()">✕</button>
+    </div>
+
+    <!-- ACCOUNT -->
+    <div class="settings-section">
+      <div class="settings-section-title">👤 аккаунт</div>
+      <div class="settings-account-info" id="settings-account-info">
+        <div class="settings-account-avatar">🎵</div>
+        <div>
+          <div class="settings-account-nick" id="settings-nick-display">аноним</div>
+          <div class="settings-account-sub">ник виден другим пользователям</div>
+        </div>
+        <button class="change-nick-btn" onclick="changeNickFromSettings()">изменить ник</button>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="settings-section">
+      <div class="settings-section-title">📊 твоя статистика</div>
+      <div class="settings-stats-grid">
+        <div class="settings-stat-card">
+          <div class="settings-stat-num" id="stat-liked">0</div>
+          <div class="settings-stat-label">понравилось</div>
+        </div>
+        <div class="settings-stat-card">
+          <div class="settings-stat-num" id="stat-playlists">0</div>
+          <div class="settings-stat-label">плейлистов</div>
+        </div>
+        <div class="settings-stat-card">
+          <div class="settings-stat-num" id="stat-opens">0</div>
+          <div class="settings-stat-label">открытий треков</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THEME PRESETS -->
+    <div class="settings-section">
+      <div class="settings-section-title">🎨 тема оформления</div>
+      <div class="preset-row">
+        <button class="preset" id="preset-blood" onclick="applyPreset('blood')">🩸 blood</button>
+        <button class="preset" id="preset-dark" onclick="applyPreset('dark')">🌑 dark</button>
+        <button class="preset" id="preset-midnight" onclick="applyPreset('midnight')">🌙 midnight</button>
+        <button class="preset" id="preset-light" onclick="applyPreset('light')">☀️ light</button>
+        <button class="preset" id="preset-forest" onclick="applyPreset('forest')">🌿 forest</button>
+        <button class="preset" id="preset-ocean" onclick="applyPreset('ocean')">🌊 ocean</button>
+        <button class="preset" id="preset-amber" onclick="applyPreset('amber')">🔥 amber</button>
+        <button class="preset" id="preset-rose" onclick="applyPreset('rose')">🌸 rose</button>
+        <button class="preset" id="preset-cyber" onclick="applyPreset('cyber')">⚡ cyber</button>
+        <button class="preset" id="preset-slate" onclick="applyPreset('slate')">🪨 slate</button>
+        <button class="preset" id="preset-cream" onclick="applyPreset('cream')">🍞 cream</button>
+        <button class="preset" id="preset-custom" onclick="applyPreset('custom')">🎨 custom</button>
+      </div>
+    </div>
+
+    <!-- CUSTOM THEME -->
+    <div class="settings-section" id="custom-settings" style="display:none;">
+      <div class="settings-section-title">🖌 кастомная тема</div>
+      <div class="color-settings-grid">
+        <div class="color-settings-item">
+          <label>акцент (кнопки, ссылки)</label>
+          <input id="c_accent" type="color" value="#ff2222" oninput="previewCustom()">
+          <div class="color-swatch-preview" id="swatch-accent" style="background:var(--accent);color:#000;font-size:9px;">accent</div>
+        </div>
+        <div class="color-settings-item">
+          <label>фон страницы</label>
+          <input id="c_bg" type="color" value="#0a0000" oninput="previewCustom()">
+          <div class="color-swatch-preview" id="swatch-bg" style="background:var(--bg);color:var(--text);font-size:9px;">background</div>
+        </div>
+        <div class="color-settings-item">
+          <label>основной текст</label>
+          <input id="c_text" type="color" value="#ffcccc" oninput="previewCustom()">
+          <div class="color-swatch-preview" id="swatch-text" style="background:var(--card);color:var(--text);font-size:9px;">text color</div>
+        </div>
+        <div class="color-settings-item">
+          <label>карточки</label>
+          <input id="c_card" type="color" value="#130000" oninput="previewCustom()">
+          <div class="color-swatch-preview" id="swatch-card" style="background:var(--card);color:var(--text);font-size:9px;">cards</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:14px;justify-content:flex-end;">
+        <button class="btn btn-outline" onclick="resetCustom()">сброс</button>
+        <button class="btn btn-accent" onclick="saveCustom()">сохранить тему</button>
+      </div>
+    </div>
+
+    <!-- PLAYBACK SETTINGS -->
+    <div class="settings-section">
+      <div class="settings-section-title">🎵 воспроизведение</div>
+      <div class="settings-toggle-row">
+        <div>
+          <div class="settings-toggle-label">автовоспроизведение</div>
+          <div class="settings-toggle-sub">автоматически открывать следующий трек</div>
+        </div>
+        <button class="toggle-switch" id="toggle-autoplay" onclick="toggleSetting('autoplay',this)"></button>
+      </div>
+      <div class="settings-toggle-row">
+        <div>
+          <div class="settings-toggle-label">показывать текст при открытии</div>
+          <div class="settings-toggle-sub">открывать текст трека автоматически</div>
+        </div>
+        <button class="toggle-switch on" id="toggle-showlyrics" onclick="toggleSetting('showlyrics',this)"></button>
+      </div>
+      <div class="settings-slider-row">
+        <div class="settings-slider-header">
+          <span>размер обложки в списке</span>
+          <span class="val" id="cover-size-val">38px</span>
+        </div>
+        <input type="range" min="28" max="56" value="38" id="slider-cover" oninput="updateCoverSize(this.value)">
+      </div>
+    </div>
+
+    <!-- DISPLAY SETTINGS -->
+    <div class="settings-section">
+      <div class="settings-section-title">👁 интерфейс</div>
+      <div class="settings-toggle-row">
+        <div>
+          <div class="settings-toggle-label">показывать прослушивания</div>
+          <div class="settings-toggle-sub">счётчик прослушиваний у каждого трека</div>
+        </div>
+        <button class="toggle-switch on" id="toggle-showplays" onclick="toggleSetting('showplays',this)"></button>
+      </div>
+      <div class="settings-toggle-row">
+        <div>
+          <div class="settings-toggle-label">зернистость фона</div>
+          <div class="settings-toggle-sub">шумовая текстура поверх страницы</div>
+        </div>
+        <button class="toggle-switch on" id="toggle-grain" onclick="toggleSetting('grain',this)"></button>
+      </div>
+      <div class="settings-toggle-row">
+        <div>
+          <div class="settings-toggle-label">анимации</div>
+          <div class="settings-toggle-sub">анимации при воспроизведении</div>
+        </div>
+        <button class="toggle-switch on" id="toggle-anim" onclick="toggleSetting('anim',this)"></button>
+      </div>
+      <div class="settings-select-row">
+        <span>язык интерфейса</span>
+        <select onchange="showToast('скоро :)')">
+          <option>🇷🇺 русский</option>
+          <option>🇬🇧 english (скоро)</option>
+          <option>🇺🇦 українська (скоро)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="settings-section">
+      <div class="settings-section-title">ℹ️ о проекте</div>
+      <div class="settings-toggle-row" style="cursor:default;">
+        <div>
+          <div class="settings-toggle-label">grinda songers</div>
+          <div class="settings-toggle-sub">независимый музыкальный проект · версия 2.0</div>
+        </div>
+      </div>
+      <div class="small-note" style="padding:0 4px;margin-top:8px;">
+        все права защищены · <b>ИП Хлусов Михаил Романович</b><br>
+        контент создан участниками: puker, hadash, MAX-NITRO, диджей валера
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 const STORAGE_PREFIX = 'subs:';
+const PLAYS_KEY = 'plays';
 
+// ── STORAGE HELPERS ──
 async function getSharedSubs(artistId) {
   try {
     const result = await window.storage.get(STORAGE_PREFIX + artistId, true);
@@ -1089,6 +1492,36 @@ async function setSharedSubs(artistId, arr) {
   try { await window.storage.set(STORAGE_PREFIX + artistId, JSON.stringify(arr), true); } catch(e) {}
 }
 
+// Plays: shared across all users
+let playsCache = {};
+async function loadPlays() {
+  try {
+    const result = await window.storage.get(PLAYS_KEY, true);
+    if (result) playsCache = JSON.parse(result.value) || {};
+  } catch(e) { playsCache = {}; }
+}
+async function incrementPlays(trackId) {
+  // Re-fetch to get latest, then increment
+  try {
+    const result = await window.storage.get(PLAYS_KEY, true);
+    const current = result ? (JSON.parse(result.value) || {}) : {};
+    current[trackId] = (current[trackId] || 0) + 1;
+    playsCache = current;
+    await window.storage.set(PLAYS_KEY, JSON.stringify(current), true);
+  } catch(e) {
+    playsCache[trackId] = (playsCache[trackId] || 0) + 1;
+  }
+}
+function getPlays(trackId) {
+  return playsCache[trackId] || 0;
+}
+function formatPlays(n) {
+  if(n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  if(n >= 1000) return (n/1000).toFixed(1) + 'K';
+  return String(n);
+}
+
+// ── DATA ──
 const COVERS = {
   'Абсурд': 'https://i.ibb.co/F4X9Rw1g/Chat-GPT-Image-22-2026-02-59-56.png',
   'Белые мишабаны': 'https://i.ibb.co/WNHJCtrL/Chat-GPT-Image-22-2026-02-53-25.png',
@@ -1104,9 +1537,28 @@ const COVERS = {
   'Олд Феррари': 'https://i.ibb.co/CpDwZ54Z/Chat-GPT-Image-2-2026-02-31-15.png',
 };
 
+const HORROR_TRIAD_COVER = 'https://i.ibb.co/JWMHTdjR/Group-5-8.png';
 const VALERA_HUB_COVER = 'https://i.ibb.co/BHtF8Dqf/Blur-Valera.png';
 
-// DISCOGRAPHY data for диджей валера
+const SOON_RELEASES = {
+  'диджей валера': [
+    {
+      name: 'THE HORROR TRIAD',
+      cover: HORROR_TRIAD_COVER,
+      type: 'Album',
+      desc: 'скоро',
+    }
+  ],
+  'MAX-NITRO': [
+    {
+      name: 'THE HORROR TRIAD',
+      cover: HORROR_TRIAD_COVER,
+      type: 'Album',
+      desc: 'скоро',
+    }
+  ],
+};
+
 const DISCOGRAPHY = {
   'диджей валера': [
     {
@@ -1119,7 +1571,6 @@ const DISCOGRAPHY = {
   ]
 };
 
-// Tracks marked as album-only (won't appear on artist page, only in "все треки" and album)
 const ALBUM_ONLY_TRACKS = new Set(['Олд Феррари']);
 
 const OLD_FERRARI_LYRICS = `[INTRO]
@@ -1202,7 +1653,6 @@ const ARTISTS = [
     tracks:[
       { title:'ШИМПАВОЗ', album:'новинка · 24.02.2026', type:'hadash & MAX-NITRO & диджей валера', dur:'—', url:'https://music.youtube.com/watch?v=PiHA04UK92o', cover:COVERS['ШИМПАВОЗ'], lyrics:`[Интро]\nШимпавоз...`, credits:'made by: hadash & MAX-NITRO & диджей валера' },
       { title:'Абсурд', album:'сингл · 25.12.2025', type:'диджей валера', dur:'—', url:'https://music.youtube.com/watch?v=RnBmoL8ohGY', cover:COVERS['Абсурд'], lyrics:`[Verse]\nУ тебя мало оперативки я рыганул в ботинки там мишабан`, credits:'made by: диджей валера' },
-      // Олд Феррари is album-only, so we include it here for buildTracks but it won't show on artist page
       { title:'Олд Феррари', album:'ВалераХАБ · 2026', type:'диджей валера', dur:'—', url:'https://music.youtube.com/watch?v=wh_274y30Rc&si=cKN91vP0t-XrZ_s7', cover:COVERS['Олд Феррари'], lyrics: OLD_FERRARI_LYRICS, credits:'made by: диджей валера' },
     ]
   },
@@ -1225,8 +1675,18 @@ let playlists = JSON.parse(localStorage.getItem('kh2_pls')||'[]');
 let liked = JSON.parse(localStorage.getItem('kh2_liked')||'[]');
 let nowPlaying=null, pendingTrackId=null, currentPlId=null, currentArtistId=null;
 let currentTrackUrl = '';
-let currentAlbumData = null; // for album popup
-let pendingAlbumTrackId = null; // for add-to-playlist from album popup
+let currentTrackId = null;
+let currentAlbumData = null;
+let pendingAlbumTrackId = null;
+
+// Settings state
+let settingsState = JSON.parse(localStorage.getItem('kh2_settings')||'{}');
+function getSetting(key, def) { return settingsState[key] !== undefined ? settingsState[key] : def; }
+function setSetting(key, val) { settingsState[key] = val; localStorage.setItem('kh2_settings', JSON.stringify(settingsState)); }
+
+// Local plays counter (for track open count from this session)
+let localOpens = parseInt(localStorage.getItem('kh2_opens')||'0');
+
 const THEMES=['blood','dark','midnight','light','forest','ocean','amber','rose','cyber','slate','cream','custom'];
 
 function buildTracks(artists) {
@@ -1253,7 +1713,6 @@ function saveLiked(){localStorage.setItem('kh2_liked',JSON.stringify(liked));}
 function isLiked(id){return liked.includes(id);}
 function uniq(arr){return Array.from(new Set(arr.filter(Boolean)));}
 function tracksByArtist(aId){
-  // Returns tracks for artist page — excludes ALBUM_ONLY_TRACKS
   return TRACKS.filter(t=>t.artists.includes(aId) && !ALBUM_ONLY_TRACKS.has(t.title));
 }
 function escapeHTML(s){if(!s)return'';return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
@@ -1264,13 +1723,22 @@ function playByTitle(title) {
 }
 function play(id) {
   nowPlaying=id; rerenderAll();
-  // Close album popup before opening track modal
   document.getElementById('album-popup-overlay').classList.remove('open');
   openTrackModal(TRACKS.find(x=>x.id===id));
 }
-function openTrackModal(t){
+
+async function openTrackModal(t){
   if(!t) return;
   currentTrackUrl=t.url||'';
+  currentTrackId=t.id;
+
+  // Increment plays when opening (counts as a listen intent)
+  await incrementPlays(t.id);
+  localOpens++;
+  localStorage.setItem('kh2_opens', localOpens);
+
+  const plays = getPlays(t.id);
+  document.getElementById('track-plays-display').textContent = `▶ ${formatPlays(plays)} прослушиваний`;
   document.getElementById('track-title').textContent=t.title||'трек';
   document.getElementById('track-meta').textContent=t.album?(t.album):(t.type||'');
   document.getElementById('track-lyrics').value=t.lyrics||'текст пока не добавлен 👀';
@@ -1290,6 +1758,8 @@ function openTrackModal(t){
   const btn=document.getElementById('btn-ytmusic');
   btn.style.display=t.url?'inline-flex':'none';
   openModal('modal-track');
+  // Re-render to update play counts in tables
+  setTimeout(()=>rerenderAll(), 200);
 }
 function openYTMusic(){
   if(!currentTrackUrl){showToast('ссылки на трек нет :(');return;}
@@ -1297,9 +1767,17 @@ function openYTMusic(){
 }
 
 function coverCellHTML(t){
-  if(t.cover) return `<img class="tr-cover" src="${t.cover}" alt="" onerror="this.outerHTML='<div class=&quot;tr-cover fallback&quot;>—</div>'">`;
+  const size = getSetting('coverSize', 38);
+  if(t.cover) return `<img class="tr-cover" src="${t.cover}" alt="" style="width:${size}px;height:${size}px;" onerror="this.outerHTML='<div class=&quot;tr-cover fallback&quot;>—</div>'">`;
   return `<div class="tr-cover fallback">—</div>`;
 }
+
+function playsHTML(trackId) {
+  if(!getSetting('showplays', true)) return '—';
+  const n = getPlays(trackId);
+  return `<span class="tr-plays"><span class="tr-plays-icon">▶</span>${formatPlays(n)}</span>`;
+}
+
 function rowHTML(t,i,plId){
   const playing=nowPlaying===t.id;
   const lk=isLiked(t.id);
@@ -1323,7 +1801,7 @@ function rowHTML(t,i,plId){
         ?`<button class="remove-btn" onclick="removeFromPl(${plId},${t.id})">✕</button>`
         :`<button class="add-btn" onclick="openAdd(${t.id})">+</button>`}
     </td>
-    <td>${t.dur||'—'}</td>
+    <td>${playsHTML(t.id)}</td>
   </tr>`;
 }
 
@@ -1331,7 +1809,6 @@ function toggleLike(id){
   const idx=liked.indexOf(id);
   if(idx>=0) liked.splice(idx,1); else liked.push(id);
   saveLiked(); updateLikedCount(); rerenderAll();
-  // Also re-render album popup if open
   if(currentAlbumData && document.getElementById('album-popup-overlay').classList.contains('open')) {
     renderAlbumPopupTracks(currentAlbumData);
   }
@@ -1369,13 +1846,10 @@ function openAlbumPopup(albumData) {
   const albumTracks = albumData.trackTitles
     .map(title => TRACKS.find(t => t.title === title))
     .filter(Boolean);
-
   document.getElementById('popup-cover').src = albumData.cover;
   document.getElementById('popup-badge').textContent = albumData.type;
   document.getElementById('popup-name').textContent = albumData.name;
   document.getElementById('popup-meta').textContent = `${albumData.year} · ${albumTracks.length} треков`;
-
-  // Play button plays first track
   const playBtn = document.getElementById('popup-play-btn');
   if(albumTracks.length) {
     playBtn.onclick = () => { play(albumTracks[0].id); };
@@ -1383,25 +1857,23 @@ function openAlbumPopup(albumData) {
       ? `<div class="playing-bars"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>`
       : '▶';
   }
-
   renderAlbumPopupTracks(albumData);
   document.getElementById('album-popup-overlay').classList.add('open');
 }
-
 function renderAlbumPopupTracks(albumData) {
   const albumTracks = albumData.trackTitles
     .map(title => TRACKS.find(t => t.title === title))
     .filter(Boolean);
-
   const list = document.getElementById('popup-tracks-list');
   list.innerHTML = albumTracks.map((t, i) => {
     const playing = nowPlaying === t.id;
     const lk = isLiked(t.id);
+    const plays = getPlays(t.id);
     return `<div class="popup-track-row ${playing?'is-playing':''}" onclick="play(${t.id}); renderAlbumPopupTracks(currentAlbumData);">
       <div class="popup-track-num">${playing
         ? `<div class="playing-bars" style="width:18px"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>`
         : (i+1)}</div>
-      <img class="popup-track-cover" src="${albumData.isSingle ? (t.cover||''): (albumData.cover || t.cover||'')} " alt="" onerror="this.style.display='none'">
+      <img class="popup-track-cover" src="${albumData.isSingle ? (t.cover||''): (albumData.cover || t.cover||'')}" alt="" onerror="this.style.display='none'">
       <div class="popup-track-info">
         <div class="popup-track-title">${escapeHTML(t.title)}</div>
         <div class="popup-track-sub">${escapeHTML(t.type||'')}</div>
@@ -1410,43 +1882,36 @@ function renderAlbumPopupTracks(albumData) {
         <button class="popup-track-like-btn ${lk?'liked':''}" onclick="toggleLike(${t.id})">${lk?'♥':'♡'}</button>
         <button class="popup-track-add-btn" onclick="openAddFromAlbum(${t.id})" title="добавить в плейлист">+</button>
       </div>
+      <div class="popup-track-plays">▶${formatPlays(plays)}</div>
       <div class="popup-track-dur">${t.dur||'—'}</div>
     </div>`;
   }).join('');
 }
-
 function closeAlbumPopup(event) {
-  const popup = document.getElementById('album-popup');
   if(event.target === document.getElementById('album-popup-overlay')) {
     document.getElementById('album-popup-overlay').classList.remove('open');
   }
 }
-
 function addAllAlbumToPlaylist() {
   if(!playlists.length){showToast('сначала создай плейлист');return;}
   if(!currentAlbumData) return;
   const albumTracks = currentAlbumData.trackTitles
     .map(title => TRACKS.find(t => t.title === title))
     .filter(Boolean);
-  // Store all IDs, use sel-playlist-album
   pendingAlbumTrackId = albumTracks.map(t=>t.id);
   document.getElementById('sel-playlist-album').innerHTML=playlists.map(pl=>`<option value="${pl.id}">${escapeHTML(pl.name)}</option>`).join('');
   openModal('modal-add-album');
 }
-
 function openAddFromAlbum(trackId) {
   if(!playlists.length){showToast('сначала создай плейлист');return;}
   pendingAlbumTrackId = trackId;
   document.getElementById('sel-playlist-album').innerHTML=playlists.map(pl=>`<option value="${pl.id}">${escapeHTML(pl.name)}</option>`).join('');
   openModal('modal-add-album');
 }
-
 function confirmAddAlbum() {
   const plId=parseInt(document.getElementById('sel-playlist-album').value);
   const pl=playlists.find(p=>p.id===plId); if(!pl) return;
-
   if(Array.isArray(pendingAlbumTrackId)) {
-    // Add all
     let added = 0;
     for(const id of pendingAlbumTrackId) {
       if(!pl.trackIds.includes(id)) { pl.trackIds.push(id); added++; }
@@ -1462,7 +1927,6 @@ function confirmAddAlbum() {
   pendingAlbumTrackId = null;
 }
 
-// Album data store — avoids JSON-in-onclick issues
 const ALBUM_STORE = {};
 let _albumStoreId = 0;
 function storeAlbum(data) {
@@ -1494,6 +1958,8 @@ function extractType(albumStr) {
 function renderDiscography(artistId) {
   const section = document.getElementById('artist-discography');
   const grid = document.getElementById('albums-grid');
+  const soonSection = document.getElementById('soon-section');
+  const soonGrid = document.getElementById('soon-grid');
 
   const manualAlbums = DISCOGRAPHY[artistId] || [];
   const manualTrackTitles = new Set(manualAlbums.flatMap(a => a.trackTitles || []));
@@ -1511,9 +1977,12 @@ function renderDiscography(artistId) {
     }));
 
   const allEntries = [...manualAlbums, ...singles];
-  if(!allEntries.length) { section.style.display='none'; return; }
+  const soonEntries = SOON_RELEASES[artistId] || [];
+
+  if(!allEntries.length && !soonEntries.length) { section.style.display='none'; return; }
   section.style.display='block';
-  // Reset filter buttons to 'all'
+
+  // Reset filter
   document.querySelectorAll('.disc-filter-btn').forEach(b => b.classList.remove('active'));
   const allBtn = document.getElementById('disc-btn-all');
   if(allBtn) allBtn.classList.add('active');
@@ -1537,6 +2006,30 @@ function renderDiscography(artistId) {
       </div>
     </div>`;
   }).join('');
+
+  // SOON section
+  if(soonEntries.length) {
+    soonSection.style.display = 'block';
+    soonGrid.innerHTML = soonEntries.map(entry => {
+      return `<div class="soon-card">
+        <div class="soon-cover-wrap">
+          <img src="${entry.cover}" alt="${escapeHTML(entry.name)}">
+          <div class="soon-overlay">
+            <div class="soon-badge">скоро выйдет</div>
+            <div class="soon-lock">🔒</div>
+          </div>
+          <span class="soon-type-badge">${escapeHTML(entry.type)}</span>
+        </div>
+        <div class="soon-info">
+          <div class="soon-name">${escapeHTML(entry.name)}</div>
+          <div class="soon-meta">${escapeHTML(entry.desc||'')}</div>
+          <div class="soon-coming-text">ожидайте...</div>
+        </div>
+      </div>`;
+    }).join('');
+  } else {
+    soonSection.style.display = 'none';
+  }
 }
 
 function filterDisc(type) {
@@ -1550,6 +2043,11 @@ function filterDisc(type) {
     else if(type === 'album') card.style.display = dt === 'album' ? '' : 'none';
     else if(type === 'single') card.style.display = dt === 'single' ? '' : 'none';
   });
+  // Show/hide soon section too
+  const soonSection = document.getElementById('soon-section');
+  if(soonSection) {
+    soonSection.style.display = (type === 'all' || type === 'album') ? '' : 'none';
+  }
 }
 
 function renderArtistsSidebar(){
@@ -1586,16 +2084,22 @@ function renderArtistTracks(id){
   if(!tr.length){tbody.innerHTML=`<tr><td colspan="7"><div class="empty-state"><span class="e-icon">♫</span>пока пусто</div></td></tr>`;return;}
   tbody.innerHTML=tr.map((t,i)=>rowHTML(t,i,null)).join('');
 }
+
 async function renderSubscribeUI(){
+  if(!currentArtistId) return;
   const subs=await getSharedSubs(currentArtistId);
   const count=subs.length;
   const me=(localStorage.getItem('kh2_nick')||'').trim();
-  const isOn=me&&subs.includes(me);
+  const isOn=!!(me && subs.includes(me));
   const btn=document.getElementById('sub-btn');
-  btn.classList.toggle('is-on',!!isOn);
-  btn.textContent=isOn?'✓ подписан(а)':'подписаться';
-  document.getElementById('subs-count').textContent=count;
-  document.getElementById('subs-count-num').textContent=count;
+  if(btn) {
+    btn.classList.toggle('is-on', isOn);
+    btn.textContent=isOn?'✓ подписан(а)':'подписаться';
+  }
+  const subsCount = document.getElementById('subs-count');
+  const subsCountNum = document.getElementById('subs-count-num');
+  if(subsCount) subsCount.textContent=count;
+  if(subsCountNum) subsCountNum.textContent=count;
 }
 async function toggleSubscribe(){
   if(!currentArtistId) return;
@@ -1604,10 +2108,10 @@ async function toggleSubscribe(){
   const subs=await getSharedSubs(currentArtistId);
   const idx=subs.indexOf(me);
   if(idx>=0) subs.splice(idx,1); else subs.push(me);
-  await setSharedSubs(currentArtistId,uniq(subs));
+  await setSharedSubs(currentArtistId, uniq(subs));
   await renderSubscribeUI();
   renderArtistsSidebar();
-  showToast(idx>=0?'подписка снята':`подписка: ${me}`);
+  showToast(idx>=0?'подписка снята':`подписан(а): ${me}`);
 }
 async function confirmSubscribe(){
   if(!currentArtistId) return;
@@ -1616,9 +2120,11 @@ async function confirmSubscribe(){
   localStorage.setItem('kh2_nick',nick);
   const subs=await getSharedSubs(currentArtistId);
   if(!subs.includes(nick)) subs.push(nick);
-  await setSharedSubs(currentArtistId,uniq(subs));
-  closeModals(); await renderSubscribeUI(); renderArtistsSidebar();
-  showToast(`подписка: ${nick}`);
+  await setSharedSubs(currentArtistId, uniq(subs));
+  closeModals();
+  await renderSubscribeUI();
+  renderArtistsSidebar();
+  showToast(`подписан(а): ${nick}`);
 }
 
 function renderSidebar(){
@@ -1687,7 +2193,13 @@ function closeModals(){
   document.getElementById('inp-nick').value='';
 }
 function overlayClick(e,el){if(e.target===el)closeModals();}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModals();document.getElementById('album-popup-overlay').classList.remove('open');}});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    closeModals();
+    document.getElementById('album-popup-overlay').classList.remove('open');
+    closeSettings();
+  }
+});
 document.getElementById('inp-name').addEventListener('keydown',e=>{if(e.key==='Enter')createPlaylist();});
 document.getElementById('inp-nick').addEventListener('keydown',e=>{if(e.key==='Enter')confirmSubscribe();});
 
@@ -1696,6 +2208,68 @@ function showToast(msg){
   const el=document.getElementById('toast');
   el.textContent=msg; el.classList.add('show');
   clearTimeout(_tt); _tt=setTimeout(()=>el.classList.remove('show'),2600);
+}
+
+/* ── SETTINGS ── */
+function openSettings() {
+  const overlay = document.getElementById('settings-overlay');
+  overlay.classList.add('open');
+  // Update stats
+  document.getElementById('stat-liked').textContent = liked.length;
+  document.getElementById('stat-playlists').textContent = playlists.length;
+  document.getElementById('stat-opens').textContent = localOpens;
+  // Update nick display
+  const nick = (localStorage.getItem('kh2_nick')||'').trim();
+  document.getElementById('settings-nick-display').textContent = nick || 'аноним';
+  // Sync toggle states
+  syncToggleUI('toggle-autoplay', getSetting('autoplay', false));
+  syncToggleUI('toggle-showlyrics', getSetting('showlyrics', true));
+  syncToggleUI('toggle-showplays', getSetting('showplays', true));
+  syncToggleUI('toggle-grain', getSetting('grain', true));
+  syncToggleUI('toggle-anim', getSetting('anim', true));
+  // Sync cover size slider
+  const sliderVal = getSetting('coverSize', 38);
+  const slider = document.getElementById('slider-cover');
+  if(slider) { slider.value = sliderVal; document.getElementById('cover-size-val').textContent = sliderVal + 'px'; }
+}
+function closeSettings() {
+  document.getElementById('settings-overlay').classList.remove('open');
+}
+function syncToggleUI(id, isOn) {
+  const btn = document.getElementById(id);
+  if(!btn) return;
+  btn.classList.toggle('on', isOn);
+}
+function toggleSetting(key, btn) {
+  const current = getSetting(key, btn.classList.contains('on'));
+  const newVal = !current;
+  setSetting(key, newVal);
+  btn.classList.toggle('on', newVal);
+  // Apply immediately
+  if(key === 'grain') {
+    document.body.style.setProperty('--noise-opacity', newVal ? '0.022' : '0');
+    document.body.style.opacity = ''; // trigger repaint hint
+    document.body.classList.toggle('no-grain', !newVal);
+  }
+  if(key === 'anim') {
+    document.documentElement.classList.toggle('no-anim', !newVal);
+  }
+  showToast(newVal ? `${key} включён` : `${key} выключен`);
+}
+function updateCoverSize(val) {
+  setSetting('coverSize', parseInt(val));
+  document.getElementById('cover-size-val').textContent = val + 'px';
+  rerenderAll();
+}
+function changeNickFromSettings() {
+  closeSettings();
+  setTimeout(() => {
+    if(currentArtistId) openModal('modal-sub');
+    else {
+      // Open sub modal with generic context
+      openModal('modal-sub');
+    }
+  }, 200);
 }
 
 /* ── THEME ── */
@@ -1709,43 +2283,104 @@ function syncPresetUI(t){
     const b=document.getElementById('preset-'+x);
     if(b) b.classList.toggle('active',x===t);
   });
-  document.getElementById('custom-settings').style.display=(t==='custom')?'grid':'none';
+  const customSection = document.getElementById('custom-settings');
+  if(customSection) customSection.style.display=(t==='custom')?'block':'none';
 }
 function applyPreset(t){
-  if(t==='custom'){loadCustomToInputs();applyCustomVarsFromStorage(true);setTheme('custom');showToast('custom включён');return;}
-  clearCustomInline(); setTheme(t); showToast(`тема: ${t}`);
+  if(t==='custom'){
+    loadCustomToInputs();
+    applyCustomVarsFromStorage(true);
+    setTheme('custom');
+    showToast('custom включён');
+    return;
+  }
+  clearCustomInline();
+  setTheme(t);
+  showToast(`тема: ${t}`);
 }
+
 const CUSTOM_KEY='kh2_custom_theme';
-const DEFAULT_CUSTOM={text:'#f2edff',bg:'#07060b',text2:'#cbbcff',card:'#0e0b16'};
+const DEFAULT_CUSTOM={accent:'#ff2222',text:'#ffcccc',bg:'#0a0000',card:'#130000'};
+
 function loadCustomToInputs(){
   const d=getCustom();
-  document.getElementById('c_text').value=d.text;
-  document.getElementById('c_bg').value=d.bg;
-  document.getElementById('c_text2').value=d.text2;
-  document.getElementById('c_card').value=d.card;
+  const ac=document.getElementById('c_accent');
+  const tx=document.getElementById('c_text');
+  const bg=document.getElementById('c_bg');
+  const ca=document.getElementById('c_card');
+  if(ac) ac.value=d.accent||d.text2||'#ff2222';
+  if(tx) tx.value=d.text;
+  if(bg) bg.value=d.bg;
+  if(ca) ca.value=d.card;
+  updateSwatches(d);
 }
 function getCustom(){
-  try{const raw=localStorage.getItem(CUSTOM_KEY);if(!raw)return{...DEFAULT_CUSTOM};const o=JSON.parse(raw);return{text:o.text||DEFAULT_CUSTOM.text,bg:o.bg||DEFAULT_CUSTOM.bg,text2:o.text2||DEFAULT_CUSTOM.text2,card:o.card||DEFAULT_CUSTOM.card};}catch{return{...DEFAULT_CUSTOM};}
+  try{
+    const raw=localStorage.getItem(CUSTOM_KEY);
+    if(!raw)return{...DEFAULT_CUSTOM};
+    const o=JSON.parse(raw);
+    return{
+      accent:o.accent||DEFAULT_CUSTOM.accent,
+      text:o.text||DEFAULT_CUSTOM.text,
+      bg:o.bg||DEFAULT_CUSTOM.bg,
+      card:o.card||DEFAULT_CUSTOM.card
+    };
+  }catch{return{...DEFAULT_CUSTOM};}
 }
 function previewCustom(){
-  applyCustomVars({text:document.getElementById('c_text').value,bg:document.getElementById('c_bg').value,text2:document.getElementById('c_text2').value,card:document.getElementById('c_card').value});
+  const d = {
+    accent: document.getElementById('c_accent').value,
+    text: document.getElementById('c_text').value,
+    bg: document.getElementById('c_bg').value,
+    card: document.getElementById('c_card').value,
+  };
+  applyCustomVars(d);
+  updateSwatches(d);
+}
+function updateSwatches(d) {
+  const sa = document.getElementById('swatch-accent');
+  const sb = document.getElementById('swatch-bg');
+  const st = document.getElementById('swatch-text');
+  const sc = document.getElementById('swatch-card');
+  if(sa) sa.style.background = d.accent;
+  if(sb) sb.style.background = d.bg;
+  if(st) { st.style.background = d.card; st.style.color = d.text; }
+  if(sc) { sc.style.background = d.card; sc.style.color = d.text; }
 }
 function applyCustomVars(d){
   const h=document.documentElement;
-  h.style.setProperty('--text',d.text);h.style.setProperty('--bg',d.bg);
-  h.style.setProperty('--text2',d.text2);h.style.setProperty('--card',d.card);
-  h.style.setProperty('--border',mix(d.card,d.bg,0.55));
-  h.style.setProperty('--muted2',mix(d.text2,d.bg,0.55));
-  h.style.setProperty('--muted',mix(d.text2,d.bg,0.70));
-  h.style.setProperty('--soft-text',hexToRgba(d.text,0.58));
-  h.style.setProperty('--shadow','rgba(0,0,0,0.4)');
+  // Remove preset-based data-theme attribute inline styles
+  h.style.setProperty('--accent', d.accent);
+  h.style.setProperty('--text', d.text);
+  h.style.setProperty('--bg', d.bg);
+  h.style.setProperty('--card', d.card);
+  // Derive other vars from these 4
+  const accentMuted = hexToRgba(d.accent, 0.12);
+  h.style.setProperty('--border', mix(d.card, d.bg, 0.55));
+  h.style.setProperty('--muted2', mix(d.accent, d.bg, 0.40));
+  h.style.setProperty('--muted', mix(d.accent, d.bg, 0.25));
+  h.style.setProperty('--soft-text', hexToRgba(d.text, 0.58));
+  h.style.setProperty('--text2', mix(d.accent, d.text, 0.60));
+  h.style.setProperty('--shadow', 'rgba(0,0,0,0.5)');
+  h.style.setProperty('--like', d.accent);
 }
 function saveCustom(){
-  const d={text:document.getElementById('c_text').value,bg:document.getElementById('c_bg').value,text2:document.getElementById('c_text2').value,card:document.getElementById('c_card').value};
-  localStorage.setItem(CUSTOM_KEY,JSON.stringify(d));setTheme('custom');showToast('custom сохранён');
+  const d={
+    accent: document.getElementById('c_accent').value,
+    text: document.getElementById('c_text').value,
+    bg: document.getElementById('c_bg').value,
+    card: document.getElementById('c_card').value,
+  };
+  localStorage.setItem(CUSTOM_KEY,JSON.stringify(d));
+  setTheme('custom');
+  showToast('custom сохранён');
 }
 function resetCustom(){
-  localStorage.setItem(CUSTOM_KEY,JSON.stringify(DEFAULT_CUSTOM));loadCustomToInputs();applyCustomVars(DEFAULT_CUSTOM);setTheme('custom');showToast('custom сброшен');
+  localStorage.setItem(CUSTOM_KEY,JSON.stringify(DEFAULT_CUSTOM));
+  loadCustomToInputs();
+  applyCustomVars(DEFAULT_CUSTOM);
+  setTheme('custom');
+  showToast('custom сброшен');
 }
 function applyCustomVarsFromStorage(force=false){
   const t=localStorage.getItem('kh2_theme')||'blood';
@@ -1753,19 +2388,45 @@ function applyCustomVarsFromStorage(force=false){
   applyCustomVars(getCustom());
 }
 function clearCustomInline(){document.documentElement.removeAttribute('style');}
-function hexToRgba(hex,a){const h=hex.replace('#','').trim();const full=h.length===3?h.split('').map(x=>x+x).join(''):h;const r=parseInt(full.slice(0,2),16);const g=parseInt(full.slice(2,4),16);const b=parseInt(full.slice(4,6),16);return `rgba(${r},${g},${b},${a})`;}
-function mix(c1,c2,w){const a=hexToRgb(c1),b=hexToRgb(c2);const ww=Math.max(0,Math.min(1,w));return rgbToHex(Math.round(a.r*ww+b.r*(1-ww)),Math.round(a.g*ww+b.g*(1-ww)),Math.round(a.b*ww+b.b*(1-ww)));}
-function hexToRgb(hex){const h=hex.replace('#','').trim();const full=h.length===3?h.split('').map(x=>x+x).join(''):h;return{r:parseInt(full.slice(0,2),16),g:parseInt(full.slice(2,4),16),b:parseInt(full.slice(4,6),16)};}
+function hexToRgba(hex,a){
+  try {
+    const h=hex.replace('#','').trim();
+    const full=h.length===3?h.split('').map(x=>x+x).join(''):h;
+    const r=parseInt(full.slice(0,2),16);
+    const g=parseInt(full.slice(2,4),16);
+    const b=parseInt(full.slice(4,6),16);
+    return `rgba(${r},${g},${b},${a})`;
+  } catch(e) { return `rgba(200,100,100,${a})`; }
+}
+function mix(c1,c2,w){
+  try {
+    const a=hexToRgb(c1),b=hexToRgb(c2);
+    const ww=Math.max(0,Math.min(1,w));
+    return rgbToHex(Math.round(a.r*ww+b.r*(1-ww)),Math.round(a.g*ww+b.g*(1-ww)),Math.round(a.b*ww+b.b*(1-ww)));
+  } catch(e) { return c1; }
+}
+function hexToRgb(hex){
+  const h=hex.replace('#','').trim();
+  const full=h.length===3?h.split('').map(x=>x+x).join(''):h;
+  return{r:parseInt(full.slice(0,2),16),g:parseInt(full.slice(2,4),16),b:parseInt(full.slice(4,6),16)};
+}
 function rgbToHex(r,g,b){return'#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');}
 
-/* init */
-(function(){
+/* ── INIT ── */
+(async function(){
   const t=localStorage.getItem('kh2_theme')||'blood';
   const safe=THEMES.includes(t)?t:'blood';
   document.documentElement.setAttribute('data-theme',safe);
   syncPresetUI(safe);
   if(safe==='custom') applyCustomVarsFromStorage(true);
-  renderAll(); renderArtistsSidebar(); renderSidebar(); updateLikedCount();
+
+  // Load plays from shared storage
+  await loadPlays();
+
+  renderAll();
+  renderArtistsSidebar();
+  renderSidebar();
+  updateLikedCount();
 })();
 </script>
 </body>
